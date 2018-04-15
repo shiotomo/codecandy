@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'welcomes#index'
 
-  resources :welcomes, only: [:index]
-  resources :codes, only: [:index, :show]
+  resources :welcomes, only: :index
+  resources :codes, only: :index
+  resources :lessons
 
   get 'present/:id', to: 'presentations#present', as: 'present'
 
