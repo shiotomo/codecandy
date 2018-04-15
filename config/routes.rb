@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :welcomes, only: :index
   resources :codes, only: :index
-  resources :lessons
+  resources :lessons, only: [:index, :show]
 
   get 'present/:id', to: 'presentations#present', as: 'present'
 

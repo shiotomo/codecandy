@@ -26,6 +26,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+              <%= link_to "Free coding", codes_path, class: "btn btn-info navbar-btn" %>
               <%= link_to "Sign Out", signout_path, class: "btn btn-danger navbar-btn" %>
             <% else %>
               <%= link_to "Sign in with Twitter", "/auth/twitter", class: "btn btn-primary navbar-btn" %>
