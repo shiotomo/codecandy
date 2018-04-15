@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
-  helper_method :sign_in?
+  helper_method :user_signed_in?
 
   private
   # ログインしているユーザの情報を提示するメソッド
