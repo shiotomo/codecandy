@@ -1,4 +1,5 @@
 class Api::V1::CompileController < ApplicationController
-  def compile
+  def exec
+    puts "hogehoge"
   end
 end
