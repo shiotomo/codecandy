@@ -5,8 +5,13 @@ function runCode() {
   var source_code = aceEditor.getValue();
   var input = $('#input').val();
 
+  console.log("==========>");
+  console.log(language);
+  console.log(source_code);
+  console.log(input);
+
   $.ajax({
-    url: '127.0.0.1:3000/api/v1/compile',
+    url: 'api/v1/compile/exec',
     method: 'post',
     data: {
       language,
@@ -14,12 +19,15 @@ function runCode() {
       input
     }
   }).done(result => {
+    console.log(result);
     $('#stdout').text(result.stdout);
     $('#stderr').text(result.stderr);
     $('#time').text(result.time);
     $('#exit_code').text(result.exit_code);
     $('#run_button').text("実行").prop('disabled', false);
   }).fail(err => {
+    console.log("==========>");
+    console.log(err);
     alert('Request Faild: ' + err);
     $('#run_button').text("実行").prop('disabled', false);
   });
