@@ -1,28 +1,31 @@
 <div id="source_code" style="height: 400px; width: 100%"></div>
 <hr />
-<h3>実行言語 :
-  <select id="language" class="btn btn-default">
-    <option value="Ruby">Ruby</option>
-    <option value="Python">Python</option>
-    <option value="C">C</option>
-  </select>
-</h3>
-<h3>標準入力 :
-  <input type="textarea" name="input" id="input">
-  <button type="button" id="run_button" class="btn btn-primary">
-    <font size="2">実行</font>
-  </button>
-</h3><h3>標準出力</h3>
-<pre>
-  <div id="stdout" style="background: lightgray">
+<div class="row">
+  <div class="col-sm-6">
+    <h3>実行言語 :
+      <select id="language" class="btn btn-default">
+        <option value="Ruby">Ruby</option>
+        <option value="Python">Python</option>
+        <option value="C">C</option>
+      </select>
+    </h3>
+    <h3>標準入力</h3>
+    <textarea name="input" id="input" class="form-control" rows="8"></textarea>
+    <button type="button" id="run_button" class="btn btn-primary" style="margin-top:1em">
+      <font size="2">実行</font>
+    </button>
   </div>
-</pre>
-<hr>
-<h3>終了コード</h3>
-<pre>
-  <div id="exit_code" style="background: lightgray">
+  <div class="col-sm-6">
+    <h3>標準出力</h3>
+    <pre>
+    <div id="stdout"></div>
+    </pre>
+    <h3>終了コード</h3>
+    <pre>
+    <div id="exit_code"></div>
+    </pre>
   </div>
-</pre>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ext-language_tools.js"></script>
