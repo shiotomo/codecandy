@@ -19,7 +19,7 @@ module CodeCandy
         exec_cmd = "ruby #{source_file}"
       when 'Python'
         source_file += '.py'
-        exec_cmd = "python #{source_file}"
+        exec_cmd = "python3 #{source_file}"
       when 'C'
         filename_id = source_file
         source_file += '.c'
