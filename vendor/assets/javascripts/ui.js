@@ -10,20 +10,20 @@ $('#run_button').on("click", () => {
   runCode();
 });
 
-aceEditor.commands.addCommand({
-  bindKey: {win: "Ctrl-Enter", mac: "Ctrl-Enter"},
-  exec: runCode(),
-});
+// aceEditor.commands.addCommand({
+//   bindKey: {win: "Ctrl-Enter", mac: "Ctrl-Enter"},
+//   exec: runCode(),
+// });
 
-setEditorLanguage = (language) => {
+function setEditorLanguage(language) {
   var languageToMode = {
-    ruby:   'ruby',
+    ruby: 'ruby',
     python: 'python',
-    c:      'c_cpp'
+    c: 'c_cpp',
   };
-  var mode = languageToMode[language];
+  var mode =languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
-};
+}
 
 $('#language').val('ruby');
 setEditorLanguage('ruby');
