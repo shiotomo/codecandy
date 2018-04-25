@@ -17,6 +17,8 @@ gem 'bootstrap-sass'
 gem "omniauth"
 gem "omniauth-twitter"
 gem "dotenv-rails"
+gem "docker-api"
+gem "docker"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

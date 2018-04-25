@@ -1,35 +1,26 @@
+require './lib/code_candy/container'
+
 class Api::V1::CompileController < ApplicationController
   protect_from_forgery except: :exec
 
   def exec
-=begin
-# 送られてきたパラメータを変数に格納
-language = params[:language]
-source_code = params[:source_code]
-input = params[:input]
-exec_time = Time.now.to_f
+    # 送られてきたパラメータを変数に格納
+    language = params[:language]
+    source_code = params[:source_code]
+    input = params[:input]
 
-# ファイルの名前を設定
-source_file     = "main"
-input_file      = "input"
-workdir_dirname = "workspace_#{exec_time}"
+    puts "============>"
+    p source_code.encoding
+    # source_code.force_encoding("ASCII-8BIT")
+    p source_code.encoding
 
-case language
-when 'Ruby'
-  source_file += '.rb'
-  exec_cmd = "ruby #{source_file}"
-when 'Python'
-  source_file += '.py'
-  exec_cmd = "python #{source_file}"
-when 'C'
-  filename_id = source_file
-  source_file += '.c'
-  exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
-end
+    container = CodeCandy::Container.new
+    puts 1
+    result = container.init(language, source_code, input)
 
-logger.ingo("Creating Container")
+    p result
+    result[:stdout] = result[:stdout].force_encoding("UTF-8")
 
-render json: hoge
-=end
+    render json: result
   end
 end
