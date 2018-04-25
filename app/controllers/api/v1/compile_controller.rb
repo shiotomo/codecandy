@@ -1,3 +1,5 @@
+require './lib/code_candy/container'
+
 class Api::V1::CompileController < ApplicationController
   protect_from_forgery except: :exec
 
@@ -8,6 +10,7 @@ class Api::V1::CompileController < ApplicationController
     input = params[:input]
 
     container = CodeCandy::Container.new
+    puts 1
     result = container.init(language, source_code, input)
 
     render json: result
