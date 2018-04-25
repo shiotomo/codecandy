@@ -1,2 +1,6 @@
-<h1>Lessons#index</h1>
-<p>Find me in app/views/lessons/index.html.erb</p>
+<h1 style="text-align: center">問題一覧</h1>
+<ul>
+<% @lessons.each do |lesson| %>
+  <li><%= link_to lesson.title %></li>
+<% end %>
+</ul>

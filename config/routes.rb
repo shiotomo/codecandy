@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   resources :welcomes, only: :index
   resources :codes, only: :index
-  resources :lessons, only: [:index, :show]
-
-  get 'present/:id', to: 'presentations#present', as: 'present'
+  resources :lessons
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout
