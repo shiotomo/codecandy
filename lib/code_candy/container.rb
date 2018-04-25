@@ -66,8 +66,6 @@ module CodeCandy
       container.stop
       container.delete(force: true)
 
-      p "hello"
-
       proc_time = ""
       File.open("/tmp/#{work_dir}/time.txt", "r") do |f|
         proc_time = f.gets
