@@ -1,19 +1,22 @@
+// AceEditor
 var aceEditor = ace.edit("source_code");
 
+aceEditor.$blockScrolling = Infinity;
 aceEditor.setOptions({
   enableBasicAutocompletion: true,
   enableLiveAutocompletion: true,
   enableSnippets: true
 });
 
+// テーマ
+aceEditor.setTheme("ace/theme/monokai");
+// タブ幅を2にする
+aceEditor.getSession().setTabSize(2);
+
+
 $('#run_button').on("click", () => {
   runCode();
 });
-
-// aceEditor.commands.addCommand({
-//   bindKey: {win: "Ctrl-Enter", mac: "Ctrl-Enter"},
-//   exec: runCode(),
-// });
 
 function setEditorLanguage(language) {
   var languageToMode = {
