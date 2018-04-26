@@ -19,6 +19,8 @@ gem "omniauth-twitter"
 gem "dotenv-rails"
 gem "docker-api"
 gem "docker"
+gem "bcrypt"
+gem "cocoon"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :welcomes, only: :index
   resources :codes, only: :index
-  resources :lessons
+  resources :lessons, only: [:index, :show]
+  resources :questions
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout

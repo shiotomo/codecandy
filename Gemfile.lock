@@ -47,6 +47,7 @@ GEM
     autoprefixer-rails (8.2.0)
       execjs
     backticks (1.0.2)
+    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -62,6 +63,7 @@ GEM
       xpath (~> 3.0)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    cocoon (1.2.11)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -229,9 +231,11 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt
   bootstrap-sass
   byebug
   capybara
+  cocoon
   coffee-rails (~> 4.2)
   database_cleaner
   docker
