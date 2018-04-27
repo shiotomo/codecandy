@@ -27,4 +27,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  # adminユーザかを判断するメソッド
+  def authenticate_admin!
+    redirect_back(fallback_location: root_path) unless current_user.is_admin
+  end
 end

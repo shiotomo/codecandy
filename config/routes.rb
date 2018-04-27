@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :codes, only: :index
   resources :lessons, only: [:index, :show]
   resources :questions
-  resources :admin_users
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout
