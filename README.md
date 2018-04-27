@@ -1,6 +1,7 @@
 # CodeCandy
 
-docker
+__docker__
+  
 ubuntuイメージを利用します。
 ```
 docker commit [ID] codecandy/compile
