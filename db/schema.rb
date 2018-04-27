@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180427020619) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_admin"
+    t.boolean "is_admin", default: false, null: false
   end
 
 end
