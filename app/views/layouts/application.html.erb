@@ -25,10 +25,10 @@
             <li><%= link_to 'CodeCandy', root_url %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <% if current_user.is_admin %>
-              <%= link_to "Admin Page", admins_path, class: "btn btn-default navbar-btn" %>
-            <% end %>
             <% if user_signed_in? %>
+              <% if current_user.is_admin %>
+                <%= link_to "Admin Page", admins_path, class: "btn btn-default navbar-btn" %>
+              <% end %>
               <%= link_to "Free coding", codes_path, class: "btn btn-info navbar-btn" %>
               <%= link_to "Sign Out", signout_path, class: "btn btn-danger navbar-btn" %>
             <% else %>
@@ -46,7 +46,7 @@
           <%= yield %>
           <hr />
           <p style="text-align: center">
-          &copy; CodeCandy shiotomo 2018
+            &copy; CodeCandy shiotomo 2018
           </p>
         </div>
         <div class="col-lg-1 col-md-1"></div>

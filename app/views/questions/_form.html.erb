@@ -1,0 +1,24 @@
+<%= form_for @question do |f| %>
+  <div class="field">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "内容" %>
+    <%= f.text_area :body, size: "10x10", class: "form-control" %>
+  </div>
+
+  <div id="answer" class="field">
+    <%= f.fields_for :answer, @question.answers.build do |answer| %>
+      <%= render 'answer_fields', f: answer %>
+      <div class="add_button" style="margin-top: 1em">
+        <%= link_to_add_association "追加", f, :answers, class: "btn btn-info" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="action" style="margin-top: 2em">
+    <%= f.submit "登録", class: "btn btn-primary" %>
+  </div>
+<% end %>

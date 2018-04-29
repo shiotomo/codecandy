@@ -47,7 +47,6 @@ GEM
     autoprefixer-rails (8.2.0)
       execjs
     backticks (1.0.2)
-    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -231,7 +230,6 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bcrypt
   bootstrap-sass
   byebug
   capybara

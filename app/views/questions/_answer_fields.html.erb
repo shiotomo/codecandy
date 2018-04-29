@@ -1,0 +1,20 @@
+<div class="nested-fields">
+  <div class="panel panel-default" style="margin-top: 1em">
+    <div class="panel panel-heading">
+      標準入出力(答え)
+    </div>
+    <div class="panel panel-body">
+      <div class="field">
+        <%= f.label :input, "標準入力" %>
+        <%= f.text_area :input, class: "form-control", size: "5x5" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :output, "標準出力" %>
+        <%= f.text_area :output, class: "form-control", size: "5x5" %>
+      </div>
+
+      <%= link_to_remove_association "削除", f, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

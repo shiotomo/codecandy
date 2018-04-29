@@ -5,11 +5,6 @@ function runCode() {
   var source_code = aceEditor.getValue();
   var input = $('#input').val();
 
-  console.log("==========>");
-  console.log(language);
-  console.log(source_code);
-  console.log(input);
-
   $.ajax({
     url: 'api/v1/compile/exec',
     method: 'post',
@@ -26,9 +21,10 @@ function runCode() {
     $('#exit_code').text(result.exit_code);
     $('#run_button').text("実行").prop('disabled', false);
   }).fail(err => {
-    console.log("==========>");
-    console.log(err);
-    alert('Request Faild: ' + err);
+    // console.log("==========>");
+    // console.log(err);
+    // alert('Request Faild: ' + err);
+    alert('エラーが発生したました');
     $('#run_button').text("実行").prop('disabled', false);
   });
 }
