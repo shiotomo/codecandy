@@ -1,2 +1,4 @@
-<h1>Lessons#show</h1>
-<p>Find me in app/views/lessons/show.html.erb</p>
+<h1><%= @question.title %></h1>
+<p>
+  <%= simple_format @question.body %>
+</p>

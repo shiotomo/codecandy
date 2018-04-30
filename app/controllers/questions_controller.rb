@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answers = @question.answers.order(created_at: 'asc')
   end
 
   def new
@@ -45,7 +46,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body,
-                                    answers_attributes: [:id, :input, :output, :_destroy])
+    params.require(:question).permit(:title, :body, answers_attributes: [:id, :input, :output, :_destroy])
   end
 end

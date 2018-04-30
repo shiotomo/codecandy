@@ -10,15 +10,16 @@
   </div>
 
   <div id="answer" class="field">
-    <%= f.fields_for :answer, @question.answers.build do |answer| %>
+    <%= f.fields_for :answers, @question.answers do |answer| %>
       <%= render 'answer_fields', f: answer %>
-      <div class="add_button" style="margin-top: 1em">
-        <%= link_to_add_association "追加", f, :answers, class: "btn btn-info" %>
-      </div>
     <% end %>
+  </div>
+  <div class="add_button" style="margin-top: 1em">
+    <%= link_to_add_association "追加", f, :answers, class: "btn btn-info" %>
   </div>
 
   <div class="action" style="margin-top: 2em">
-    <%= f.submit "登録", class: "btn btn-primary" %>
+    <%= f.submit "登録", class: "btn btn-primary", style: "margin-bottom: 1em" %>
   </div>
 <% end %>
+<%= link_to "問題管理画面", questions_path, class: "btn btn-info" %>

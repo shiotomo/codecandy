@@ -1,4 +1,30 @@
 <h1><%= @question.title %></h1>
 <p>
-  <%= simple_format @question.body %>
+  <div class="panel panel-info">
+    <div class="panel panel-heading">
+      問題文
+    </div>
+    <div class="panel panel-body">
+      <%= simple_format @question.body %>
+    </div>
+  </div>
 </p>
+<p>
+  <% @answers.each do |answer| %>
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        標準入出力(答え)
+      </div>
+      <div class="panel panel-body">
+        <label>標準入力</label>
+        <%= simple_format answer.input %>
+        <label>標準出力</label>
+        <%= simple_format answer.input %>
+      </div>
+    </div>
+  <% end %>
+</p>
+<div class="actions">
+  <%= link_to "編集", edit_question_path(@question), class: "btn btn-primary" %>
+  <%= link_to "問題管理画面", questions_path, class: "btn btn-info" %>
+</div>

@@ -1,1 +1,6 @@
 <h1 style="text-align: center">問題一覧</h1>
+<ul>
+  <% @questions.each do |question| %>
+    <li><h3><%= link_to question.title, lesson_path(question) %></h3></li>
+  <% end %>
+</ul>
