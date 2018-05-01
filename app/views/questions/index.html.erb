@@ -6,6 +6,7 @@
     <tr>
       <td>問題名</td>
       <td>詳細</td>
+      <td>削除</td>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,13 @@
             question_path(question),
             class: "btn btn-info"
           %>
+        </td>
+        <td>
+          <%= link_to "削除",
+          question_path(question),
+          method: :delete,
+          class: "btn btn-danger",
+          data: {confirm: "本当に削除していいですか？"} %>
         </td>
       </tr>
     <% end %>
