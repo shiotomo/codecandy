@@ -1,3 +1,5 @@
+# Dockerを用いて提出されたプログラムを実行するモジュール
+
 require 'json'
 require 'fileutils'
 require 'open3'

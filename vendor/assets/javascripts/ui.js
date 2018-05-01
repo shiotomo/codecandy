@@ -18,6 +18,10 @@ $('#run_button').on("click", () => {
   runCode();
 });
 
+$('#judge_button').on("click", () => {
+  judgeCode();
+});
+
 function setEditorLanguage(language) {
   var languageToMode = {
     ruby: 'ruby',

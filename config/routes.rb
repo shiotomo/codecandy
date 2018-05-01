@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post '/compile/exec' => 'compile#exec', as: 'api/v1/compile'
+      post '/compile/exec' => 'compile#exec'
+      post '/judgement/exec' => 'judgement#exec'
     end
   end
 
