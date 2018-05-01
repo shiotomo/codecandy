@@ -6,7 +6,7 @@ function runCode() {
   var input = $('#input').val();
 
   $.ajax({
-    url: 'api/v1/compile/exec',
+    url: '/api/v1/compile/exec',
     method: 'post',
     data: {
       language,
