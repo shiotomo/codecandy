@@ -1,4 +1,5 @@
 require './lib/code_candy/container'
+require './lib/code_candy/judgement'
 
 class Api::V1::CompileController < ApplicationController
   protect_from_forgery except: :exec
