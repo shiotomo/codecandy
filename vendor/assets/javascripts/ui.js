@@ -19,7 +19,9 @@ $('#run_button').on("click", () => {
 });
 
 $('#judge_button').on("click", () => {
-  judgeCode();
+  if (window.confirm("現在のプログラムで解答してもよいですか？")) {
+    judgeCode();
+  }
 });
 
 function setEditorLanguage(language) {

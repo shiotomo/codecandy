@@ -27,11 +27,10 @@ function runCode() {
 
 function judgeCode() {
   $('#judge_button').text("判定中").prop('disabled', true);
-  console.log("piyo");
 
   var language = $('#language').val();
   var source_code = aceEditor.getValue();
-  var answer_id = $('#id').val();
+  var answer_id = $('#answer_id').val();
 
   $.ajax({
     url: '/api/v1/judgement/exec',
