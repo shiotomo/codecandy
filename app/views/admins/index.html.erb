@@ -2,3 +2,26 @@
 <p>
   <%= link_to "問題管理画面", questions_path, class: "btn btn-info" %>
 </p>
+<h3 style="margin-top: 1em">ユーザ一覧</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td>ユーザネーム</td>
+      <td>アカウントID</td>
+      <td>権限</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @users.each do |user| %>
+        <td><%= user.user_name %></td>
+        <td><%= user.screen_name %></td>
+        <% if user.is_admin %>
+          <td>管理者</td>
+        <% else %>
+          <td>ユーザ</td>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
