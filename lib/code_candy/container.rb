@@ -35,7 +35,10 @@ module CodeCandy
       when 'C'
         filename_id = source_file
         source_file += '.c'
+        # clangを使ったコマンド
         exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
+        # gccを使ったコマンド
+        exec_cmd = "gcc -o #{filename_id} #{source_file} && ./#{filename_id}"
       end
 
       # コンテナを作成
@@ -51,9 +54,6 @@ module CodeCandy
         },
         Tty: true
       )
-
-      # debug
-      # p work_dir
 
       # Open3を利用してディレクトリを作成＆権限の変更
       Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e, w| 
@@ -79,6 +79,7 @@ module CodeCandy
       # コンテナを利用してプログラムを実行
       return_params = {}
       begin
+        # プログラムの実行時間可能時間を設定
         Timeout.timeout(3) do
           # === 実行ここから ===
           container.start
