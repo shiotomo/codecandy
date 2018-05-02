@@ -13,6 +13,7 @@ class Api::V1::CompileController < ApplicationController
     result = container.init(language, source_code, input)
 
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
+    result[:stderr] = result[:stderr].force_encoding("UTF-8")
 
     render json: result
   end

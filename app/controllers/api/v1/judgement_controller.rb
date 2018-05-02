@@ -41,6 +41,9 @@ class Api::V1::JudgementController < ApplicationController
       result[:answer] = "不正解"
     end
 
+    result[:stdout] = result[:stdout].force_encoding("UTF-8")
+    result[:stderr] = result[:stderr].force_encoding("UTF-8")
+
     render json: result
   end
 end

@@ -18,6 +18,7 @@ module CodeCandy
     def init(language, source_code, input)
       # 現在の時間を格納
       exec_time = Time.now.to_f
+      source_code = source_code.force_encoding("UTF-8")
 
       # ファイルを作成する準備
       source_file = 'main'
@@ -36,7 +37,7 @@ module CodeCandy
         filename_id = source_file
         source_file += '.c'
         # clangを使ったコマンド
-        exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
+        # exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
         # gccを使ったコマンド
         exec_cmd = "gcc -o #{filename_id} #{source_file} && ./#{filename_id}"
       end
@@ -64,14 +65,14 @@ module CodeCandy
 
       # プログラムのファイルの作成
       File.open("/tmp/#{work_dir}/#{source_file}", "w") do |f|
-        source_code.split('\n').each do |line|
+        source_code.each_line do |line|
           f.puts(line)
         end
       end
 
       # 標準入力用のファイルの作成
       File.open("/tmp/#{work_dir}/#{input_file}", "w") do |f|
-        input.split('\n').each do |line|
+        input.each_line do |line|
           f.puts(line)
         end
       end
@@ -79,7 +80,6 @@ module CodeCandy
       # コンテナを利用してプログラムを実行
       return_params = {}
       begin
-        # プログラムの実行時間可能時間を設定
         Timeout.timeout(3) do
           # === 実行ここから ===
           container.start
@@ -88,6 +88,7 @@ module CodeCandy
           container.stop
           container.delete(force: true)
           # === 実行ここまで ===
+
           # 実行にかかった時間をproc_timeに格納
           proc_time = ""
           File.open("/tmp/#{work_dir}/time.txt", "r") do |f|
@@ -98,12 +99,10 @@ module CodeCandy
           FileUtils.rm_r("/tmp/#{work_dir}")
 
           return_params = {stdout: res[0].join(''), stderr: res[1].join(''), time: proc_time, exit_code: res[2]}
-
         end
       rescue Timeout::Error
         container.stop
         container.delete(force: true)
-        puts "hogehoge"
         return_params = {stdout: "Time out!",stderr: "Time out!", time: "", exit_code: 128}
       end
 
