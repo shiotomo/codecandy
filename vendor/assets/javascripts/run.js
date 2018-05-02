@@ -18,6 +18,7 @@ function runCode() {
     $('#stderr').text(result.stderr);
     $('#time').text(result.time);
     $('#exit_code').text(result.exit_code);
+    $('#answer').text("");
     $('#run_button').text("実行").prop('disabled', false);
   }).fail(err => {
     alert('エラーが発生したました');
@@ -41,6 +42,10 @@ function judgeCode() {
       answer_id
     }
   }).done(result => {
+    $('#stdout').text("");
+    $('#stderr').text("");
+    $('#time').text("");
+    $('#exit_code').text("");
     $('#answer').text(result.answer);
     $('#judge_button').text("解答").prop('disabled', false);
   }).fail(err => {
