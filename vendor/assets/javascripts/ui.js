@@ -2,10 +2,12 @@
 var aceEditor = ace.edit("source_code");
 
 aceEditor.$blockScrolling = Infinity;
+
 aceEditor.setOptions({
   enableBasicAutocompletion: true,
   enableLiveAutocompletion: true,
-  enableSnippets: true
+  enableSnippets: true,
+  fontSize: "12pt"
 });
 
 // テーマ
