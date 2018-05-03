@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :lessons, only: [:index, :show]
   resources :questions
   resources :admins, only: :index
+  resources :results, only: [:index, :show]
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout

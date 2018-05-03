@@ -1,0 +1,22 @@
+<h1 style="text-align: center">解答状況</h1>
+<h3 style="text-align: center"><%= @question.title %></h1>
+<table class="table">
+  <thead>
+    <tr>
+      <td>解答結果</td>
+      <td>解答時刻</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <% if result.answer %>
+          <td style="color: green">正解</td>
+        <% else %>
+          <td style="color: red">不正解</td>
+        <% end %>
+        <td><%= result.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
