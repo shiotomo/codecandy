@@ -46,8 +46,8 @@ class Api::V1::JudgementController < ApplicationController
       result[:answer] = "不正解"
     end
 
-    # scoreメソッドを呼び出す
-    score(answer_flag, id)
+    # resultメソッドを呼び出す
+    result_submit(answer_flag, id)
 
     # UTF-8にencodeする
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
@@ -57,15 +57,16 @@ class Api::V1::JudgementController < ApplicationController
   end
 
   private
-  def score(answer_flag, id)
-    @score = Score.new
-    @score.user_id = current_user.id
-    @score.question_id = id
+  # 結果を保存する処理をまとめたメソッド
+  def result_submit(answer_flag, id)
+    @result = Result.new
+    @result.user_id = current_user.id
+    @result.question_id = id
     if answer_flag
-      @score.answer = true
+      @result.answer = true
     else
-      @score.answer = false
+      @result.answer = false
     end
-    @score.save
+    @result.save
   end
 end
