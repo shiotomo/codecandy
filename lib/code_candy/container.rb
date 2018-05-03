@@ -57,7 +57,7 @@ module CodeCandy
       )
 
       # Open3を利用してディレクトリを作成＆権限の変更
-      Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e, w| 
+      Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e| 
         i.close
         o.each do |line| p line end
         e.each do |line| p line end

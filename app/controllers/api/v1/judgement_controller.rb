@@ -46,10 +46,26 @@ class Api::V1::JudgementController < ApplicationController
       result[:answer] = "不正解"
     end
 
+    # scoreメソッドを呼び出す
+    score(answer_flag, id)
+
     # UTF-8にencodeする
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
     result[:stderr] = result[:stderr].force_encoding("UTF-8")
 
     render json: result
+  end
+
+  private
+  def score(answer_flag, id)
+    @score = Score.new
+    @score.user_id = current_user.id
+    @score.question_id = id
+    if answer_flag
+      @score.answer = true
+    else
+      @score.answer = false
+    end
+    @score.save
   end
 end
