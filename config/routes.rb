@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :welcomes, only: :index
   resources :codes, only: :index
   resources :lessons, only: [:index, :show]
-  resources :admins, only: :index
+  resources :admins, only: [:index, :show]
   resources :questions
   resources :results, only: [:index, :show]
 
