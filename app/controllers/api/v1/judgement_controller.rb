@@ -46,6 +46,9 @@ class Api::V1::JudgementController < ApplicationController
       result[:answer] = "不正解"
     end
 
+    # submit_programメソッドを呼び出す
+    submit_program(source_code, language, id)
+
     # resultメソッドを呼び出す
     result_submit(answer_flag, id)
 
@@ -57,7 +60,7 @@ class Api::V1::JudgementController < ApplicationController
   end
 
   private
-  # 結果を保存する処理をまとめたメソッド
+  # 結果を保存するメソッド
   def result_submit(answer_flag, id)
     @result = Result.new
     @result.user_id = current_user.id
@@ -70,6 +73,13 @@ class Api::V1::JudgementController < ApplicationController
     @result.save
   end
 
-  def submit_program(source_code, id)
+  # 提出されたプログラムを保存するメソッド
+  def submit_program(source_code, language, id)
+    @question_program = QuestionProgram.new
+    @question_program.user_id = current_user.id
+    @question_program.question_id = id
+    @question_program.language = language
+    @question_program.code = source_code
+    @question_program.save
   end
 end
