@@ -46,11 +46,8 @@ class Api::V1::JudgementController < ApplicationController
       result[:answer] = "不正解"
     end
 
-    # submit_programメソッドを呼び出す
-    submit_program(source_code, language, id)
-
     # resultメソッドを呼び出す
-    result_submit(answer_flag, id)
+    result_submit(answer_flag, id, source_code, language)
 
     # UTF-8にencodeする
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
@@ -61,25 +58,17 @@ class Api::V1::JudgementController < ApplicationController
 
   private
   # 結果を保存するメソッド
-  def result_submit(answer_flag, id)
+  def result_submit(answer_flag, id, source_code, language)
     @result = Result.new
     @result.user_id = current_user.id
     @result.question_id = id
+    @result.language = language
+    @result.code = source_code
     if answer_flag
       @result.answer = true
     else
       @result.answer = false
     end
     @result.save
-  end
-
-  # 提出されたプログラムを保存するメソッド
-  def submit_program(source_code, language, id)
-    @question_program = QuestionProgram.new
-    @question_program.user_id = current_user.id
-    @question_program.question_id = id
-    @question_program.language = language
-    @question_program.code = source_code
-    @question_program.save
   end
 end

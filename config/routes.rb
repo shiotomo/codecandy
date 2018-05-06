@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   resources :welcomes, only: :index
   resources :codes, only: :index
   resources :lessons, only: [:index, :show]
-  resources :questions
   resources :admins, only: :index
+  resources :questions
   resources :results, only: [:index, :show]
+
+  get 'code/:id', to: 'results#code', as: 'code'
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout
