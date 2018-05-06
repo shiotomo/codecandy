@@ -1,27 +1,64 @@
 <h1>管理者画面</h1>
-<p>
-  <%= link_to "問題管理画面", questions_path, class: "btn btn-info" %>
-</p>
-<h3 style="margin-top: 1em">ユーザ一覧</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <td>アカウントID</td>
-      <td>ユーザネーム</td>
-      <td>権限</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <% @users.each do |user| %>
-        <td><%= link_to user.screen_name, admin_path(user) %></td>
-        <td><%= user.user_name %></td>
-        <% if user.is_admin %>
-          <td>管理者</td>
-        <% else %>
-          <td>ユーザ</td>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
+  <li><a href="#questions" data-toggle="tab">問題一覧</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="users">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>アカウントID</td>
+          <td>ユーザネーム</td>
+          <td>権限</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @users.each do |user| %>
+            <td><%= link_to user.screen_name, admin_path(user) %></td>
+            <td><%= user.user_name %></td>
+            <% if user.is_admin %>
+              <td>管理者</td>
+            <% else %>
+              <td>ユーザ</td>
+            <% end %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="questions">
+    <%= link_to "問題追加", new_question_path, class: "btn btn-primary" %>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>問題名</td>
+          <td>詳細</td>
+          <td>削除</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><%= question.title %></td>
+            <td>
+              <%= link_to "詳細",
+                question_path(question),
+                class: "btn btn-info"
+              %>
+          </td>
+          <td>
+            <%= link_to "削除",
+              question_path(question),
+              method: :delete,
+              class: "btn btn-danger",
+              data: {confirm: "本当に削除していいですか？"} %>
+        </td>
+          </tr>
         <% end %>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>
