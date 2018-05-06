@@ -12,7 +12,10 @@ class ResultsController < ApplicationController
 
   def code
     @question = Question.find(params[:id])
-    @result = @question.results.find(params[:id])
+    @result = @question.results.find(params[:result_id])
+
+    redirect_to question_path(@question) unless @result.user_id == current_user.id
+
     answer = @question.answers.order(created_at: 'asc').first
     if answer.nil?
       @input = ""
