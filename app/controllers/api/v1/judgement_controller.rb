@@ -69,4 +69,7 @@ class Api::V1::JudgementController < ApplicationController
     end
     @result.save
   end
+
+  def submit_program(source_code, id)
+  end
 end
