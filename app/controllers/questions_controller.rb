@@ -3,9 +3,9 @@ class QuestionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @questions = Question.all
-  end
+  # def index
+  #   @questions = Question.all
+  # end
 
   def show
     @answers = @question.answers.order(created_at: 'asc')
@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_path
+    redirect_to admins_path
   end
 
   private

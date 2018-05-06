@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :codes, only: :index
   resources :lessons, only: [:index, :show]
   resources :admins, only: [:index, :show]
-  resources :questions
+  resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :results, only: [:index, :show]
 
   get 'code/:id/:result_id', to: 'results#code', as: 'code'
