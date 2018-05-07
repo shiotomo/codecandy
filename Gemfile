@@ -20,6 +20,7 @@ gem "dotenv-rails"
 gem "docker-api"
 gem "docker"
 gem "cocoon"
+gem "pry-rails"
 # gem "bcrypt"
 
 group :development, :test do
