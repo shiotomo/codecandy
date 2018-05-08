@@ -1,1 +1,24 @@
 <h1><%= image_tag @user.image_url %><%= @user.screen_name %>さんの情報</h1>
+
+<p>
+<label>総コード提出数</label>
+<%= Result.where(user_id: @user.id).count %>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>問題名</td>
+      <td>提出されたコード数</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.title, question_path(question) %></td>
+        <td><%= link_to question.results.all.count,
+          answer_path(question, @user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

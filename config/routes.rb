@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :results, only: [:index, :show]
 
   get 'code/:id/:result_id', to: 'results#code', as: 'code'
+  get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout
