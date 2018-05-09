@@ -2,6 +2,7 @@
 var aceEditor = ace.edit("source_code");
 
 aceEditor.$blockScrolling = Infinity;
+aceEditor.getSession().setMode("ace/mode/ruby");
 
 aceEditor.setOptions({
   enableBasicAutocompletion: true,
@@ -25,20 +26,20 @@ $('#judge_button').on("click", () => {
   }
 });
 
+
 function setEditorLanguage(language) {
-  var languageToMode = {
-    ruby: 'ruby',
-    python: 'python',
-    c: 'c_cpp',
+  const languageToMode = {
+    Ruby: 'ruby',
+    Python: 'python',
+    C: 'c_cpp',
   };
-  var mode =languageToMode[language];
+  const mode = languageToMode[language];
+  console.log(mode);
   aceEditor.getSession().setMode("ace/mode/" + mode);
 }
 
-// $('#language').val('ruby');
-setEditorLanguage('ruby');
 $('#language').on("change", (e) => {
-  setEditorLanguage(this.value);
+  setEditorLanguage($('select').val());
 });
 
 // ファイルから呼び出す
