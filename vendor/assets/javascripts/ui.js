@@ -58,12 +58,19 @@ $('#load_button').on('click', (e) => {
 
 // ファイルに保存する
 $('#save_button').on('click', (e) => {
+  const extension = {
+    Ruby: 'rb',
+    Python: 'py',
+    C: 'c',
+  };
+
   const date = new Date();
   const blob = new Blob([aceEditor.getValue()], { type:'text/plain' });
   const a = Object.assign(document.createElement('a'), {
     href:URL.createObjectURL(blob),
     target:'_blank',
-    download: date.toLocaleDateString().replace(/\//g, '_')
+    download: date.toLocaleDateString().replace(/\//g, '_') 
+                                        + `.${extension[$('#language').val()]}`
   })
   document.body.appendChild(a);
   a.click();
