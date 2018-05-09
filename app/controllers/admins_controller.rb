@@ -5,6 +5,7 @@ class AdminsController < ApplicationController
 
   def index
     @users = User.all.order(created_at: 'asc')
+    @questions = Question.all
   end
 
   def show

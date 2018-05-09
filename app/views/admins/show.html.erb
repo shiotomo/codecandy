@@ -16,7 +16,7 @@
     <% @questions.each do |question| %>
       <tr>
         <td><%= link_to question.title, question_path(question) %></td>
-        <td><%= link_to question.results.all.count,
+        <td><%= link_to question.results.where(user_id: @user).count,
           answer_path(question, @user.id) %></td>
       </tr>
     <% end %>
