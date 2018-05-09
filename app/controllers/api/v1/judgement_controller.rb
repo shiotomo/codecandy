@@ -31,7 +31,7 @@ class Api::V1::JudgementController < ApplicationController
       output = answer.output + "\n"
 
       # 正解だったらanswer_flagをtrueに、違う場合はfalseにしてループを抜ける
-      if result[:stdout] == output || result[:stdout] == answer.output
+      if result[:stdout] == output.gsub(/\r/, "") || result[:stdout] == answer.output.gsub(/\r/, "")
         answer_flag = true
       else
         answer_flag = false
