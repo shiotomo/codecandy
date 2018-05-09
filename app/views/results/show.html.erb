@@ -20,7 +20,7 @@
         <% else %>
           <td style="color: red">不正解</td>
         <% end %>
-        <td><%= result.created_at %></td>
+        <td><%= result.created_at.in_time_zone('Tokyo') %></td>
       </tr>
     <% end %>
   </tbody>
