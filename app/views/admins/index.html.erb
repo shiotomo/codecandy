@@ -15,8 +15,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <% @users.each do |user| %>
+        <% @users.each do |user| %>
+          <tr>
             <td><%= link_to user.screen_name, admin_path(user) %></td>
             <td><%= user.user_name %></td>
             <% if user.is_admin %>
@@ -24,8 +24,8 @@
             <% else %>
               <td>ユーザ</td>
             <% end %>
-          <% end %>
-        </tr>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
