@@ -26,7 +26,6 @@ $('#judge_button').on("click", () => {
   }
 });
 
-
 function setEditorLanguage(language) {
   const languageToMode = {
     Ruby: 'ruby',
@@ -34,7 +33,6 @@ function setEditorLanguage(language) {
     C: 'c_cpp',
   };
   const mode = languageToMode[language];
-  console.log(mode);
   aceEditor.getSession().setMode("ace/mode/" + mode);
 }
 
