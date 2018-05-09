@@ -59,11 +59,12 @@ $('#load_button').on('click', (e) => {
 
 // ファイルに保存する
 $('#save_button').on('click', (e) => {
+  const date = new Date();
   const blob = new Blob([aceEditor.getValue()], { type:'text/plain' });
   const a = Object.assign(document.createElement('a'), {
     href:URL.createObjectURL(blob),
     target:'_blank',
-    download:'a'
+    download: date.toLocaleDateString().replace(/\//g, '_')
   })
   document.body.appendChild(a);
   a.click();
