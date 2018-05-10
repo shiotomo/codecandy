@@ -14,17 +14,7 @@ aceEditor.setOptions({
 // テーマ
 aceEditor.setTheme("ace/theme/monokai");
 // タブ幅を2にする
-aceEditor.getSession().setTabSize(2);
-
-$('#run_button').on("click", () => {
-  runCode();
-});
-
-$('#judge_button').on("click", () => {
-  if (window.confirm("現在のプログラムで解答してもよいですか？")) {
-    judgeCode();
-  }
-});
+aceEditor.getSession().setTabSize(4);
 
 function setEditorLanguage(language) {
   const languageToMode = {
@@ -38,6 +28,19 @@ function setEditorLanguage(language) {
 
 $('#language').on("change", (e) => {
   setEditorLanguage($('select').val());
+  if ($('select').val() == "Ruby") {
+    aceEditor.getSession().setTabSize(2);
+  }
+});
+
+$('#run_button').on("click", () => {
+  runCode();
+});
+
+$('#judge_button').on("click", () => {
+  if (window.confirm("現在のプログラムで解答してもよいですか？")) {
+    judgeCode();
+  }
 });
 
 // ファイルから呼び出す
