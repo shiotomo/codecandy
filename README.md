@@ -14,6 +14,7 @@ __docker__
 ubuntuイメージを利用します。
 ```
 docker pull ubuntu
+docker run ubuntu
 docker commit [ID] codecandy/compile
 docker build -t codecandy/compile .
 ```
