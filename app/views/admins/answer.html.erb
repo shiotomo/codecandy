@@ -6,7 +6,7 @@
   <div class="panel panel-body">
     <% @results.each do |result| %>
       <pre>
-        <%= result.code %>
+        <%= simple_format result.code %>
       </pre>
       <p>
         <label>言語</label>
