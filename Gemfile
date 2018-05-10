@@ -14,13 +14,14 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
-gem "omniauth"
-gem "omniauth-twitter"
-gem "dotenv-rails"
-gem "docker-api"
-gem "docker"
-gem "cocoon"
-gem "pry-rails"
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'dotenv-rails'
+gem 'docker-api'
+gem 'docker'
+gem 'cocoon'
+gem 'pry-rails'
+gem 'friendly_id'
 # gem "bcrypt"
 
 group :development, :test do
