@@ -21,7 +21,7 @@ function runCode() {
     $('#answer').text("");
     $('#run_button').text("実行").prop('disabled', false);
   }).fail(err => {
-    alert('エラーが発生したました');
+    alert('エラーが発生しました');
     $('#run_button').text("実行").prop('disabled', false);
   });
 }
@@ -49,7 +49,7 @@ function judgeCode() {
     $('#answer').text(result.answer);
     $('#judge_button').text("解答").prop('disabled', false);
   }).fail(err => {
-    alert('エラーが発生したました');
+    alert('エラーが発生しました');
     $('#judge_button').text("解答").prop('disabled', false);
   });
 }
