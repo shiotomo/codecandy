@@ -22,7 +22,8 @@ gem 'docker'
 gem 'cocoon'
 gem 'pry-rails'
 gem 'friendly_id'
-# gem "bcrypt"
+gem 'coderay'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
