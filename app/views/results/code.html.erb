@@ -5,9 +5,9 @@
     コード
   </div>
   <div class="panel panel-body">
-    <pre>
-<%= @result.code %>
-    </pre>
+    <p>
+<%= sanitize markdown(@result.code).html_safe %>
+    </p>
   </div>
 </div>
 <div class="panel panel-success">

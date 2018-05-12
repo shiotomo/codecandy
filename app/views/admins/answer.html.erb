@@ -6,7 +6,7 @@
   <div class="panel panel-body">
     <% @results.each do |result| %>
       <p>
-        <%= sanitize markdown(result.code, result.language).html_safe %>
+        <%= sanitize markdown(result.code).html_safe %>
       </p>
       <p>
         <label>言語</label>

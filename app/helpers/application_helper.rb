@@ -9,7 +9,7 @@ module ApplicationHelper
     end
   end
 
-  def markdown(text, language)
+  def markdown(text)
     html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)
     options = {
       autolink: true,
