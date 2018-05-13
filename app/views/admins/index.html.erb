@@ -2,6 +2,7 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
   <li><a href="#questions" data-toggle="tab">問題一覧</a></li>
+  <li><a href="#categories" data-toggle="tab">カテゴリー一覧</a></li>
 </ul>
 
 <div class="tab-content">
@@ -55,6 +56,32 @@
               %></td>
             <td><%= link_to "削除",
               question_path(question),
+              method: :delete,
+              class: "btn btn-danger",
+              data: {confirm: "本当に削除していいですか？"} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="categories">
+    <%= link_to "カテゴリー追加", new_category_path, class: "btn btn-primary" %>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>カテゴリー名</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.title %></td>
+            <td><%= link_to "詳細",
+              category_path(category),
+              class: "btn btn-info"
+              %></td>
+            <td><%= link_to "削除",
+              category_path(category),
               method: :delete,
               class: "btn btn-danger",
               data: {confirm: "本当に削除していいですか？"} %></td>

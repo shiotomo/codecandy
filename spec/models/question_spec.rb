@@ -2,11 +2,12 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
-#  title      :string
-#  body       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  title       :string
+#  body        :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer
 #
 
 require 'rails_helper'
