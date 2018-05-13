@@ -10,4 +10,6 @@
 
 class Category < ApplicationRecord
   validates :title, presence: true
+
+  has_many :category_items, dependent: :destroy
 end
