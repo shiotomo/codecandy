@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
-  def index
-  end
+  before_action :authenticate_user!
+  before_action :authenticate_admin!
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -18,5 +19,12 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def set_category
+  end
+
+  def category_params
   end
 end
