@@ -1,0 +1,17 @@
+<%= form_for @category do |f| %>
+  <div class="field">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <label style="margin-top: 1em">問題一覧</label>
+  <%= f.collection_check_boxes(:question_ids, Question.all, :id, :title, include_hidden: false, prompt: true) do |b|%>
+    <ul style="list-style-type: none">
+      <li><%= b.label { b.check_box + b.text } %></li>
+    </ul>
+  <% end %>
+
+  <div class="action" style="margin-top: 1em">
+    <%= f.submit "登録", class: "btn btn-primary", style: "margin-bottom: 1em" %>
+  </div>
+<% end %>

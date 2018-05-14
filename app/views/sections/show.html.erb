@@ -1,0 +1,14 @@
+<h1 style="text-align: center"><%= @category.title %></h1>
+<h4 style="text-align: center">問題数<%= @category.category_items.count %></h4>
+<hr />
+<% @category.category_items.each do |item| %>
+  <ul>
+    <h3>
+      <li>
+        <%= link_to Question.find(item.question_id).title,
+          lesson_path(item.question_id)
+        %>
+      </li>
+    </h3>
+  </ul>
+<% end %>

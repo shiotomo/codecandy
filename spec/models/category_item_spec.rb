@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: questions
+# Table name: category_items
 #
 #  id          :integer          not null, primary key
-#  title       :string
-#  body        :text
+#  category_id :integer          not null
+#  question_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :integer
 #
 
 require 'rails_helper'
 
-RSpec.describe Question, type: :model do
+RSpec.describe CategoryItem, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -5,6 +5,7 @@ class AdminsController < ApplicationController
 
   def index
     @users = User.all.order(created_at: 'asc')
+    @categories = Category.all.order(created_at: 'asc')
   end
 
   def show
