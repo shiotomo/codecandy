@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :all_questions, only: [:new, :edit]
 
   def show
   end
@@ -38,6 +39,10 @@ class CategoriesController < ApplicationController
   private
   def set_category
     @category = Category.find(params[:id])
+  end
+
+  def all_questions
+    @questions = Question.all
   end
 
   def category_params

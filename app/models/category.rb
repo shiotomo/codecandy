@@ -11,5 +11,9 @@
 class Category < ApplicationRecord
   validates :title, presence: true
 
-  has_many :category_items, dependent: :destroy
+  has_many :category_items
+  has_many :questions, through: :category_items
+
+  accepts_nested_attributes_for :questions
+  # has_many :category_items
 end
