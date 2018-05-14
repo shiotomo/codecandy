@@ -1,1 +1,24 @@
-<h1 style="margin-bottom: 1em"><%= @category.title %></h1>
+<h1 style="margin-bottom: 1em">カテゴリー: <%= @category.title %></h1>
+<table class="table">
+  <thead>
+    <tr>
+      <td>問題名</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @category.category_items.each do |item| %>
+    <tr>
+      <td><%= link_to Question.find(item.question_id).title, question_path(item.question_id) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="actions">
+  <%= link_to "管理画面", admins_path, class: "btn btn-info" %>
+  <%= link_to "編集", edit_category_path(@category), class: "btn btn-primary" %>
+  <%= link_to "削除",
+    category_path(@category),
+    method: :delete,
+    class: "btn btn-danger",
+    data: {confirm: "本当に削除していいですか？"} %>
+</div>

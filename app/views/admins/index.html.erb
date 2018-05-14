@@ -70,12 +70,16 @@
       <thead>
         <tr>
           <td>カテゴリー名</td>
+          <td>問題数</td>
+          <td>詳細</td>
+          <td>削除</td>
         </tr>
       </thead>
       <tbody>
         <% @categories.each do |category| %>
           <tr>
             <td><%= category.title %></td>
+            <td><%= category.category_items.all.count %></td>
             <td><%= link_to "詳細",
               category_path(category),
               class: "btn btn-info"
