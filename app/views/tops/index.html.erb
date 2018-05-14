@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#Categories" data-toggle="tab">カテゴリー一覧</a></li>
+  <li class="active"><a href="#Categories" data-toggle="tab">カテゴリー</a></li>
   <li><a href="#Questions" data-toggle="tab">問題一覧</a></li>
 </ul>
 
 <div class="tab-content">
   <div class="tab-pane active" id="Categories">
-    <h1 style="text-align: center">カテゴリー一覧</h1>
+    <h1 style="text-align: center">カテゴリー</h1>
     <ul>
       <% @categories.each do |category| %>
         <li><h3><%= link_to category.title, section_path(category) %></h3></li>
