@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def self.update_with_omniauth(user, auth)
-    user.update_attributes(
+    user.update_attributes!(
       provider: auth["provider"],
       uid: auth["uid"],
       user_name: auth["info"]["name"],
