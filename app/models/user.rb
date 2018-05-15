@@ -23,4 +23,14 @@ class User < ApplicationRecord
       user.image_url = auth["info"]["image"]
     end
   end
+
+  def self.update_with_omniauth(user, auth)
+    user.update_attributes(
+      provider: auth["provider"],
+      uid: auth["uid"],
+      user_name: auth["info"]["name"],
+      screen_name: auth["info"]["nickname"],
+      image_url: auth["info"]["image"]
+    )
+  end
 end
