@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AdminsController, type: :controller do
+RSpec.describe ResultsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
@@ -16,9 +16,9 @@ RSpec.describe AdminsController, type: :controller do
     end
   end
 
-  describe "GET #answer" do
+  describe "GET #code" do
     it "returns http success" do
-      get :answer
+      get :code
       expect(response).to have_http_status(:success)
     end
   end
