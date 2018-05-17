@@ -27,11 +27,37 @@ class Api::V1::JudgementController < ApplicationController
       result = container.init(language, source_code, answer.input)
       result[:stdout] = result[:stdout].force_encoding("UTF-8")
 
-      # 標準出力改行コードを挿入する
-      output = answer.output + "\n"
+      # 標準出力の整形
+      # 提出コードの標準出力: stdout
+      # 提出コードの標準出力は行末の空白、改行を削除する
+      # 解答用の標準出力:output
+      # 解答用の標準出力は行末の空白、改行を削除する
+      output = answer.output
+      output = output.gsub(/\r/, "")
+      output = output.gsub(/\s+$/, "").rstrip
+      # stdout = result[:stdout].gsub(/(^(?!\n).*$)(\s+$)/, "\n").rstrip
+      # stdout = result[:stdout].gsub(/((^\n)|(\s+$))/, "\n").rstrip
+      stdout = result[:stdout].rstrip
+
+      # == debug ==
+      # puts "============"
+      # pp answer.output
+      # pp result[:stdout]
+      # puts "------------"
+      # p answer.output
+      # p result[:stdout]
+      # puts "------------"
+      # puts output
+      # puts stdout
+      # p output
+      # p stdout
+      # puts "------------"
+      # pp output
+      # pp stdout
+      # puts "============"
 
       # 正解だったらanswer_flagをtrueに、違う場合はfalseにしてループを抜ける
-      if result[:stdout] == output.gsub(/\r/, "") || result[:stdout] == answer.output.gsub(/\r/, "")
+      if stdout == output
         answer_flag = true
       else
         answer_flag = false
