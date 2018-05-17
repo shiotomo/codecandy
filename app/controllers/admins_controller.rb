@@ -20,6 +20,6 @@ class AdminsController < ApplicationController
 
   private
   def all_questions
-    @questions = Question.all
+    @questions = Question.all.order(created_at: 'asc')
   end
 end
