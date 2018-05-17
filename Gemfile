@@ -25,6 +25,8 @@ gem 'friendly_id'
 gem 'coderay'
 gem 'redcarpet'
 gem 'kaminari'
+gem 'jquery-rails'
+gem 'rails-ujs'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

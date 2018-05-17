@@ -6,12 +6,12 @@ class ResultsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
     @results = @question.results.where(user_id: current_user.id)
   end
 
   def code
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
     @result = @question.results.find(params[:result_id])
 
     redirect_to question_path(@question) unless @result.user_id == current_user.id

@@ -9,17 +9,17 @@ class AdminsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def answer
-    @question = Question.find(params[:id])
-    @user = User.find(params[:user_id])
+    @question = Question.friendly.find(params[:id])
+    @user = User.friendly.find(params[:user_id])
     @results = @question.results.where(user_id: params[:user_id])
   end
 
   private
   def all_questions
-    @questions = Question.all
+    @questions = Question.all.order(created_at: 'asc')
   end
 end
