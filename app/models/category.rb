@@ -16,4 +16,7 @@ class Category < ApplicationRecord
 
   accepts_nested_attributes_for :questions
   # has_many :category_items
+
+  include FriendlyId
+  friendly_id :title
 end

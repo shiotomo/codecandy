@@ -33,4 +33,7 @@ class User < ApplicationRecord
       image_url: auth["info"]["image"]
     )
   end
+
+  include FriendlyId
+  friendly_id :screen_name
 end

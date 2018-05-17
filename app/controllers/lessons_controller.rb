@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
     answer = @question.answers.order(created_at: 'asc').first
     if answer.nil?
       @input = ""
