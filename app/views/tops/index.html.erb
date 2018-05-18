@@ -1,10 +1,16 @@
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#Categories" data-toggle="tab">カテゴリー</a></li>
+  <li class="active"><a href="#Help" data-toggle="tab">使い方</a></li>
+  <li><a href="#Categories" data-toggle="tab">カテゴリー</a></li>
   <li><a href="#Questions" data-toggle="tab">問題一覧</a></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="Categories">
+  <div class="tab-pane active" id="Help">
+    <h1 style="text-align: center">CodeCandyへようこそ</h1>
+    <!-- ここに使い方などを書いていく -->
+  </div>
+
+  <div class="tab-pane" id="Categories">
     <h1 style="text-align: center">カテゴリー</h1>
     <ul>
       <% @categories.each do |category| %>

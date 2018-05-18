@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :welcomes, only: :index
   resources :tops, only: :index
   resources :codes, only: :index
-  resources :lessons, only: [:index, :show]
-  resources :sections, only: [:index, :show]
+  resources :lessons, only: :show
+  resources :sections, only: :show
   resources :admins, only: [:index, :show]
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :results, only: [:index, :show]
