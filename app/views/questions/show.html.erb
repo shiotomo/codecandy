@@ -26,6 +26,7 @@
   </div>
 </p>
 <div class="actions">
+  <%= link_to "問題追加", new_question_path, class: "btn btn-primary" %>
   <%= link_to "管理画面", admins_path, class: "btn btn-info" %>
   <%= link_to "編集", edit_question_path(@question), class: "btn btn-primary" %>
   <%= link_to "削除",
