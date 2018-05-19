@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script>
+  jQuery(function($){
+    $("#user-table").DataTable();
+    $("#question-table").DataTable();
+    $("#category-table").DataTable();
+  });
+</script>
 <h1>管理者画面</h1>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
@@ -7,7 +16,8 @@
 
 <div class="tab-content">
   <div class="tab-pane active" id="users">
-    <table class="table">
+    <div style="margin-top: 1em;"></div>
+    <table id="user-table" class="table table-bordered" width="100%">
       <thead>
         <tr>
           <td>アカウントID</td>
@@ -36,7 +46,8 @@
       'https://github.com/shiotomo/code-candy/wiki/%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%99%82%E3%81%AE%E3%83%AB%E3%83%BC%E3%83%AB',
       class: "btn btn-info",
       target: "_blank" %>
-    <table class="table">
+    <div style="margin-top: 1em;"></div>
+    <table id="question-table" class="table table-bordered" width="100%">
       <thead>
         <tr>
           <td>問題名</td>
@@ -66,7 +77,8 @@
   </div>
   <div class="tab-pane" id="categories">
     <%= link_to "カテゴリー追加", new_category_path, class: "btn btn-primary" %>
-    <table class="table">
+    <div style="margin-top: 1em;"></div>
+    <table id="category-table" class="table table-bordered" width="100%">
       <thead>
         <tr>
           <td>カテゴリー名</td>
