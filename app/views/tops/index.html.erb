@@ -1,10 +1,97 @@
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#Categories" data-toggle="tab">カテゴリー</a></li>
-  <li><a href="#Questions" data-toggle="tab">問題一覧</a></li>
+  <li class="active">
+    <a href="#Help" data-toggle="tab">
+      使い方
+    </a>
+  </li>
+  <li>
+    <a href="#Categories" data-toggle="tab">
+      カテゴリー
+    </a>
+  </li>
+  <li>
+    <a href="#Questions" data-toggle="tab">
+      問題一覧
+    </a>
+  </li>
 </ul>
-
 <div class="tab-content">
-  <div class="tab-pane active" id="Categories">
+  <div class="tab-pane active" id="Help">
+    <div style="
+    background-image : url('/images/codecandy-code-top.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: white;
+    ">
+      <div style="background-color: rgba(255, 255, 255, 0.6)">
+        <div style="
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 20em;
+        ">
+          <h1 style="text-align: center">CodeCandyへようこそ</h1>
+          <!-- ここに使い方などを書いていく -->
+          <p style="text-align: center">
+            CodeCandyでプログラミング力をアップさせよう!
+          </p>
+        </div>
+        <div class="row" style="background-color: rgba(255, 255, 255, 0.9)">
+          <div class="col-lg-6" style="border: solid #eeeeee">
+            <h3 style="text-align: center">
+              カテゴリーから問題を選択する
+            </h3>
+            <p  style="font-size: 130%">
+              問題の難易度毎にカテゴリーを作成しています。
+              自分の技術力にあった難易度の問題を選んで解答できます。
+              <br />
+              タブメニューの<b>カテゴリー</b>を選択
+            </p>
+          </div>
+          <div class="col-lg-6" style="border: solid #eeeeee">
+            <h3 style="text-align: center">
+              問題一覧から問題を選択する
+            </h3>
+            <p  style="font-size: 130%">
+              CodeCandyに存在する全問題から問題を選択できます。
+              興味を持った問題を自分で選んで解答できます。
+              <br />
+              タブメニューの<b>問題一覧</b>を選択
+            </p>
+          </div>
+        </div>
+        <div class="row" style="background-color: rgba(255, 255, 255, 0.9)">
+          <div class="col-lg-6" style="border: solid #eeeeee">
+            <h3 style="text-align: center">
+              自由にコーディングする
+            </h3>
+            <p  style="font-size: 130%">
+              CodeCandyには自由にコーディングする機能が存在します。
+              自分で考えたプログラムを動かすことができます。
+              <br />
+              メニューバー右上の<b>Free coding</b>を選択
+            </p>
+          </div>
+          <div class="col-lg-6" style="border: solid #eeeeee">
+            <h3 style="text-align: center">
+              対応言語
+            </h3>
+            <p  style="font-size: 130%">
+              現在ご利用いただける言語は以下のリストにある言語です。
+              随時他の言語にも対応させていきます。
+            </p>
+            <ul>
+              <h4><li>C</li></h4>
+              <h4><li>Ruby</li></h4>
+              <h4><li>Python3</li></h4>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="Categories">
     <h1 style="text-align: center">カテゴリー</h1>
     <ul>
       <% @categories.each do |category| %>
