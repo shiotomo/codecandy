@@ -1,5 +1,5 @@
 // AceEditor
-var aceEditor = ace.edit("source_code");
+const aceEditor = ace.edit("source_code");
 
 aceEditor.$blockScrolling = Infinity;
 aceEditor.getSession().setMode("ace/mode/c_cpp");

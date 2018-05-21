@@ -43,18 +43,7 @@ module CodeCandy
       end
 
       # コンテナを作成
-      container = Docker::Container.create(
-        name: "test_#{exec_time}",
-        Image: 'codecandy/compile',
-        WorkingDir: '/workspace',
-        Memory: 512 * 1024**2,
-        MemorySwap: 512 * 1024**2,
-        PidsLimit: 30,
-        HostConfig: {
-          Binds: ["/tmp/#{work_dir}:/workspace"]
-        },
-        Tty: true
-      )
+      container = create(exec_time, work_dir)
 
       # Open3を利用してディレクトリを作成＆権限の変更
       Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e| 
@@ -107,6 +96,24 @@ module CodeCandy
       end
 
       return return_params
+    end
+
+    private
+    def create(exec_time, work_dir)
+      container = Docker::Container.create(
+        name: "test_#{exec_time}",
+        Image: 'codecandy/compile',
+        WorkingDir: '/workspace',
+        Memory: 512 * 1024**2,
+        MemorySwap: 512 * 1024**2,
+        PidsLimit: 30,
+        HostConfig: {
+          Binds: ["/tmp/#{work_dir}:/workspace"]
+        },
+        Tty: true
+      )
+
+      return container
     end
   end
 end
