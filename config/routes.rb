@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get 'code/:id/:result_id', to: 'results#code', as: 'code'
   get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
+  get 'list/:id/', to: 'admins#list', as: 'list'
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout

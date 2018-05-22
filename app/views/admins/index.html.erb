@@ -60,7 +60,7 @@
         <% @questions.each do |question| %>
           <tr>
             <td><%= question.title %></td>
-            <td><%= question.results.all.count %></td>
+            <td><%= link_to question.results.all.count, list_path(question) %></td>
             <td><%= link_to "詳細",
               question_path(question),
               class: "btn btn-info"
