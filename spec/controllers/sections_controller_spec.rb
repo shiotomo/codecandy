@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe SectionsController, type: :controller do
 
   describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+    context 'ログインしていない' do
+      it "returns http redirect" do
+        get :show, params: { id: 1 }
+        expect(response).to have_http_status(:redirect)
+      end
     end
   end
 
