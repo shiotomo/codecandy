@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h3 style="text-align: center"><%= @question.title %></h3>
+  </div>
+  <div class="panel panel-body">
+    <% @results.each do |result| %>
+      <p>
+        <%= sanitize markdown(result.code).html_safe %>
+      </p>
+      <p>
+        <label>言語</label>
+        <%= result.language %>
+      </p>
+      <p>
+        <label>解答結果</label>
+        <% if result.answer %>
+          <span style="color: green">正解</span>
+        <% else %>
+          <span style="color: red">不正解</span>
+        <% end %>
+      </p>
+      <p>
+        <label>ユーザ名</label>
+        <%= User.find(result.user_id).screen_name %>
+      </p>
+      <hr />
+    <% end %>
+  </div>
+</div>
