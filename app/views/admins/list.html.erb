@@ -21,7 +21,9 @@
       </p>
       <p>
         <label>ユーザ名</label>
-        <%= User.find(result.user_id).screen_name %>
+        <%= link_to User.find(result.user_id).screen_name,
+          admin_path(result.user_id)
+        %>
       </p>
       <hr />
     <% end %>
