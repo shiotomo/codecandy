@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AdminsController, type: :controller do
+RSpec.describe ResultsController, type: :controller do
 
   describe "GET #index" do
     context 'ログインしていない' do
@@ -20,10 +20,10 @@ RSpec.describe AdminsController, type: :controller do
     end
   end
 
-  describe "GET #answer" do
+  describe "GET #code" do
     context 'ログインしていない' do
       it "returns http redirect" do
-        get :answer, params: { id: 1, user_id: 1 }
+        get :code, params: { id: 1, result_id: 1 }
         expect(response).to have_http_status(:redirect)
       end
     end
