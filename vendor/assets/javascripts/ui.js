@@ -20,7 +20,8 @@ function setEditorLanguage(language) {
   const languageToMode = {
     Ruby: 'ruby',
     Python: 'python',
-    C: 'c_cpp',
+    Gcc: 'c_cpp',
+    Clang: 'c_cpp'
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -28,9 +29,19 @@ function setEditorLanguage(language) {
 
 $('#language').on("change", (e) => {
   setEditorLanguage($('select').val());
-  if ($('select').val() == "Ruby") {
-    aceEditor.getSession().setTabSize(2);
+  switch ($('select').val()) {
+    case "Ruby":
+      aceEditor.getSession().setTabSize(2);
+      break;
+    case 'Python':
+    case 'Gcc':
+    case 'Clang':
+      aceEditor.getSession().setTabSize(4);
+      break;
   }
+  // if ($('select').val() == "Ruby") {
+  //   aceEditor.getSession().setTabSize(2);
+  // }
 });
 
 $('#run_button').on("click", () => {
@@ -64,7 +75,8 @@ $('#save_button').on('click', (e) => {
   const extension = {
     Ruby: 'rb',
     Python: 'py',
-    C: 'c',
+    Gcc: 'c',
+    Clang: 'c'
   };
 
   const date = new Date();
@@ -72,7 +84,7 @@ $('#save_button').on('click', (e) => {
   const a = Object.assign(document.createElement('a'), {
     href:URL.createObjectURL(blob),
     target:'_blank',
-    download: date.toLocaleDateString().replace(/\//g, '_') 
+    download: date.toLocaleDateString().replace(/\//g, '_')
                                         + `.${extension[$('#language').val()]}`
   })
   document.body.appendChild(a);

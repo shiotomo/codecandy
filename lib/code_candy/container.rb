@@ -33,13 +33,14 @@ module CodeCandy
       when 'Python'
         source_file += '.py'
         exec_cmd = "python3 #{source_file}"
-      when 'C'
+      when 'Gcc'
         filename_id = source_file
         source_file += '.c'
-        # clangを使ったコマンド
-        # exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
-        # gccを使ったコマンド
         exec_cmd = "gcc -o #{filename_id} #{source_file} && ./#{filename_id}"
+      when 'Clang'
+        filename_id = source_file
+        source_file += '.c'
+        exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
       end
 
       # コンテナを作成
