@@ -30,16 +30,23 @@ module CodeCandy
       when 'Ruby'
         source_file += '.rb'
         exec_cmd = "ruby #{source_file}"
-      when 'Python'
+      when 'Python3'
         source_file += '.py'
         exec_cmd = "python3 #{source_file}"
-      when 'C'
+      when 'Gcc'
         filename_id = source_file
         source_file += '.c'
-        # clangを使ったコマンド
-        # exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
-        # gccを使ったコマンド
         exec_cmd = "gcc -o #{filename_id} #{source_file} && ./#{filename_id}"
+      when 'Clang'
+        filename_id = source_file
+        source_file += '.c'
+        exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
+      when 'Golang'
+        source_file += '.go'
+        exec_cmd = "go run #{source_file}"
+      when 'Nodejs'
+        source_file += '.js'
+        exec_cmd = "nodejs #{source_file}"
       end
 
       # コンテナを作成

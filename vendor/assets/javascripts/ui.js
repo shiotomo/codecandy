@@ -19,8 +19,11 @@ aceEditor.getSession().setTabSize(4);
 function setEditorLanguage(language) {
   const languageToMode = {
     Ruby: 'ruby',
-    Python: 'python',
-    C: 'c_cpp',
+    Python3: 'python',
+    Gcc: 'c_cpp',
+    Clang: 'c_cpp',
+    Nodejs: 'javascript',
+    Golang: 'golang'
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -28,9 +31,23 @@ function setEditorLanguage(language) {
 
 $('#language').on("change", (e) => {
   setEditorLanguage($('select').val());
-  if ($('select').val() == "Ruby") {
-    aceEditor.getSession().setTabSize(2);
+  switch ($('select').val()) {
+    case "Nodejs":
+    case "Ruby":
+      aceEditor.getSession().setTabSize(2);
+      break;
+    case 'Python3':
+    case 'Gcc':
+    case 'Clang':
+      aceEditor.getSession().setTabSize(4);
+      break;
+    case 'Golang':
+      aceEditor.getSession().setTabSize('tab');
+      break;
   }
+  // if ($('select').val() == "Ruby") {
+  //   aceEditor.getSession().setTabSize(2);
+  // }
 });
 
 $('#run_button').on("click", () => {
@@ -63,8 +80,11 @@ $('#load_button').on('click', (e) => {
 $('#save_button').on('click', (e) => {
   const extension = {
     Ruby: 'rb',
-    Python: 'py',
-    C: 'c',
+    Python3: 'py',
+    Gcc: 'c',
+    Clang: 'c',
+    Nodejs: 'js',
+    Golang: 'go'
   };
 
   const date = new Date();
@@ -72,7 +92,7 @@ $('#save_button').on('click', (e) => {
   const a = Object.assign(document.createElement('a'), {
     href:URL.createObjectURL(blob),
     target:'_blank',
-    download: date.toLocaleDateString().replace(/\//g, '_') 
+    download: date.toLocaleDateString().replace(/\//g, '_')
                                         + `.${extension[$('#language').val()]}`
   })
   document.body.appendChild(a);
