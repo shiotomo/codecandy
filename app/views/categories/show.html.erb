@@ -6,7 +6,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @category.category_items.each do |item| %>
+    <% @category.category_items.order(created_at: 'asc').each do |item| %>
       <tr>
         <td><%= link_to Question.find(item.question_id).title, question_path(item.question_id) %></td>
       </tr>

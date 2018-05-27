@@ -1,7 +1,7 @@
 <h1 style="text-align: center"><%= @category.title %></h1>
 <h4 style="text-align: center">問題数<%= @category.category_items.count %></h4>
 <hr />
-<% @category.category_items.each do |item| %>
+<% @category.category_items.order(created_at: 'asc').each do |item| %>
   <ul>
     <h3>
       <li>
