@@ -110,33 +110,59 @@
   </div>
   <div class="tab-pane" id="Situation">
     <table class="table" width="100%">
-    <thead>
-      <tr>
-        <td>問題名</td>
-        <td>解答者</td>
-        <td>解答言語</td>
-        <td>解答時刻</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @results.each do |result| %>
+      <thead>
         <tr>
-          <td>
-            <%= link_to Question.find(result.question_id).title,
-              question_path(result.question)
-            %>
-          </td>
-          <td>
-            <%= link_to User.find(result.user_id).screen_name,
-              admin_path(result.user_id)
-            %>
-          </td>
-          <td><%= result.language %></td>
-          <td><%= result.created_at.in_time_zone('Tokyo') %></td>
+          <td>問題名</td>
+          <td>解答者</td>
+          <td>解答言語</td>
+          <td>解答時刻</td>
+          <td>コード</td>
         </tr>
-      </td>
-      <% end %>
-    </tbody>
+      </thead>
+      <tbody>
+        <% @results.each do |result| %>
+          <% question_title = Question.find(result.question_id).title %>
+          <% user_screen_name = User.find(result.user_id).screen_name %>
+          <tr>
+            <td>
+              <%= link_to question_title,
+                question_path(result.question)
+              %>
+            </td>
+            <td>
+              <%= link_to user_screen_name,
+                admin_path(result.user_id)
+              %>
+            </td>
+            <td><%= result.language %></td>
+            <td><%= result.created_at.in_time_zone('Tokyo') %></td>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
+
+            <div class="modal fade" id="result<%= result.id %>">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提出コード</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      <h5>問題名: <%= question_title %></h5>
+                      <h5>解答者: <%= user_screen_name %></h5>
+                      <h5>実行言語: <%= result.language %></h5>
+                      <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
+                    </p>
+                    <hr />
+                    <p>
+                      <%= sanitize markdown(result.code).html_safe %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
