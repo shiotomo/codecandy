@@ -3,12 +3,14 @@
   <thead>
     <tr>
       <td>問題名</td>
+      <td>解答数</td>
     </tr>
   </thead>
   <tbody>
     <% @questions.each do |question| %>
   <tr>
       <td><%= link_to question.title, result_path(question) %></td>
+      <td><%= question.results.count %></td>
   </tr>
     <% end %>
   </tbody>
