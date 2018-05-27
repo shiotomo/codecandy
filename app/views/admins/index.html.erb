@@ -115,6 +115,7 @@
         <td>問題名</td>
         <td>解答者</td>
         <td>解答言語</td>
+        <td>解答時刻</td>
       </tr>
     </thead>
     <tbody>
@@ -131,6 +132,7 @@
             %>
           </td>
           <td><%= result.language %></td>
+          <td><%= result.created_at.in_time_zone('Tokyo') %></td>
         </tr>
       </td>
       <% end %>
