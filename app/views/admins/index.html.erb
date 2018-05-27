@@ -5,13 +5,16 @@
     $("#user-table").DataTable();
     $("#question-table").DataTable();
     $("#category-table").DataTable();
+    $("#situation-table").DataTable();
   });
 </script>
+
 <h1>管理者画面</h1>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
   <li><a href="#questions" data-toggle="tab">問題一覧</a></li>
   <li><a href="#categories" data-toggle="tab">カテゴリー一覧</a></li>
+  <li><a href="#Situation" data-toggle="tab">最新の状況</a></li>
 </ul>
 
 <div class="tab-content">
@@ -104,6 +107,35 @@
           </tr>
         <% end %>
       </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="Situation">
+    <table class="table" width="100%">
+    <thead>
+      <tr>
+        <td>問題名</td>
+        <td>解答者</td>
+        <td>解答言語</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |result| %>
+        <tr>
+          <td>
+            <%= link_to Question.find(result.question_id).title,
+              question_path(result.question)
+            %>
+          </td>
+          <td>
+            <%= link_to User.find(result.user_id).screen_name,
+              admin_path(result.user_id)
+            %>
+          </td>
+          <td><%= result.language %></td>
+        </tr>
+      </td>
+      <% end %>
+    </tbody>
     </table>
   </div>
 </div>
