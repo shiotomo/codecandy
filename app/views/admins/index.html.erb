@@ -115,6 +115,7 @@
           <td>問題名</td>
           <td>解答者</td>
           <td>解答言語</td>
+          <td>正誤</td>
           <td>解答時刻</td>
           <td>コード</td>
         </tr>
@@ -135,6 +136,13 @@
               %>
             </td>
             <td><%= result.language %></td>
+            <td>
+              <% if result.answer %>
+                <p style="color: green">正解</p>
+              <% else %>
+                <p style="color: red">不正解</p>
+              <% end %>
+            </td>
             <td><%= result.created_at.in_time_zone('Tokyo') %></td>
             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
 
@@ -151,6 +159,13 @@
                       <h5>解答者: <%= user_screen_name %></h5>
                       <h5>実行言語: <%= result.language %></h5>
                       <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
+                      <h5>
+                        <% if result.answer %>
+                          <p style="color: green">正解</p>
+                        <% else %>
+                          <p style="color: red">不正解</p>
+                        <% end %>
+                      </h5>
                     </p>
                     <hr />
                     <p>
