@@ -88,7 +88,7 @@ class Api::V1::JudgementController < ApplicationController
     @result = Result.new
     @result.user_id = current_user.id
     @result.question_id = id
-    @result.language = language
+    @result.language = submit_language(language)
     @result.code = source_code
     if answer_flag
       @result.answer = true
@@ -96,5 +96,24 @@ class Api::V1::JudgementController < ApplicationController
       @result.answer = false
     end
     @result.save
+  end
+
+  def submit_language(language)
+    case language
+    when 'Gcc'
+      return 'C(gcc)'
+    when 'Clang'
+      return 'C(clang)'
+    when 'Ruby'
+      return 'Ruby'
+    when 'Python3'
+      return 'Python'
+    when 'Go'
+      return 'Nodejs'
+    when 'Nodejs'
+      return 'Nodejs'
+    else
+      return ''
+    end
   end
 end
