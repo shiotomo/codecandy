@@ -2,7 +2,6 @@ require 'redcarpet'
 require 'coderay'
 
 module ApplicationHelper
-
   class HTMLwithCoderay < Redcarpet::Render::HTML
     def block_code(code, language)
       CodeRay.scan(code, :md).div
