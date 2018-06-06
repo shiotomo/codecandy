@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs">
+  <li>
+    <%= link_to 'TOP', tops_path %>
+  </li>
+  <li class="active">
+    <%= link_to 'カテゴリー', sections_path %>
+  </li>
+  <li>
+    <%= link_to '問題一覧', lessons_path %>
+  </li>
+</ul>
+<div>
+  <h1 style="text-align: center">カテゴリー</h1>
+  <ul>
+    <% @categories.each do |category| %>
+      <li><h3><%= link_to category.title, section_path(category) %></h3></li>
+    <% end %>
+  </ul>
+</div>
