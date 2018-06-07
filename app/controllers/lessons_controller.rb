@@ -1,6 +1,10 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @questions = Question.all.order(created_at: "asc")
+  end
+
   def show
     @question = Question.friendly.find(params[:id])
     answer = @question.answers.order(created_at: 'asc').first
