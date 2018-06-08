@@ -7,7 +7,13 @@ class AdminsController < ApplicationController
   def index
     @users = User.all.order(created_at: 'asc')
     @categories = Category.all.order(created_at: 'asc')
-    @results = Result.all.limit(10).order(created_at: 'desc')
+    # @results = Result.all.limit(10).order(created_at: 'desc')
+    @results = Result.all.order(created_at: 'desc')
+
+    @analysis = Hash.new(0)
+    @results.each do |result|
+      @analysis[result.language] += 1
+    end
   end
 
   def show

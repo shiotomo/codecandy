@@ -13,7 +13,8 @@
   <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
   <li><a href="#questions" data-toggle="tab">問題一覧</a></li>
   <li><a href="#categories" data-toggle="tab">カテゴリー一覧</a></li>
-  <li><a href="#Situation" data-toggle="tab">最新の状況</a></li>
+  <li><a href="#situation" data-toggle="tab">最新の状況</a></li>
+  <li><a href="#analysis" data-toggle="tab">統計</a></li>
 </ul>
 
 <div class="tab-content">
@@ -42,6 +43,7 @@
       </tbody>
     </table>
   </div>
+
   <div class="tab-pane" id="questions">
     <%= link_to "問題追加", new_question_path, class: "btn btn-primary" %>
     <%= link_to "問題追加のルール",
@@ -108,7 +110,8 @@
       </tbody>
     </table>
   </div>
-  <div class="tab-pane" id="Situation">
+
+  <div class="tab-pane" id="situation">
     <table class="table" width="100%">
       <thead>
         <tr>
@@ -121,7 +124,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @results.each do |result| %>
+        <% @results.limit(10).each do |result| %>
           <% question_title = Question.find(result.question_id).title %>
           <% user_screen_name = User.find(result.user_id).screen_name %>
           <tr>
@@ -129,55 +132,76 @@
               <%= link_to question_title,
                 question_path(result.question)
               %>
-            </td>
-            <td>
-              <%= link_to user_screen_name,
-                admin_path(result.user_id)
-              %>
-            </td>
-            <td><%= result.language %></td>
-            <td>
-              <% if result.answer %>
-                <p style="color: green">正解</p>
-              <% else %>
-                <p style="color: red">不正解</p>
-              <% end %>
-            </td>
-            <td><%= result.created_at.in_time_zone('Tokyo') %></td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
+          </td>
+          <td>
+            <%= link_to user_screen_name,
+              admin_path(result.user_id)
+            %>
+        </td>
+        <td><%= result.language %></td>
+        <td>
+          <% if result.answer %>
+            <p style="color: green">正解</p>
+          <% else %>
+            <p style="color: red">不正解</p>
+          <% end %>
+        </td>
+        <td><%= result.created_at.in_time_zone('Tokyo') %></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
 
-            <div class="modal fade" id="result<%= result.id %>">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">提出コード</h4>
-                  </div>
-                  <div class="modal-body">
-                    <p>
-                      <h5>問題名: <%= question_title %></h5>
-                      <h5>解答者: <%= user_screen_name %></h5>
-                      <h5>実行言語: <%= result.language %></h5>
-                      <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
-                      <h5>
-                        <% if result.answer %>
-                          <p style="color: green">正解</p>
-                        <% else %>
-                          <p style="color: red">不正解</p>
-                        <% end %>
-                      </h5>
-                    </p>
-                    <hr />
-                    <p>
-                      <%= sanitize markdown(result.code).html_safe %>
-                    </p>
-                  </div>
-                </div>
+        <div class="modal fade" id="result<%= result.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提出コード</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <h5>問題名: <%= question_title %></h5>
+                  <h5>解答者: <%= user_screen_name %></h5>
+                  <h5>実行言語: <%= result.language %></h5>
+                  <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
+                  <h5>
+                    <% if result.answer %>
+                      <p style="color: green">正解</p>
+                    <% else %>
+                      <p style="color: red">不正解</p>
+                    <% end %>
+                  </h5>
+                </p>
+                <hr />
+                <p>
+                  <%= sanitize markdown(result.code).html_safe %>
+                </p>
               </div>
             </div>
+          </div>
+        </div>
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div class="tab-pane" id="analysis">
+    <div style="margin-top: 1em;">
+    <table class="table" width="100%">
+      <thead>
+        <tr>
+          <td>プログラミング言語</td>
+          <td>提出数</td>
+        </tr>
+      </thead>
+      <tbody>
+      <% @analysis.each do |ana| %>
+        <tr>
+          <td><%= ana[0] %></td>
+          <td><%= ana[1] %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
   </div>
 </div>
