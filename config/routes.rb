@@ -6,14 +6,14 @@ Rails.application.routes.draw do
   resources :codes, only: :index
   resources :lessons, only: [:index, :show]
   resources :sections, only: [:index, :show]
-  resources :admins, only: [:index, :show]
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :results, only: [:index, :show]
   resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :admins, only: [:index, :show]
 
-  get 'code/:id/:result_id', to: 'results#code', as: 'code'
   get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
   get 'list/:id/', to: 'admins#list', as: 'list'
+  get 'code/:id/:result_id', to: 'results#code', as: 'code'
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout

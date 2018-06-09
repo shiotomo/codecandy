@@ -185,23 +185,29 @@
   </div>
 
   <div class="tab-pane" id="analysis">
-    <div style="margin-top: 1em;">
-    <table class="table" width="100%">
-      <thead>
-        <tr>
-          <td>プログラミング言語</td>
-          <td>提出数</td>
-        </tr>
-      </thead>
-      <tbody>
-      <% @analysis.each do |ana| %>
-        <tr>
-          <td><%= ana[0] %></td>
-          <td><%= ana[1] %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <div class="row" style="margin-top: 1em;">
+      <div class="col-lg-6">
+        <%= pie_chart @analysis %>
+      </div>
+
+      <div class="col-lg-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>プログラミング言語</td>
+              <td>提出数</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @analysis.each do |ana| %>
+              <tr>
+                <td><%= ana[0] %></td>
+                <td><%= ana[1] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
