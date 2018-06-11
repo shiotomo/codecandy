@@ -18,6 +18,11 @@ class AdminsController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
+    results = Result.where(user_id: @user.id)
+    @analysis = Hash.new(0)
+    results.each do |result|
+      @analysis[result.language] += 1
+    end
   end
 
   def answer

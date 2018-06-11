@@ -1,24 +1,59 @@
 <h1><%= image_tag @user.image_url %><%= @user.screen_name %>さんの情報</h1>
 
-<p>
-<label>総コード提出数</label>
-<%= Result.where(user_id: @user.id).count %>
-</p>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#result" data-toggle="tab">解答状況</a></li>
+  <li><a href="#analysis" data-toggle="tab">統計</a></li>
+</ul>
 
-<table class="table">
-  <thead>
-    <tr>
-      <td>問題名</td>
-      <td>提出されたコード数</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= link_to question.title, question_path(question) %></td>
-        <td><%= link_to question.results.where(user_id: @user).count,
-          answer_path(question, @user.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="tab-content">
+  <div class="tab-pane active" id="result">
+    <p>
+      <label>総コード提出数</label>
+      <%= Result.where(user_id: @user.id).count %>
+    </p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <td>問題名</td>
+          <td>提出されたコード数</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><%= link_to question.title, question_path(question) %></td>
+            <td><%= link_to question.results.where(user_id: @user).count,
+              answer_path(question, @user.id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="analysis">
+    <div class="row" style="margin-top: 1em;">
+      <div class="col-lg-6">
+        <%= pie_chart @analysis %>
+      </div>
+
+      <div class="col-lg-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>プログラミング言語</td>
+              <td>提出数</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @analysis.each do |ana| %>
+              <tr>
+                <td><%= ana[0] %></td>
+                <td><%= ana[1] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
