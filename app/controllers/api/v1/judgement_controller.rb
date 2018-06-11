@@ -107,7 +107,7 @@ class Api::V1::JudgementController < ApplicationController
     when 'Ruby'
       return 'Ruby'
     when 'Python3'
-      return 'Python'
+      return 'Python3'
     when 'Golang'
       return 'Golang'
     when 'Nodejs'
