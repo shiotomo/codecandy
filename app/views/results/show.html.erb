@@ -13,7 +13,7 @@
     <% @results.each do |result| %>
       <tr>
         <td><%= link_to Question.find(result.question_id).title,
-          question_path(result.question_id) %></td>
+          lesson_path(result.question_id) %></td>
         <td><%= link_to "詳細", code_path(@question, result) %></td>
         <% if result.answer %>
           <td style="color: green">正解</td>
