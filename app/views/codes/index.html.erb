@@ -6,10 +6,9 @@
     <button type="button" id="load_button" class="btn btn-default">
       Load
     </button>
-    <%= link_to 'Top page',
-      tops_path,
-      class: 'btn btn-info pull-right'
-    %>
+    <%= link_to 'Back',
+      :back,
+      class: 'btn btn-info pull-right' %>
   <input type="file" id="load_file" style="display: none">
   <!-- ace editor -->
   <div id="source_code" style="height: 550px; width: 100%"></div>
