@@ -5,6 +5,7 @@
     <tr>
       <td>問題タイトル</td>
       <td>提出コード</td>
+      <td>使用言語</td>
       <td>解答結果</td>
       <td>解答時刻</td>
     </tr>
@@ -15,6 +16,7 @@
         <td><%= link_to Question.find(result.question_id).title,
           lesson_path(result.question_id) %></td>
         <td><%= link_to "詳細", code_path(@question, result) %></td>
+        <td><%= result.language %></td>
         <% if result.answer %>
           <td style="color: green">正解</td>
         <% else %>
