@@ -38,20 +38,6 @@ ActiveRecord::Schema.define(version: 20180619160715) do
     t.index ["question_id"], name: "index_category_items_on_question_id"
   end
 
-  create_table "commit_question_answers", force: :cascade do |t|
-    t.text "input"
-    t.text "output"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "commit_questions", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "body"
