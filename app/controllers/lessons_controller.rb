@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @questions = Question.page(params[:page]).order(created_at: "asc")
+    @questions = Question.page(params[:page]).order(created_at: "desc")
   end
 
   def show
