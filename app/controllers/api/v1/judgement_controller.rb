@@ -112,6 +112,8 @@ class Api::V1::JudgementController < ApplicationController
       return 'Golang'
     when 'Nodejs'
       return 'Nodejs'
+    when 'Java'
+      return 'Java'
     else
       return ''
     end
