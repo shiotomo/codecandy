@@ -25,6 +25,9 @@ module CodeCandy
       input_file  = 'input'
       work_dir     = "workspace_#{exec_time}"
 
+      # タイムアウトする時間を設定(基本は3)
+      time_out = 3
+
       # 実行する言語ごとにファイルの名前を確定させ、実行コマンドを設定する
       case language
       when 'Ruby'
@@ -47,6 +50,12 @@ module CodeCandy
       when 'Nodejs'
         source_file += '.js'
         exec_cmd = "nodejs #{source_file}"
+      when 'Java'
+        time_out = 5
+        source_file = "Main"
+        filename_id = source_file
+        source_file += '.java'
+        exec_cmd = "javac #{source_file} && java #{filename_id}"
       end
 
       # コンテナを作成
@@ -76,7 +85,7 @@ module CodeCandy
       # コンテナを利用してプログラムを実行
       return_params = {}
       begin
-        Timeout.timeout(3) do
+        Timeout.timeout(time_out) do
           # === 実行ここから ===
           container.start
           container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout 3 #{exec_cmd} < #{input_file}" 

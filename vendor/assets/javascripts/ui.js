@@ -23,7 +23,8 @@ function setEditorLanguage(language) {
     Gcc: 'c_cpp',
     Clang: 'c_cpp',
     Nodejs: 'javascript',
-    Golang: 'golang'
+    Golang: 'golang',
+    Java: 'Java',
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -39,15 +40,13 @@ $('#language').on("change", (e) => {
     case 'Python3':
     case 'Gcc':
     case 'Clang':
+    case 'Java':
       aceEditor.getSession().setTabSize(4);
       break;
     case 'Golang':
       aceEditor.getSession().setTabSize('tab');
       break;
   }
-  // if ($('select').val() == "Ruby") {
-  //   aceEditor.getSession().setTabSize(2);
-  // }
 });
 
 $('#run_button').on("click", () => {
@@ -84,7 +83,8 @@ $('#save_button').on('click', (e) => {
     Gcc: 'c',
     Clang: 'c',
     Nodejs: 'js',
-    Golang: 'go'
+    Golang: 'go',
+    Java: 'java'
   };
 
   const date = new Date();
