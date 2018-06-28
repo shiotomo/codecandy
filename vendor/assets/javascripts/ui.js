@@ -28,6 +28,15 @@ function setEditorLanguage(language) {
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
+
+  if (mode=='Java'&&aceEditor.getValue() == '') {
+    aceEditor.setValue(
+`public class Main {
+    public static void main(String[] args) {
+        
+    }
+}`);
+  }
 }
 
 $('#language').on("change", (e) => {
