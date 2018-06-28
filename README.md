@@ -18,8 +18,8 @@ __docker__
   
 ubuntuイメージを利用します。(I will use the ubuntu image.)
 ```
-docker pull ubuntu
-docker run ubuntu
+docker pull openjdk:10
+docker run openjdk:10
 docker commit [ID] codecandy/compile
 docker build -t codecandy/compile .
 ```
