@@ -24,12 +24,12 @@ function setEditorLanguage(language) {
     Clang: 'c_cpp',
     Nodejs: 'javascript',
     Golang: 'golang',
-    Java: 'Java',
+    Java: 'java',
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
 
-  if (mode=='Java'&&aceEditor.getValue() == '') {
+  if (mode=='java'&&aceEditor.getValue() == '') {
     aceEditor.setValue(
 `public class Main {
     public static void main(String[] args) {
