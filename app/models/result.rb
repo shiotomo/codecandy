@@ -13,5 +13,6 @@
 #
 
 class Result < ApplicationRecord
-  belongs_to :question
+  belongs_to :question, inverse_of: :results
+  belongs_to :user, inverse_of: :results
 end

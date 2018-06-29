@@ -124,17 +124,15 @@
         </tr>
       </thead>
       <tbody>
-        <% @results.limit(10).each do |result| %>
-          <% question_title = Question.find(result.question_id).title %>
-          <% user_screen_name = User.find(result.user_id).screen_name %>
+        <% @results.each do |result| %>
           <tr>
             <td>
-              <%= link_to question_title,
+              <%= link_to result.question.title,
                 question_path(result.question)
               %>
           </td>
           <td>
-            <%= link_to user_screen_name,
+            <%= link_to result.user.screen_name,
               admin_path(result.user_id)
             %>
         </td>
@@ -158,8 +156,8 @@
               </div>
               <div class="modal-body">
                 <p>
-                  <h5>問題名: <%= question_title %></h5>
-                  <h5>解答者: <%= user_screen_name %></h5>
+                  <h5>問題名: <%= result.question.title %></h5>
+                  <h5>解答者: <%= result.user.screen_name %></h5>
                   <h5>実行言語: <%= result.language %></h5>
                   <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
                   <h5>

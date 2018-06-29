@@ -34,6 +34,8 @@ class User < ApplicationRecord
     )
   end
 
+  has_many :results, inverse_of: :user
+
   include FriendlyId
   friendly_id :screen_name
 end
