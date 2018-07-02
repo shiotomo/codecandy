@@ -114,6 +114,8 @@ class Api::V1::JudgementController < ApplicationController
       return 'Nodejs'
     when 'Java'
       return 'Java'
+    when 'Scala'
+      return 'Scala'
     else
       return ''
     end

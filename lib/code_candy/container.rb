@@ -56,6 +56,13 @@ module CodeCandy
         filename_id = source_file
         source_file += '.java'
         exec_cmd = "javac #{source_file} && java #{filename_id}"
+      when 'Scala'
+        time_out = 15
+        source_file = "Main"
+        filename_id = source_file
+        source_file += '.scala'
+        exec_cmd = "scalac #{source_file} && scala #{filename_id}"
+        # puts "scalac #{source_file} && scala #{filename_id}"
       end
 
       # コンテナを作成
@@ -88,7 +95,7 @@ module CodeCandy
         Timeout.timeout(time_out) do
           # === 実行ここから ===
           container.start
-          container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout 3 #{exec_cmd} < #{input_file}" 
+          container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{time_out} #{exec_cmd} < #{input_file}"
           res = container.exec(['bash', '-c', container_cmd])
           container.stop
           container.delete(force: true)
