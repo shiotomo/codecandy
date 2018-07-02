@@ -25,15 +25,24 @@ function setEditorLanguage(language) {
     Nodejs: 'javascript',
     Golang: 'golang',
     Java: 'java',
+    Scala: 'scala'
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
 
-  if (mode=='java'&&aceEditor.getValue() == '') {
+  if (mode=='java' && aceEditor.getValue() == '') {
     aceEditor.setValue(
 `public class Main {
     public static void main(String[] args) {
         
+    }
+}`);
+  }
+  if (mode=='scala' && aceEditor.getValue() == '') {
+    aceEditor.setValue(
+`object Main {
+    def main(args: Array[String]) {
+      
     }
 }`);
   }
@@ -44,6 +53,7 @@ $('#language').on("change", (e) => {
   switch ($('select').val()) {
     case "Nodejs":
     case "Ruby":
+    case "Scala":
       aceEditor.getSession().setTabSize(2);
       break;
     case 'Python3':
@@ -93,7 +103,8 @@ $('#save_button').on('click', (e) => {
     Clang: 'c',
     Nodejs: 'js',
     Golang: 'go',
-    Java: 'java'
+    Java: 'java',
+    Scala: 'scala'
   };
 
   const date = new Date();
