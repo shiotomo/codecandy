@@ -57,7 +57,7 @@ module CodeCandy
         source_file += '.java'
         exec_cmd = "javac #{source_file} && java #{filename_id}"
       when 'Scala'
-        time_out = 15
+        time_out = 20
         source_file = "Main"
         filename_id = source_file
         source_file += '.scala'
