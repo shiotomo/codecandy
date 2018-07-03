@@ -35,26 +35,7 @@ class Api::V1::JudgementController < ApplicationController
       output = answer.output
       output = output.gsub(/\r/, "")
       output = output.gsub(/\s+$/, "").rstrip
-      # stdout = result[:stdout].gsub(/(^(?!\n).*$)(\s+$)/, "\n").rstrip
-      # stdout = result[:stdout].gsub(/((^\n)|(\s+$))/, "\n").rstrip
       stdout = result[:stdout].rstrip
-
-      # == debug ==
-      # puts "============"
-      # pp answer.output
-      # pp result[:stdout]
-      # puts "------------"
-      # p answer.output
-      # p result[:stdout]
-      # puts "------------"
-      # puts output
-      # puts stdout
-      # p output
-      # p stdout
-      # puts "------------"
-      # pp output
-      # pp stdout
-      # puts "============"
 
       # 正解だったらanswer_flagをtrueに、違う場合はfalseにしてループを抜ける
       if stdout == output

@@ -68,7 +68,7 @@ module CodeCandy
       end
 
       # コンテナを作成
-      Container.create_openjdk10 = create(exec_time, work_dir)
+      container = Container.create_openjdk10(exec_time, work_dir)
 
       # Open3を利用してディレクトリを作成＆権限の変更
       Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e| 
