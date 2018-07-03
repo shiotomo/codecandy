@@ -1,4 +1,4 @@
-require './lib/code_candy/Compiler'
+require './lib/code_candy/compiler'
 
 class Api::V1::CompileController < ApplicationController
   protect_from_forgery except: :exec

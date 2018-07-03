@@ -18,6 +18,7 @@ module CodeCandy
     # 返り値
     # return_params
     def exec(language, source_code, input)
+      # ==== 事前処理 ====
       # 現在の時間を格納
       exec_time = Time.now.to_f
       source_code = source_code.force_encoding("UTF-8")
@@ -29,6 +30,10 @@ module CodeCandy
 
       # タイムアウトする時間を設定(基本は3)
       time_out = 3
+
+      # JVM言語であるかどうか
+      is_jvm = false
+      # ==================
 
       # 実行する言語ごとにファイルの名前を確定させ、実行コマンドを設定する
       case language
@@ -58,17 +63,23 @@ module CodeCandy
         filename_id = source_file
         source_file += '.java'
         exec_cmd = "javac #{source_file} && java #{filename_id}"
+        is_jvm = true
       when 'Scala'
         time_out = 20
         source_file = "Main"
         filename_id = source_file
         source_file += '.scala'
         exec_cmd = "scalac #{source_file} && scala #{filename_id}"
-        # puts "scalac #{source_file} && scala #{filename_id}"
+        is_jvm = true
       end
 
       # コンテナを作成
-      container = Container.create_openjdk10(exec_time, work_dir)
+      # * 一時的に同じコンテナを利用している
+      if is_jvm
+        @container = Container.create_openjdk10(exec_time, work_dir)
+      else
+        @container = Container.create_openjdk10(exec_time, work_dir)
+      end
 
       # Open3を利用してディレクトリを作成＆権限の変更
       Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e| 
@@ -97,11 +108,11 @@ module CodeCandy
       begin
         Timeout.timeout(time_out) do
           # === 実行ここから ===
-          container.start
+          @container.start
           container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{time_out} #{exec_cmd} < #{input_file}"
-          res = container.exec(['bash', '-c', container_cmd])
-          container.stop
-          container.delete(force: true)
+          res = @container.exec(['bash', '-c', container_cmd])
+          @container.stop
+          @container.delete(force: true)
           # === 実行ここまで ===
 
           # 実行にかかった時間をproc_timeに格納
@@ -116,8 +127,8 @@ module CodeCandy
           return_params = {stdout: res[0].join(''), stderr: res[1].join(''), time: proc_time, exit_code: res[2]}
         end
       rescue Timeout::Error
-        container.stop
-        container.delete(force: true)
+        @container.stop
+        @container.delete(force: true)
         return_params = {stdout: "Time out!",stderr: "Time out!", time: "", exit_code: 128}
       end
 
