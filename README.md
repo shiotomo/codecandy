@@ -16,7 +16,7 @@ https://codecandy.tomosse.work
 ## 使い方(How to use)
 __docker__
   
-ubuntuイメージを利用します。(I will use the ubuntu image.)
+openjdk:10イメージを利用します。(I will use the openjdk:10 image.)
 ```
 docker pull openjdk:10
 docker run openjdk:10
