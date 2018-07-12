@@ -1,5 +1,5 @@
 # 提出されたプログラムを実行し、問題との正誤を判断するAPI
-require './lib/code_candy/container'
+require './lib/code_candy/compiler'
 
 class Api::V1::JudgementController < ApplicationController
   protect_from_forgery except: :exec
@@ -11,7 +11,7 @@ class Api::V1::JudgementController < ApplicationController
     id = params[:answer_id]
 
     # コンテナモジュールのインスタンスを生成
-    container = CodeCandy::Container.new
+    compiler = CodeCandy::Compiler.new
 
     # 問題の標準入出力を呼び出し
     question = Question.find(id)
@@ -24,7 +24,7 @@ class Api::V1::JudgementController < ApplicationController
 
     question.answers.each do |answer|
       # コンテナに言語、ソースコード、標準入力を与えて提出されたプログラムを実行する
-      result = container.init(language, source_code, answer.input)
+      result = compiler.exec(language, source_code, answer.input)
       result[:stdout] = result[:stdout].force_encoding("UTF-8")
 
       # 標準出力の整形
@@ -35,26 +35,7 @@ class Api::V1::JudgementController < ApplicationController
       output = answer.output
       output = output.gsub(/\r/, "")
       output = output.gsub(/\s+$/, "").rstrip
-      # stdout = result[:stdout].gsub(/(^(?!\n).*$)(\s+$)/, "\n").rstrip
-      # stdout = result[:stdout].gsub(/((^\n)|(\s+$))/, "\n").rstrip
       stdout = result[:stdout].rstrip
-
-      # == debug ==
-      # puts "============"
-      # pp answer.output
-      # pp result[:stdout]
-      # puts "------------"
-      # p answer.output
-      # p result[:stdout]
-      # puts "------------"
-      # puts output
-      # puts stdout
-      # p output
-      # p stdout
-      # puts "------------"
-      # pp output
-      # pp stdout
-      # puts "============"
 
       # 正解だったらanswer_flagをtrueに、違う場合はfalseにしてループを抜ける
       if stdout == output
@@ -116,6 +97,8 @@ class Api::V1::JudgementController < ApplicationController
       return 'Java'
     when 'Scala'
       return 'Scala'
+    when 'Swift'
+      return 'Swift'
     else
       return ''
     end

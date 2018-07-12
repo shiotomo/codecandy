@@ -1,4 +1,4 @@
-require './lib/code_candy/container'
+require './lib/code_candy/compiler'
 
 class Api::V1::CompileController < ApplicationController
   protect_from_forgery except: :exec
@@ -8,9 +8,9 @@ class Api::V1::CompileController < ApplicationController
     language = params[:language]
     source_code = params[:source_code]
     input = params[:input]
-    container = CodeCandy::Container.new
+    compiler = CodeCandy::Compiler.new
 
-    result = container.init(language, source_code, input)
+    result = compiler.exec(language, source_code, input)
 
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
     result[:stderr] = result[:stderr].force_encoding("UTF-8")
