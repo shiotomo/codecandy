@@ -16,10 +16,10 @@ https://codecandy.tomosse.work
 ## 使い方(How to use)
 __docker__
   
-openjdk:10イメージを利用します。(I will use the openjdk:10 image.)
+swiftイメージを利用します。(I will use the swift image.)
 ```
-docker pull openjdk:10
-docker run openjdk:10
+docker pull swift
+docker run swift
 docker commit [ID] codecandy/compile
 docker build -t codecandy/compile .
 ```
