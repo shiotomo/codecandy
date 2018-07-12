@@ -25,7 +25,8 @@ function setEditorLanguage(language) {
     Nodejs: 'javascript',
     Golang: 'golang',
     Java: 'java',
-    Scala: 'scala'
+    Scala: 'scala',
+    Swift: 'swift'
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -60,6 +61,7 @@ $('#language').on("change", (e) => {
     case 'Gcc':
     case 'Clang':
     case 'Java':
+    case 'Swift':
       aceEditor.getSession().setTabSize(4);
       break;
     case 'Golang':
@@ -104,7 +106,8 @@ $('#save_button').on('click', (e) => {
     Nodejs: 'js',
     Golang: 'go',
     Java: 'java',
-    Scala: 'scala'
+    Scala: 'scala',
+    Swift: 'swift',
   };
 
   const date = new Date();

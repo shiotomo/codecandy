@@ -67,6 +67,9 @@ module CodeCandy
         filename_id = source_file
         source_file += '.scala'
         exec_cmd = "scalac #{source_file} && scala #{filename_id}"
+      when 'Swift'
+        source_file += '.swift'
+        exec_cmd = "swift #{source_file}"
       end
 
       # コンテナを作成
