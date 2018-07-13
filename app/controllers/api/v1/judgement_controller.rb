@@ -99,6 +99,8 @@ class Api::V1::JudgementController < ApplicationController
       return 'Scala'
     when 'Swift'
       return 'Swift'
+    when 'C++'
+      return 'C++'
     else
       return ''
     end

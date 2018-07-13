@@ -70,6 +70,10 @@ module CodeCandy
       when 'Swift'
         source_file += '.swift'
         exec_cmd = "swift #{source_file}"
+      when 'CPP'
+        filename_id = source_file
+        source_file += '.cpp'
+        exec_cmd = "g++ -o #{filename_id} #{source_file} && ./#{filename_id}"
       end
 
       # コンテナを作成
