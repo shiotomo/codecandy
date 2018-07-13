@@ -26,7 +26,7 @@ function setEditorLanguage(language) {
     Golang: 'golang',
     Java: 'java',
     Scala: 'scala',
-    Swift: 'swift'
+    Swift: 'swift',
     CPP: 'c_cpp'
   };
   const mode = languageToMode[language];
