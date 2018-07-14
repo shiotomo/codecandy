@@ -6,6 +6,7 @@ RUN apt-get install -y python
 RUN apt-get install -y python3
 RUN apt-get install -y clang
 RUN apt-get install -y gcc
+RUN apt-get install -y g++
 RUN apt-get install -y golang
 RUN apt-get install -y nodejs
 RUN apt-get install -y openjdk-8-jdk
