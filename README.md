@@ -21,7 +21,7 @@ https://codecandy.tomosse.work
 - Ruby
 - Python3
 - Golang
-- Nodejs
+- Node.js
 - Java
 - Scala
 - Swift
