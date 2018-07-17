@@ -92,7 +92,7 @@ class Api::V1::JudgementController < ApplicationController
     when 'Golang'
       return 'Golang'
     when 'Nodejs'
-      return 'Nodejs'
+      return 'Node.js'
     when 'Java'
       return 'Java'
     when 'Scala'
