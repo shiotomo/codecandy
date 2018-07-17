@@ -13,6 +13,19 @@ Since editor is also equipped, programming can be started with this one applicat
 ## URL
 https://codecandy.tomosse.work
 
+## 対応言語(Supported language)
+
+- C (gcc)
+- C (clang)
+- C++
+- Ruby
+- Python3
+- Golang
+- Node.js
+- Java
+- Scala
+- Swift
+
 ## 使い方(How to use)
 __docker__
   
