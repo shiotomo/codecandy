@@ -101,6 +101,10 @@ class Api::V1::JudgementController < ApplicationController
       return 'Swift'
     when 'CPP'
       return 'C++'
+    when 'PHP'
+      return 'PHP'
+    when 'Perl'
+      return 'Perl'
     else
       return ''
     end
