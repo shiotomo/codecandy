@@ -11,6 +11,7 @@ RUN apt-get install -y golang
 RUN apt-get install -y nodejs
 RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y scala
+RUN apt-get install -y php
 # RUN apt-get install -y swift
 RUN apt-get install -y time
 RUN apt-get install -y binutils

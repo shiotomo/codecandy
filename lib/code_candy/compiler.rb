@@ -74,6 +74,12 @@ module CodeCandy
         filename_id = source_file
         source_file += '.cpp'
         exec_cmd = "g++ -o #{filename_id} #{source_file} && ./#{filename_id}"
+      when 'PHP'
+        source_file += '.php'
+        exec_cmd = "php #{source_file}"
+      when 'Perl'
+        source_file += '.pl'
+        exec_cmd = "perl #{source_file}"
       end
 
       # コンテナを作成
