@@ -25,6 +25,8 @@ https://codecandy.tomosse.work
 - Java
 - Scala
 - Swift
+- PHP
+- Perl
 
 ## 使い方(How to use)
 __docker__
