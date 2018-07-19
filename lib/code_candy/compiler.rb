@@ -80,6 +80,9 @@ module CodeCandy
       when 'Perl'
         source_file += '.pl'
         exec_cmd = "perl #{source_file}"
+      when 'Bash'
+        source_file += '.sh'
+        exec_cmd = "bash #{source_file}"
       end
 
       # コンテナを作成
