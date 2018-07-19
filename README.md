@@ -27,6 +27,7 @@ https://codecandy.tomosse.work
 - Swift
 - PHP
 - Perl
+- Bash
 
 ## 使い方(How to use)
 __docker__
