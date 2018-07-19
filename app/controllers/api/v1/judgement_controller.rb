@@ -105,6 +105,8 @@ class Api::V1::JudgementController < ApplicationController
       return 'PHP'
     when 'Perl'
       return 'Perl'
+    when 'Bash'
+      return 'Bash'
     else
       return ''
     end

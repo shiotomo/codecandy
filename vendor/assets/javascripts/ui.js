@@ -29,7 +29,8 @@ function setEditorLanguage(language) {
     Swift: 'swift',
     CPP: 'c_cpp',
     PHP: 'php',
-    Perl: 'perl'
+    Perl: 'perl',
+    Bash: 'sh'
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -58,6 +59,7 @@ $('#language').on("change", (e) => {
     case "Nodejs":
     case "Ruby":
     case "Scala":
+    case "Bash":
       aceEditor.getSession().setTabSize(2);
       break;
     case 'Python3':
@@ -116,7 +118,8 @@ $('#save_button').on('click', (e) => {
     Swift: 'swift',
     CPP: 'cpp',
     PHP: 'php',
-    Perl: 'pl'
+    Perl: 'pl',
+    Bash: 'sh'
   };
 
   const date = new Date();
