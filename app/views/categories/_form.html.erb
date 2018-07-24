@@ -4,6 +4,11 @@
     <%= f.text_field :title, class: "form-control" %>
   </div>
 
+  <div class="field">
+    <%= f.label :title, "コメント" %>
+    <%= f.text_field :comment, class: "form-control" %>
+  </div>
+
   <label style="margin-top: 1em">問題一覧</label>
   <%= f.collection_check_boxes(:question_ids, Question.all, :id, :title, include_hidden: false, prompt: true) do |b|%>
     <ul style="list-style-type: none">
