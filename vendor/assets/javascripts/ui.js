@@ -37,7 +37,9 @@ function setEditorLanguage(language) {
 
   if (mode=='java' && aceEditor.getValue() == '') {
     aceEditor.setValue(
-`public class Main {
+`import java.util.*;
+
+public class Main {
     public static void main(String[] args) {
         
     }
@@ -45,7 +47,9 @@ function setEditorLanguage(language) {
   }
   if (mode=='scala' && aceEditor.getValue() == '') {
     aceEditor.setValue(
-`object Main {
+`import java.util._
+
+object Main {
   def main(args: Array[String]) {
     
   }
