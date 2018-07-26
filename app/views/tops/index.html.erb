@@ -14,29 +14,77 @@
 <p style="text-align: center">
   CodeCandyでプログラミング力をアップさせよう!
 </p>
-<div class="panel panel-info">
-  <div class="panel panel-heading">
-    あなたのステータス
-  </div>
-  <div class="panel panel-body">
-    <div class="graph">
-      <%= pie_chart @analysis %>
+<div class="row">
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        プロフィール
+      </div>
+      <div class="panel panel-body">
+        <%= image_tag current_user.image_url %>
+        <h3><%= current_user.user_name %></h3>
+        <h3><%= current_user.screen_name %></h3>
+      </div>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>プログラミング言語</th>
-          <th>提出数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @analysis.each do |ana| %>
-          <tr>
-            <td><%= ana[0] %></td>
-            <td><%= ana[1] %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  </div>
+  <div class="col-lg-9">
+    <div class="panel panel-info">
+      <div class="panel panel-heading">
+        あなたのステータス
+      </div>
+      <div class="panel panel-body">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active">
+            <a href="#language" data-toggle="tab">使用言語</a>
+          </li>
+          <li>
+            <a href="#questions" data-toggle="tab">解答問題一覧</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="language">
+            <div class="graph">
+              <%= pie_chart @analysis %>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>プログラミング言語</th>
+                  <th>提出数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @analysis.each do |ana| %>
+                  <tr>
+                    <td><%= ana[0] %></td>
+                    <td><%= ana[1] %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-pane" id="questions">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>問題名</th>
+                  <th>解答数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @questions.each do |question| %>
+                  <tr>
+                    <td><%= link_to question.title, result_path(question) %></td>
+                    <td><%= question.results.where(user_id: current_user.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
