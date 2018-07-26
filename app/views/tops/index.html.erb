@@ -1,3 +1,11 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script>
+  jQuery(function($){
+    $("#question-table").DataTable();
+  });
+</script>
+
 <ul class="nav nav-tabs">
   <li class="active">
     <%= link_to 'TOP', tops_path %>
@@ -48,6 +56,29 @@
               <tr>
                 <td><%= ana[0] %></td>
                 <td><%= ana[1] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        解答状況
+      </div>
+      <div class="panel panel-body">
+        <table id="question-table" class="table table-bordered" width="100%">
+          <thead>
+            <tr>
+              <th>問題名</th>
+              <th>解答数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @questions.each do |question| %>
+              <tr>
+                <td><%= link_to question.title, result_path(question) %></td>
+                <td><%= question.results.where(user_id: current_user.id).count %></td>
               </tr>
             <% end %>
           </tbody>
