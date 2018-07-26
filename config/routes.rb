@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :lessons, only: [:index, :show]
   resources :sections, only: [:index, :show]
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
-  resources :results, only: [:index, :show]
+  resources :results, only: :show
   resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :admins, only: [:index, :show]
 
