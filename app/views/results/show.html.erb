@@ -1,5 +1,7 @@
 <h1 style="text-align: center">解答状況</h1>
-<h3 style="text-align: center"><%= @question.title %></h1>
+<h3 style="text-align: center">
+  <%= link_to @question.title, lesson_path(@question) %>
+</h3>
 <table class="table">
   <thead>
     <tr>

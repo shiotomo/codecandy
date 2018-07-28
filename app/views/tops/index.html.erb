@@ -79,8 +79,10 @@
           <tbody>
             <% @questions.each do |question| %>
               <tr>
-                <td><%= link_to question.title, result_path(question) %></td>
-                <td><%= question.results.where(user_id: current_user.id).count %></td>
+                <td><%= link_to question.title, lesson_path(question) %></td>
+                <td>
+                  <%= link_to question.results.where(user_id: current_user.id).count, result_path(question) %>
+                </td>
               </tr>
             <% end %>
           </tbody>
