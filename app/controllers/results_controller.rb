@@ -3,25 +3,7 @@ class ResultsController < ApplicationController
   before_action :set_question, only: [:show, :code]
 
   def show
-    @results = @question.results.where(user_id: current_user.id)
-  end
-
-  def code
-    @result = @question.results.find(params[:result_id])
-
-    redirect_to question_path(@question) unless @result.user_id == current_user.id
-
-    answer = @question.answers.order(created_at: 'asc').first
-    if answer.nil?
-      @input = ""
-    else
-      @input = answer.input
-    end
-    if answer.nil?
-      @output = ""
-    else
-      @output = answer.output
-    end
+    @results = @question.results.where(user_id: current_user.id).order(created_at: 'desc')
   end
 
   def set_question

@@ -4,16 +4,15 @@ Rails.application.routes.draw do
   resources :welcomes, only: :index
   resources :tops, only: :index
   resources :codes, only: :index
+  resources :results, only: :show
   resources :lessons, only: [:index, :show]
   resources :sections, only: [:index, :show]
-  resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
-  resources :results, only: :show
-  resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :admins, only: [:index, :show]
+  resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
 
   get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
   get 'list/:id/', to: 'admins#list', as: 'list'
-  get 'code/:id/:result_id', to: 'results#code', as: 'code'
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout

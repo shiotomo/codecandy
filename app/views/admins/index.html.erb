@@ -157,20 +157,20 @@
                 <h4 class="modal-title">提出コード</h4>
               </div>
               <div class="modal-body">
-                <p>
+                <div>
                   <h5>問題名: <%= result.question.title %></h5>
                   <h5>解答者: <%= result.user.screen_name %></h5>
                   <h5>実行言語: <%= result.language %></h5>
                   <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
                   <h5>
+                    解答結果: 
                     <% if result.answer %>
-                      <p style="color: green">正解</p>
+                      <span style="color: green">正解</span>
                     <% else %>
-                      <p style="color: red">不正解</p>
+                      <span style="color: red">不正解</span>
                     <% end %>
                   </h5>
-                </p>
-                <hr />
+                </div>
                 <p>
                   <%= sanitize markdown(result.code).html_safe %>
                 </p>
