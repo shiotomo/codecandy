@@ -1,6 +1,6 @@
-# FROM swift:latest
 FROM ubuntu:latest
 
+ENV TZ: Asia/Tokyo
 RUN apt-get update \
       && apt-get install -y ruby \
       python \
@@ -16,4 +16,4 @@ RUN apt-get update \
       binutils \
       language-pack-ja-base language-pack-ja
 
- ENV LANG=ja_JP.UTF-8
+ENV LANG=ja_JP.UTF-8
