@@ -107,6 +107,8 @@ class Api::V1::JudgementController < ApplicationController
       return 'Perl'
     when 'Bash'
       return 'Bash'
+    when 'Lua'
+      return 'Lua'
     else
       return ''
     end
