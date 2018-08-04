@@ -33,7 +33,7 @@ https://codecandy.tomosse.work
 __docker__
   
 ```
-docker build -t codecandy/compile .
+docker-compose build
 ```
 __postgresql__  
 `sudo -u postgres psql`後に
