@@ -32,12 +32,8 @@ https://codecandy.tomosse.work
 ## 使い方(How to use)
 __docker__
   
-swiftイメージを利用します。(I will use the swift image.)
 ```
-docker pull swift
-docker run swift
-docker commit [ID] codecandy/compile
-docker build -t codecandy/compile .
+docker-compose build
 ```
 __postgresql__  
 `sudo -u postgres psql`後に
