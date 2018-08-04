@@ -14,6 +14,7 @@ RUN apt-get update \
       scala \
       time \
       binutils \
+      lua5.3 \
       language-pack-ja-base language-pack-ja
 
 ENV LANG=ja_JP.UTF-8
