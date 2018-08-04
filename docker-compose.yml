@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  compiler_default:
+    container_name: compiler_default
+    build:
+      context: .
+      dockerfile: ./docker/compiler_default/Dockerfile
+  compiler_php:
+    container_name: compiler_php
+    build:
+      context: .
+      dockerfile: ./docker/compiler_php/Dockerfile
+  compiler_swift:
+    container_name: compiler_swift
+    build:
+      context: .
+      dockerfile: ./docker/compiler_swift/Dockerfile
+  compiler_jvm:
+    container_name: compiler_jvm
+    build:
+      context: .
+      dockerfile: ./docker/compiler_jvm/Dockerfile

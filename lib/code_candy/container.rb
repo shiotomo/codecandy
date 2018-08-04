@@ -10,10 +10,24 @@ require 'timeout'
 module CodeCandy
   class Container
     class << self
-      def create(exec_time, work_dir)
+      def create(exec_time, work_dir, language)
+        case language
+        when 'PHP'
+          return php(exec_time, work_dir)
+        when 'Swift'
+          return swift(exec_time, work_dir)
+        when 'Java', 'Scala'
+          return jvm(exec_time, work_dir)
+        else
+          return default(exec_time, work_dir)
+        end
+      end
+
+      private
+      def default(exec_time, work_dir)
         container = Docker::Container.create(
           name: "test_#{exec_time}",
-          Image: 'codecandy/compile',
+          Image: 'codecandy_compiler_default',
           WorkingDir: '/workspace',
           Memory: 512 * 1024**2,
           MemorySwap: 512 * 1024**2,
@@ -23,7 +37,54 @@ module CodeCandy
           },
           Tty: true
         )
+        return container
+      end
 
+      def php(exec_time, work_dir)
+        container = Docker::Container.create(
+          name: "test_#{exec_time}",
+          Image: 'codecandy_compiler_php',
+          WorkingDir: '/workspace',
+          Memory: 512 * 1024**2,
+          MemorySwap: 512 * 1024**2,
+          PidsLimit: 30,
+          HostConfig: {
+            Binds: ["/tmp/#{work_dir}:/workspace"]
+          },
+          Tty: true
+        )
+        return container
+      end
+
+      def swift(exec_time, work_dir)
+        container = Docker::Container.create(
+          name: "test_#{exec_time}",
+          Image: 'codecandy_compiler_swift',
+          WorkingDir: '/workspace',
+          Memory: 512 * 1024**2,
+          MemorySwap: 512 * 1024**2,
+          PidsLimit: 30,
+          HostConfig: {
+            Binds: ["/tmp/#{work_dir}:/workspace"]
+          },
+          Tty: true
+        )
+        return container
+      end
+
+      def jvm(exec_time, work_dir)
+        container = Docker::Container.create(
+          name: "test_#{exec_time}",
+          Image: 'codecandy_compiler_jvm',
+          WorkingDir: '/workspace',
+          Memory: 512 * 1024**2,
+          MemorySwap: 512 * 1024**2,
+          PidsLimit: 30,
+          HostConfig: {
+            Binds: ["/tmp/#{work_dir}:/workspace"]
+          },
+          Tty: true
+        )
         return container
       end
     end
