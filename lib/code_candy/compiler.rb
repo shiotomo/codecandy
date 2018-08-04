@@ -83,11 +83,14 @@ module CodeCandy
       when 'Bash'
         source_file += '.sh'
         exec_cmd = "bash #{source_file}"
+      when 'Lua'
+        source_file += '.lua'
+        exec_cmd = "lua5.3 #{source_file}"
       end
 
       # コンテナを作成
       # * 一時的に同じコンテナを利用している
-      container = Container.create(exec_time, work_dir)
+      container = Container.create(exec_time, work_dir, language)
 
       # Open3を利用してディレクトリを作成＆権限の変更
       Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e| 

@@ -10,11 +10,9 @@ RUN apt-get update \
       g++ \
       golang \
       nodejs \
-      openjdk-8-jdk \
-      scala \
+      lua5.3 \
       time \
       binutils \
-      lua5.3 \
       language-pack-ja-base language-pack-ja
 
 ENV LANG=ja_JP.UTF-8
