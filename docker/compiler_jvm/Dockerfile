@@ -6,6 +6,7 @@ RUN apt-get update \
       && apt-get install -y task-japanese locales-all \
       time \
       binutils \
+      groovy \
       scala
 
 ENV LANG=ja_JP.UTF-8

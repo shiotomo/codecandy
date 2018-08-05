@@ -138,8 +138,8 @@ module CodeCandy
           return_params = {stdout: res[0].join(''), stderr: res[1].join(''), time: proc_time, exit_code: res[2]}
         end
       rescue Timeout::Error
-        @container.stop
-        @container.delete(force: true)
+        container.stop
+        container.delete(force: true)
         return_params = {stdout: "Time out!",stderr: "Time out!", time: "", exit_code: 128}
       end
 
