@@ -12,10 +12,10 @@ module CodeCandy
     class << self
       def create(exec_time, work_dir, language)
         case language
-        when 'Swift', 'PHP'
-          return swift_php(exec_time, work_dir)
-        when 'Java', 'Scala'
-          return jvm(exec_time, work_dir)
+        when 'Swift'
+          return swift(exec_time, work_dir)
+        when 'Java', 'Scala', 'PHP'
+          return jvm_php(exec_time, work_dir)
         else
           return default(exec_time, work_dir)
         end
@@ -38,10 +38,10 @@ module CodeCandy
         return container
       end
 
-      def swift_php(exec_time, work_dir)
+      def swift(exec_time, work_dir)
         container = Docker::Container.create(
           name: "test_#{exec_time}",
-          Image: 'codecandy_compiler_swift_php',
+          Image: 'codecandy_compiler_swift',
           WorkingDir: '/workspace',
           Memory: 512 * 1024**2,
           MemorySwap: 512 * 1024**2,
@@ -54,10 +54,10 @@ module CodeCandy
         return container
       end
 
-      def jvm(exec_time, work_dir)
+      def jvm_php(exec_time, work_dir)
         container = Docker::Container.create(
           name: "test_#{exec_time}",
-          Image: 'codecandy_compiler_jvm',
+          Image: 'codecandy_compiler_jvm_php',
           WorkingDir: '/workspace',
           Memory: 512 * 1024**2,
           MemorySwap: 512 * 1024**2,

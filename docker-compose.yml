@@ -6,13 +6,13 @@ services:
     build:
       context: .
       dockerfile: ./docker/compiler_default/Dockerfile
-  compiler_swift_php:
-    container_name: compiler_swift_php
+  compiler_swift:
+    container_name: compiler_swift
     build:
       context: .
-      dockerfile: ./docker/compiler_swift_php/Dockerfile
-  compiler_jvm:
-    container_name: compiler_jvm
+      dockerfile: ./docker/compiler_swift/Dockerfile
+  compiler_jvm_php:
+    container_name: compiler_jvm_php
     build:
       context: .
-      dockerfile: ./docker/compiler_jvm/Dockerfile
+      dockerfile: ./docker/compiler_jvm_php/Dockerfile

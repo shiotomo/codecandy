@@ -7,6 +7,7 @@ RUN apt-get update \
       time \
       binutils \
       groovy \
+      php \
       scala
 
 ENV LANG=ja_JP.UTF-8
