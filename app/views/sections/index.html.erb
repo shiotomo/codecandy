@@ -11,12 +11,12 @@
 </ul>
 <div>
   <h1 style="text-align: center">カテゴリー</h1>
-  <div style="text-align: center">
-    <%= paginate @categories %>
-  </div>
   <ul>
     <% @categories.each do |category| %>
       <li><h3><%= link_to category.title, section_path(category) %></h3></li>
     <% end %>
   </ul>
+  <div style="text-align: center">
+    <%= paginate @categories %>
+  </div>
 </div>
