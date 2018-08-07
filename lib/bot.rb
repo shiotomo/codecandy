@@ -4,7 +4,7 @@ class Bot
   class << self
     def tweet(title)
       begin
-        text = "【お知らせ】\nCodeCandyに新しい問題を追加しました。\nタイトル: #{title}"
+        text = "【新作問題】\nCodeCandyに新しい問題を追加しました。\nタイトル: #{title}"
         api.update(text)
       rescue => e
         puts "== TWEET ERROR =="
