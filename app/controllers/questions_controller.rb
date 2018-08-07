@@ -1,3 +1,5 @@
+require './lib/code_candy/bot'
+
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!
@@ -21,6 +23,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
+      Bot.tweet(params[:question][:title])
       redirect_to @question
     else
       render :new
