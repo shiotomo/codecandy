@@ -2,21 +2,9 @@ require 'twitter'
 
 class Bot
   class << self
-    def tweet(text)
-      # api.home_timeline.each do |tweet|
-      #   puts "--- " + tweet.user.name + " : " + tweet.user.screen_name + " ---"
-      #   puts tweet.text
-      # end
-      # puts "--- My profile ---"
-      # puts "Account ID : " + api.user.screen_name
-      # puts "Account name : " + api.user.name
-      # puts "Profile : " + api.user.description
-      # print "Tweets : "
-      # puts api.user.tweets_count
-      puts "==="
-      puts text
-      puts "==="
-      api.update("テストツイート")
+    def tweet(title)
+      text = "【お知らせ】\nCodeCandyに新しい問題を追加しました。\nタイトル: #{title}"
+      api.update(text)
     end
 
     private
