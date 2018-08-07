@@ -3,8 +3,14 @@ require 'twitter'
 class Bot
   class << self
     def tweet(title)
-      text = "【お知らせ】\nCodeCandyに新しい問題を追加しました。\nタイトル: #{title}"
-      api.update(text)
+      begin
+        text = "【お知らせ】\nCodeCandyに新しい問題を追加しました。\nタイトル: #{title}"
+        api.update(text)
+      rescue => e
+        puts "== TWEET ERROR =="
+        puts e
+        puts "================="
+      end
     end
 
     private
