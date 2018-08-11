@@ -8,6 +8,7 @@ require 'docker-api'
 require 'timeout'
 
 require './lib/code_candy/container'
+require './lib/code_candy/language'
 
 module CodeCandy
   class Compiler
@@ -24,69 +25,14 @@ module CodeCandy
       source_code = source_code.force_encoding("UTF-8")
 
       # ファイルを作成する準備
-      source_file = 'main'
       input_file  = 'input'
       work_dir     = "workspace_#{exec_time}"
 
-      # タイムアウトする時間を設定(基本は3)
-      time_out = 3
-
       # ==================
 
-      # 実行する言語ごとにファイルの名前を確定させ、実行コマンドを設定する
-      case language
-      when 'Ruby'
-        source_file += '.rb'
-        exec_cmd = "ruby #{source_file}"
-      when 'Python3'
-        source_file += '.py'
-        exec_cmd = "python3 #{source_file}"
-      when 'Gcc'
-        filename_id = source_file
-        source_file += '.c'
-        exec_cmd = "gcc -o #{filename_id} #{source_file} && ./#{filename_id}"
-      when 'Clang'
-        filename_id = source_file
-        source_file += '.c'
-        exec_cmd = "cc -Wall -o #{filename_id} #{source_file} && ./#{filename_id}"
-      when 'Golang'
-        source_file += '.go'
-        exec_cmd = "go run #{source_file}"
-      when 'Nodejs'
-        source_file += '.js'
-        exec_cmd = "nodejs #{source_file}"
-      when 'Java'
-        time_out = 5
-        source_file = "Main"
-        filename_id = source_file
-        source_file += '.java'
-        exec_cmd = "javac #{source_file} && java #{filename_id}"
-      when 'Scala'
-        time_out = 20
-        source_file = "Main"
-        filename_id = source_file
-        source_file += '.scala'
-        exec_cmd = "scalac #{source_file} && scala #{filename_id}"
-      when 'Swift'
-        source_file += '.swift'
-        exec_cmd = "swift #{source_file}"
-      when 'CPP'
-        filename_id = source_file
-        source_file += '.cpp'
-        exec_cmd = "g++ -o #{filename_id} #{source_file} && ./#{filename_id}"
-      when 'PHP'
-        source_file += '.php'
-        exec_cmd = "php #{source_file}"
-      when 'Perl'
-        source_file += '.pl'
-        exec_cmd = "perl #{source_file}"
-      when 'Bash'
-        source_file += '.sh'
-        exec_cmd = "bash #{source_file}"
-      when 'Lua'
-        source_file += '.lua'
-        exec_cmd = "lua5.3 #{source_file}"
-      end
+      # 実行データを生成
+      exec_data = exec_data(language)
+      cmd = exec_data.cmd
 
       # コンテナを作成
       # * 一時的に同じコンテナを利用している
@@ -100,7 +46,7 @@ module CodeCandy
       end
 
       # プログラムのファイルの作成
-      File.open("/tmp/#{work_dir}/#{source_file}", "w") do |f|
+      File.open("/tmp/#{work_dir}/#{cmd[:source_file]}", "w") do |f|
         source_code.each_line do |line|
           f.puts(line)
         end
@@ -117,10 +63,10 @@ module CodeCandy
       return_params = {}
 
       begin
-        Timeout.timeout(time_out) do
+        Timeout.timeout(cmd[:time_out]) do
           # === 実行ここから ===
           container.start
-          container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{time_out} #{exec_cmd} < #{input_file}"
+          container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{cmd[:time_out]} #{cmd[:exec_cmd]} < #{input_file}"
           res = container.exec(['bash', '-c', container_cmd])
           container.stop
           container.delete(force: true)
@@ -144,6 +90,40 @@ module CodeCandy
       end
 
       return return_params
+    end
+
+    # 言語ごとにインスタンスを生成
+    def exec_data(language)
+      case language
+      when 'Ruby'
+        return Ruby.new
+      when 'Python3'
+        return Python3.new
+      when 'Gcc'
+        return Gcc.new
+      when 'Clang'
+        return Clang.new
+      when 'Golang'
+        return Golang.new
+      when 'Nodejs'
+        return Nodejs.new
+      when 'Java'
+        return Java.new
+      when 'Scala'
+        return Scala.new
+      when 'Swift'
+        return Swift.new
+      when 'CPP'
+        return CPP.new
+      when 'PHP'
+        return PHP.new
+      when 'Perl'
+        return Perl.new
+      when 'Bash'
+        return Bash.new
+      when 'Lua'
+        return Lua.new
+      end
     end
   end
 end
