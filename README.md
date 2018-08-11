@@ -48,6 +48,10 @@ bundle install --path vendor/bundle
 bundle exec rails db:create
 bundle exec rails db:migrate
 ```
+__.env__
+```
+cp .env_sample .env
+```
 
 ## 実行(Execution)
 development
