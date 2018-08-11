@@ -12,6 +12,25 @@ require './lib/code_candy/language'
 
 module CodeCandy
   class Compiler
+    def initialize
+      @exec_data = {
+       "Ruby":    Ruby.new,
+       "Python3": Python3.new,
+       "Gcc":     Gcc.new,
+       "Clang":   Clang.new,
+       "Golang":  Golang.new,
+       "Nodejs":  Nodejs.new,
+       "Java":    Java.new,
+       "Scala":   Scala.new,
+       "Swift":   Swift.new,
+       "CPP":     CPP.new,
+       "PHP":     PHP.new,
+       "Perl":    Perl.new,
+       "Bash":    Bash.new,
+       "Lua":     Lua.new
+      }
+    end
+
     # 引数
     # language: どの言語で動かすプログラムなのかを格納してある
     # source_code: 実行するプログラムが格納されている
@@ -22,24 +41,26 @@ module CodeCandy
       # ==== 事前処理 ====
       # 現在の時間を格納
       exec_time = Time.now.to_f
-      source_code = source_code.force_encoding("UTF-8")
 
       # ファイルを作成する準備
+      source_code = source_code.force_encoding("UTF-8")
       input_file  = 'input'
       work_dir     = "workspace_#{exec_time}"
 
       # ==================
 
+      # コンテナを利用してプログラムを実行
+      return_params = {}
+
       # 実行データを生成
-      exec_data = exec_data(language)
-      cmd = exec_data.cmd
+      cmd = @exec_data[:"#{language}"].cmd
 
       # コンテナを作成
       # * 一時的に同じコンテナを利用している
       container = Container.create(exec_time, work_dir, language)
 
       # Open3を利用してディレクトリを作成＆権限の変更
-      Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e| 
+      Open3.popen3("mkdir /tmp/#{work_dir} && chmod 777 /tmp/#{work_dir}") do |i, o, e|
         i.close
         o.each do |line| p line end
         e.each do |line| p line end
@@ -58,9 +79,6 @@ module CodeCandy
           f.puts(line)
         end
       end
-
-      # コンテナを利用してプログラムを実行
-      return_params = {}
 
       begin
         Timeout.timeout(cmd[:time_out]) do
@@ -90,40 +108,6 @@ module CodeCandy
       end
 
       return return_params
-    end
-
-    # 言語ごとにインスタンスを生成
-    def exec_data(language)
-      case language
-      when 'Ruby'
-        return Ruby.new
-      when 'Python3'
-        return Python3.new
-      when 'Gcc'
-        return Gcc.new
-      when 'Clang'
-        return Clang.new
-      when 'Golang'
-        return Golang.new
-      when 'Nodejs'
-        return Nodejs.new
-      when 'Java'
-        return Java.new
-      when 'Scala'
-        return Scala.new
-      when 'Swift'
-        return Swift.new
-      when 'CPP'
-        return CPP.new
-      when 'PHP'
-        return PHP.new
-      when 'Perl'
-        return Perl.new
-      when 'Bash'
-        return Bash.new
-      when 'Lua'
-        return Lua.new
-      end
     end
   end
 end
