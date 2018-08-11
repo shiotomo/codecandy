@@ -28,6 +28,7 @@ https://codecandy.tomosse.work
 - PHP
 - Perl
 - Bash
+- Lua
 
 ## 使い方(How to use)
 __docker__
