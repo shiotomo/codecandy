@@ -146,7 +146,7 @@
             <p style="color: red">不正解</p>
           <% end %>
         </td>
-        <td><%= result.created_at.in_time_zone('Tokyo') %></td>
+        <td><%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></td>
         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
 
         <div class="modal fade" id="result<%= result.id %>">
@@ -161,7 +161,7 @@
                   <h5>問題名: <%= result.question.title %></h5>
                   <h5>解答者: <%= result.user.screen_name %></h5>
                   <h5>実行言語: <%= result.language %></h5>
-                  <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo') %></h5>
+                  <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></h5>
                   <h5>
                     解答結果: 
                     <% if result.answer %>
