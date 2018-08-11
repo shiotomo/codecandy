@@ -22,11 +22,27 @@ class Api::V1::JudgementController < ApplicationController
     # 実行結果を保持しておくフラグ
     answer_flag = true
 
+    submit_language = {
+      "Gcc": "C(gcc)",
+      "Clang": "C(clang)",
+      "Ruby": "Ruby",
+      "Python3": "Python3",
+      "Golang": "Golang",
+      "Nodejs": "Node.js",
+      "Java": "Java",
+      "Scala": "Scala",
+      "Swift": "Swift",
+      "CPP": "C++",
+      "PHP": "PHP",
+      "Perl": "Perl",
+      "Bash": "Bash",
+      "Lua": "Lua"
+    }
+
     question.answers.each do |answer|
       # コンテナに言語、ソースコード、標準入力を与えて提出されたプログラムを実行する
       result = compiler.exec(language, source_code, answer.input)
       result[:stdout] = result[:stdout].force_encoding("UTF-8")
-
       # 標準出力の整形
       # 提出コードの標準出力: stdout
       # 提出コードの標準出力は行末の空白、改行を削除する
@@ -54,7 +70,7 @@ class Api::V1::JudgementController < ApplicationController
     end
 
     # resultメソッドを呼び出す
-    result_submit(answer_flag, id, source_code, language)
+    result_submit(answer_flag, id, source_code, submit_language[:"#{language}"])
 
     # UTF-8にencodeする
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
@@ -69,7 +85,7 @@ class Api::V1::JudgementController < ApplicationController
     @result = Result.new
     @result.user_id = current_user.id
     @result.question_id = id
-    @result.language = submit_language(language)
+    @result.language = language
     @result.code = source_code
     if answer_flag
       @result.answer = true
@@ -77,40 +93,5 @@ class Api::V1::JudgementController < ApplicationController
       @result.answer = false
     end
     @result.save
-  end
-
-  def submit_language(language)
-    case language
-    when 'Gcc'
-      return 'C(gcc)'
-    when 'Clang'
-      return 'C(clang)'
-    when 'Ruby'
-      return 'Ruby'
-    when 'Python3'
-      return 'Python3'
-    when 'Golang'
-      return 'Golang'
-    when 'Nodejs'
-      return 'Node.js'
-    when 'Java'
-      return 'Java'
-    when 'Scala'
-      return 'Scala'
-    when 'Swift'
-      return 'Swift'
-    when 'CPP'
-      return 'C++'
-    when 'PHP'
-      return 'PHP'
-    when 'Perl'
-      return 'Perl'
-    when 'Bash'
-      return 'Bash'
-    when 'Lua'
-      return 'Lua'
-    else
-      return ''
-    end
   end
 end
