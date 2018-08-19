@@ -32,7 +32,7 @@
         プロフィール
       </div>
       <div class="panel panel-body">
-        <%= image_tag current_user.image_url %>
+        <%= image_tag current_user.image_url, size: '50x50' %>
         <h3><%= current_user.user_name %></h3>
         <h3><%= current_user.screen_name %></h3>
       </div>
