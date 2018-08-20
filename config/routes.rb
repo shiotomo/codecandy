@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
   get 'list/:id/', to: 'admins#list', as: 'list'
 
+  # ログイン認証
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", as: :signout
 
