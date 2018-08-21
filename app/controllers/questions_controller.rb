@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      Bot.tweet(params[:question][:title])
+      Bot.tweet(params[:question][:title]) if Rails.env == 'production'
       redirect_to @question
     else
       render :new
