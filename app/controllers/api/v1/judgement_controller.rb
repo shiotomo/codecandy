@@ -2,6 +2,7 @@
 require './lib/code_candy/compiler'
 
 class Api::V1::JudgementController < ApplicationController
+  before_action :authenticate_user!
   protect_from_forgery except: :exec
 
   def exec
