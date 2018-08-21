@@ -18,6 +18,7 @@
   <li><a href="#analysis" data-toggle="tab">統計</a></li>
 </ul>
 
+<!-- ユーザ情報 -->
 <div class="tab-content">
   <div class="tab-pane active" id="users">
     <div style="margin-top: 1em;"></div>
@@ -27,6 +28,7 @@
           <td>アカウントID</td>
           <td>ユーザネーム</td>
           <td>権限</td>
+          <td>認証方法</td>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +41,7 @@
             <% else %>
               <td>ユーザ</td>
             <% end %>
+            <td><%= user.provider %></td>
           </tr>
         <% end %>
       </tbody>
