@@ -1,7 +1,7 @@
 # 提出されたプログラムを実行し、問題との正誤を判断するAPI
 require './lib/code_candy/compiler'
 
-class Api::V1::JudgementController < ApplicationController
+class Api::V1::JudgementController < Api::ApiController
   before_action :authenticate_user!
   protect_from_forgery except: :exec
 
