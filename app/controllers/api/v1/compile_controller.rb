@@ -1,6 +1,6 @@
 require './lib/code_candy/compiler'
 
-class Api::V1::CompileController < ApplicationController
+class Api::V1::CompileController < Api::ApiController
   protect_from_forgery except: :exec
 
   def exec
