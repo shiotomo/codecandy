@@ -5,7 +5,7 @@ module CodeCandy
         "exec_file": "main",
         "source_file": "main",
         "exec_cmd": "",
-        "time_out": 3
+        "time_out": 5
       }
     end
   end

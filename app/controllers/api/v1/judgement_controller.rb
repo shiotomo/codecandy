@@ -15,7 +15,7 @@ class Api::V1::JudgementController < Api::ApiController
     compiler = CodeCandy::Compiler.new
 
     # 問題の標準入出力を呼び出し
-    question = Question.find(id)
+    answers = Question.find(id).answers
 
     # 処理の結果を格納するhash
     result = {}
@@ -40,7 +40,7 @@ class Api::V1::JudgementController < Api::ApiController
       "Lua": "Lua"
     }
 
-    question.answers.each do |answer|
+    answers.each do |answer|
       # コンテナに言語、ソースコード、標準入力を与えて提出されたプログラムを実行する
       result = compiler.exec(language, source_code, answer.input)
       result[:stdout] = result[:stdout].force_encoding("UTF-8")
