@@ -1,3 +1,5 @@
+require './lib/code_candy/analysis'
+
 class AdminsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!
@@ -7,22 +9,14 @@ class AdminsController < ApplicationController
   def index
     @users = User.all.order(created_at: 'asc')
     @categories = Category.all.order(created_at: 'asc')
-    # @results = Result.all.limit(10).order(created_at: 'desc')
     @results = Result.all.order(created_at: 'desc')
-
-    @analysis = Hash.new(0)
-    @results.each do |result|
-      @analysis[result.language] += 1
-    end
+    @analysis = CodeCandy::Analysis.statistics_result(@results)
   end
 
   def show
     @user = User.friendly.find(params[:id])
-    results = Result.where(user_id: @user.id)
-    @analysis = Hash.new(0)
-    results.each do |result|
-      @analysis[result.language] += 1
-    end
+    @results = Result.where(user_id: @user.id)
+    @analysis = CodeCandy::Analysis.statistics_result(@results)
   end
 
   def answer
