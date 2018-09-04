@@ -3,7 +3,6 @@ require './lib/code_candy/judgement'
 
 class Api::V1::JudgementController < Api::ApiController
   before_action :authenticate_user!
-  protect_from_forgery except: :exec
 
   def exec
     # 送られてきたパラメータを変数に格納
