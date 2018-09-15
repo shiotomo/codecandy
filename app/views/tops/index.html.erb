@@ -1,3 +1,6 @@
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script>
@@ -38,7 +41,20 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-5">
+  <div class="col-lg-9">
+    <div class="panel panel-success">
+      <div class="panel panel-heading">
+        解答ステータス
+      </div>
+      <div class="panel panel-body">
+        <div id="cal-heatmap"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
     <div class="panel panel-info">
       <div class="panel panel-heading">
         あなたのステータス
@@ -66,7 +82,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-6">
     <div class="panel panel-info">
       <div class="panel panel-heading">
         解答状況
@@ -94,3 +110,5 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag 'heatmap.js' %>
+<%= stylesheet_link_tag 'heatmap.css' %>

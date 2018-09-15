@@ -1,0 +1,10 @@
+class Api::V1::HeatmapController < Api::ApiController
+  before_action :authenticate_user!
+
+  # heatmapのデータを返却するためのメソッド
+  def index
+    results = current_user.results.all
+    graph = results.map{|c| c.created_at.to_i}.inject(Hash.new(0)){|h, tm| h[tm] += 1; h}
+    render json: graph.to_json
+  end
+end
