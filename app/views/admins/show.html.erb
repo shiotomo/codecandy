@@ -1,8 +1,13 @@
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
+
 <h1><%= image_tag @user.image_url, size: '50x50' %><%= @user.screen_name %>さんの情報</h1>
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#result" data-toggle="tab">解答状況</a></li>
   <li><a href="#analysis" data-toggle="tab">統計</a></li>
+  <li><a href="#heatmap" data-toggle="tab">利用状況</a></li>
 </ul>
 
 <div class="tab-content">
@@ -56,4 +61,17 @@
       </div>
     </div>
   </div>
+  <div class="tab-pane" id="heatmap">
+    <div id="cal-heatmap" style="margin-top: 1em;"></div>
+  </div>
 </div>
+
+<script>
+const id = <%= User.friendly.find(params[:id]).id %>;
+let cal = new CalHeatMap();
+cal.init({
+  domain: 'month',
+  data: "/api/v1/heatmap/show/" + id,
+  subdomain: 'day'
+});
+</script>
