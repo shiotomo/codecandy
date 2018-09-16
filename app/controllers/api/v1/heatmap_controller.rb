@@ -1,5 +1,6 @@
 class Api::V1::HeatmapController < Api::ApiController
   before_action :authenticate_user!
+  before_action :authenticate_admin!, only: :show
 
   # heatmapのデータを返却するためのメソッド
   def index
