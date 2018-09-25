@@ -15,15 +15,16 @@ Rails.application.routes.draw do
   get 'list/:id/', to: 'admins#list', as: 'list'
 
   # ログイン認証
-  get '/auth/:provider/callback' => 'sessions#create'
-  get '/signout' => "sessions#destroy", as: :signout
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/signout', to: "sessions#destroy", as: :signout
 
+  # API
   namespace :api do
     namespace :v1 do
       get '/heatmap/index', to: 'heatmap#index'
-       get '/heatmap/show/:id', to: 'heatmap#show'
-      post '/compile/exec' => 'compile#exec'
-      post '/judgement/exec' => 'judgement#exec'
+      get '/heatmap/show/:id', to: 'heatmap#show'
+      post '/compile/exec', to: 'compile#exec'
+      post '/judgement/exec', to: 'judgement#exec'
       get '/information/result', to: 'information#result'
     end
   end
