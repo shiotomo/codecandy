@@ -37,6 +37,7 @@ __docker__
 docker-compose build
 ```
 __postgresql__  
+roleの作成  
 `sudo -u postgres psql`後に
 ```
 create role code_candy with createdb login;
@@ -45,8 +46,7 @@ __cmd__
 git cloneした後、このリポジトリにいる状態(After that, in this repository state)
 ```
 bundle install --path vendor/bundle
-bundle exec rails db:create
-bundle exec rails db:migrate
+bundle exec rails db:setup
 ```
 __.env__
 ```
