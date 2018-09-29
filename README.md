@@ -37,7 +37,7 @@ __docker__
 docker-compose build
 ```
 __postgresql__  
-roleの作成  
+roleの作成(Create role)  
 `sudo -u postgres psql`後に
 ```
 create role code_candy with createdb login;
