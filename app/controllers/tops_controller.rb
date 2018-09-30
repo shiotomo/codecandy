@@ -3,11 +3,17 @@ class TopsController < ApplicationController
 
   def index
     @questions = Question.all
-    @results = Result.where(user_id: current_user.id)
+    # @results = Result.where(user_id: current_user.id)
+    @results = current_user.results
+    @codes =  current_user.codes
 
     @analysis = Hash.new(0)
     @results.each do |result|
       @analysis[result.language] += 1
+    end
+
+    @codes.each do |code|
+      @analysis[code.language] += 1
     end
   end
 end
