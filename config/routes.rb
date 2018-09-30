@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       post '/compile/exec', to: 'compile#exec'
       post '/judgement/exec', to: 'judgement#exec'
       get '/information/result', to: 'information#result'
+      get '/information/code', to: 'information#code'
     end
   end
 
