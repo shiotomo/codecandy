@@ -8,6 +8,13 @@ class Api::V1::CompileController < Api::ApiController
     input = params[:input]
     compiler = CodeCandy::Compiler.new
 
+    # 提出されたコードを保存
+    Code.create(
+      code: source_code,
+      language: language,
+      user_id: current_user.id
+    )
+
     result = compiler.exec(language, source_code, input)
 
     result[:stdout] = result[:stdout].force_encoding("UTF-8")

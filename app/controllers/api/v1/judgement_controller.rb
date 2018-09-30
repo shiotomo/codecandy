@@ -10,6 +10,13 @@ class Api::V1::JudgementController < Api::ApiController
     source_code = params[:source_code]
     id = params[:answer_id]
 
+    # 提出されたコードを保存
+    Code.create(
+      code: source_code,
+      language: language,
+      user_id: current_user.id
+    )
+
     judgement = CodeCandy::Judgement.new(language, source_code, id, current_user)
     result = judgement.exec
 
