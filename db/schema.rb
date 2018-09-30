@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180929180448) do
   end
 
   create_table "codes", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.text "code"
     t.string "language"
     t.datetime "created_at", null: false
