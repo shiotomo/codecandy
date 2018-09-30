@@ -14,6 +14,12 @@
 #
 
 class User < ApplicationRecord
+  has_many :results, inverse_of: :user
+  has_many :codes, inverse_of: :user
+
+  include FriendlyId
+  friendly_id :screen_name
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
@@ -33,9 +39,4 @@ class User < ApplicationRecord
       image_url: auth["info"]["image"]
     )
   end
-
-  has_many :results, inverse_of: :user
-
-  include FriendlyId
-  friendly_id :screen_name
 end
