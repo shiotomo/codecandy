@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
 
+  # adminページ用
   get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
   get 'list/:id/', to: 'admins#list', as: 'list'
 

@@ -20,7 +20,7 @@ module CodeCandy
           language_proportion[language] /= num.to_f
         end
 
-        return language_proportion
+        return language_proportion.sort_by{|k, v| v}.reverse
       end
     end
   end
