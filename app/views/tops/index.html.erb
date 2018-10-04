@@ -24,7 +24,6 @@
   </li>
 </ul>
 <h1 style="text-align: center">CodeCandyへようこそ</h1>
-<!-- ここに使い方などを書いていく -->
 <p style="text-align: center">
   CodeCandyでプログラミング力をアップさせよう!
 </p>
@@ -47,7 +46,12 @@
         解答ステータス
       </div>
       <div class="panel panel-body">
+        <% all_code = current_user.codes.count + current_user.results.count %>
         <div id="cal-heatmap"></div>
+        <hr />
+        <label>総コード実行数: <%= all_code %></label>
+        <br />
+        <label>総問題解答数: <%= current_user.results.count %></label>
       </div>
     </div>
   </div>
