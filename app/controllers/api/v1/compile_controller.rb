@@ -8,10 +8,27 @@ class Api::V1::CompileController < Api::ApiController
     input = params[:input]
     compiler = CodeCandy::Compiler.new
 
+    submit_language = {
+      "Gcc": "C(gcc)",
+      "Clang": "C(clang)",
+      "Ruby": "Ruby",
+      "Python3": "Python3",
+      "Golang": "Golang",
+      "Nodejs": "Node.js",
+      "Java": "Java",
+      "Scala": "Scala",
+      "Swift": "Swift",
+      "CPP": "C++",
+      "PHP": "PHP",
+      "Perl": "Perl",
+      "Bash": "Bash",
+      "Lua": "Lua"
+    }
+
     # 提出されたコードを保存
     Code.create(
       code: source_code,
-      language: language,
+      language: submit_language[:"#{language}"],
       user_id: current_user.id
     )
 
