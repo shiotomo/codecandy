@@ -52,6 +52,7 @@ __.env__
 ```
 cp .env_sample .env
 ```
+TwitterとGitHubのAPIキーを.envに設定(Set Twitter and GitHub API key to .env)
 
 ## 実行(Execution)
 development
