@@ -8,7 +8,7 @@ require 'docker-api'
 require 'timeout'
 
 require './lib/code_candy/container'
-require './lib/logic/compiler_logic'
+require './lib/code_candy/compiler_logic'
 require './lib/code_candy/language'
 
 module CodeCandy
@@ -53,7 +53,7 @@ module CodeCandy
 
       container = Container.create(exec_time, data[:work_dir], language)
 
-      compiler_logic = CompilerLogic.new(container, data)
+      compiler_logic = CodeCandy::CompilerLogic.new(container, data)
       return compiler_logic.exec
     end
   end

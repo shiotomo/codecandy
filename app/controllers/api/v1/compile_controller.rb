@@ -1,4 +1,5 @@
 require './lib/code_candy/compiler'
+require './lib/code_candy/parameter'
 
 class Api::V1::CompileController < Api::ApiController
   def exec
@@ -7,28 +8,12 @@ class Api::V1::CompileController < Api::ApiController
     source_code = params[:source_code]
     input = params[:input]
     compiler = CodeCandy::Compiler.new
-
-    submit_language = {
-      "Gcc": "C(gcc)",
-      "Clang": "C(clang)",
-      "Ruby": "Ruby",
-      "Python3": "Python3",
-      "Golang": "Golang",
-      "Nodejs": "Node.js",
-      "Java": "Java",
-      "Scala": "Scala",
-      "Swift": "Swift",
-      "CPP": "C++",
-      "PHP": "PHP",
-      "Perl": "Perl",
-      "Bash": "Bash",
-      "Lua": "Lua"
-    }
+    submit_language = CodeCandy::Parameter.get_submit_language(language)
 
     # 提出されたコードを保存
     Code.create(
       code: source_code,
-      language: submit_language[:"#{language}"],
+      language: submit_language,
       user_id: current_user.id
     )
 

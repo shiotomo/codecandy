@@ -1,4 +1,5 @@
 require './lib/code_candy/compiler'
+require './lib/code_candy/parameter'
 
 module CodeCandy
   class Judgement
@@ -18,22 +19,7 @@ module CodeCandy
       # 実行結果を保持しておくフラグ
       @answer_flag = true
 
-      @submit_language = {
-        "Gcc": "C(gcc)",
-        "Clang": "C(clang)",
-        "Ruby": "Ruby",
-        "Python3": "Python3",
-        "Golang": "Golang",
-        "Nodejs": "Node.js",
-        "Java": "Java",
-        "Scala": "Scala",
-        "Swift": "Swift",
-        "CPP": "C++",
-        "PHP": "PHP",
-        "Perl": "Perl",
-        "Bash": "Bash",
-        "Lua": "Lua"
-      }
+      @submit_language = CodeCandy::Parameter.get_submit_language(language)
     end
 
     def exec
@@ -70,7 +56,7 @@ module CodeCandy
       end
 
       # resultメソッドを呼び出す
-      result_submit(@answer_flag, @id, @source_code, @submit_language[:"#{@language}"], @user)
+      result_submit(@answer_flag, @id, @source_code, @submit_language, @user)
 
       # UTF-8にencodeする
       result[:stdout] = result[:stdout].force_encoding("UTF-8")
