@@ -10,26 +10,12 @@ require 'timeout'
 require './lib/code_candy/container'
 require './lib/code_candy/compiler_logic'
 require './lib/code_candy/language'
+require './lib/code_candy/parameter'
 
 module CodeCandy
   class Compiler
     def initialize
-      @exec_data = {
-       "Ruby":    Ruby.new,
-       "Python3": Python3.new,
-       "Gcc":     Gcc.new,
-       "Clang":   Clang.new,
-       "Golang":  Golang.new,
-       "Nodejs":  Nodejs.new,
-       "Java":    Java.new,
-       "Scala":   Scala.new,
-       "Swift":   Swift.new,
-       "CPP":     CPP.new,
-       "PHP":     PHP.new,
-       "Perl":    Perl.new,
-       "Bash":    Bash.new,
-       "Lua":     Lua.new
-      }
+      @exec_data = CodeCandy::Parameter.get_exec_data
     end
 
     # 引数
