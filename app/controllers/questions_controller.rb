@@ -1,4 +1,4 @@
-require './lib/code_candy/bot'
+require './lib/twitter/bot'
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
