@@ -1,0 +1,29 @@
+<%= link_to "カテゴリー追加", new_category_path, class: "btn btn-primary" %>
+<div style="margin-top: 1em;"></div>
+<table id="category-table" class="table table-bordered" width="100%">
+  <thead>
+    <tr>
+      <td>カテゴリー名</td>
+      <td>問題数</td>
+      <td>詳細</td>
+      <td>削除</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= category.category_items.all.count %></td>
+        <td><%= link_to "詳細",
+          category_path(category),
+          class: "btn btn-info"
+          %></td>
+        <td><%= link_to "削除",
+          category_path(category),
+          method: :delete,
+          class: "btn btn-danger",
+          data: {confirm: "本当に削除していいですか？"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

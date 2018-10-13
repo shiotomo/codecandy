@@ -1,0 +1,69 @@
+<div style="margin-top: 1em;"></div>
+<table id="situation-table" class="table table-bordered" width="100%">
+  <thead>
+    <tr>
+      <td>問題名</td>
+      <td>解答者</td>
+      <td>解答言語</td>
+      <td>正誤</td>
+      <td>解答時刻</td>
+      <td>コード</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td>
+          <%= link_to result.question.title,
+            question_path(result.question)
+          %>
+      </td>
+      <td>
+        <%= link_to result.user.screen_name,
+          admin_path(result.user_id)
+        %>
+    </td>
+    <td><%= result.language %></td>
+    <td>
+      <% if result.answer %>
+        <p style="color: green">正解</p>
+      <% else %>
+        <p style="color: red">不正解</p>
+      <% end %>
+    </td>
+    <td><%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></td>
+    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
+
+    <div class="modal fade" id="result<%= result.id %>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">提出コード</h4>
+          </div>
+          <div class="modal-body">
+            <div>
+              <h5>問題名: <%= result.question.title %></h5>
+              <h5>解答者: <%= result.user.screen_name %></h5>
+              <h5>実行言語: <%= result.language %></h5>
+              <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></h5>
+              <h5>
+                解答結果: 
+                <% if result.answer %>
+                  <span style="color: green">正解</span>
+                <% else %>
+                  <span style="color: red">不正解</span>
+                <% end %>
+              </h5>
+            </div>
+            <p>
+              <%= sanitize markdown(result.code).html_safe %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
