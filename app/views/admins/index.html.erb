@@ -21,201 +21,22 @@
 <!-- ユーザ情報 -->
 <div class="tab-content">
   <div class="tab-pane active" id="users">
-    <div style="margin-top: 1em;"></div>
-    <table id="user-table" class="table table-bordered" width="100%">
-      <thead>
-        <tr>
-          <td>アカウントID</td>
-          <td>ユーザネーム</td>
-          <td>コード実行数</td>
-          <td>問題解答数</td>
-          <td>権限</td>
-          <td>認証方法</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <% all_code = user.results.count + user.codes.count %>
-            <td><%= link_to user.screen_name, admin_path(user) %></td>
-            <td><%= user.user_name %></td>
-            <td><%= all_code %></td>
-            <td><%= user.results.count %></td>
-            <% if user.is_admin %>
-              <td>管理者</td>
-            <% else %>
-              <td>ユーザ</td>
-            <% end %>
-            <td><%= user.provider %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'user' %>
   </div>
 
   <div class="tab-pane" id="questions">
-    <%= link_to "問題追加", new_question_path, class: "btn btn-primary" %>
-    <%= link_to "問題追加のルール",
-      'https://github.com/shiotomo/code-candy/wiki/%E5%95%8F%E9%A1%8C%E4%BD%9C%E6%88%90%E6%99%82%E3%81%AE%E3%83%AB%E3%83%BC%E3%83%AB',
-      class: "btn btn-info",
-      target: "_blank" %>
-    <div style="margin-top: 1em;"></div>
-    <table id="question-table" class="table table-bordered" width="100%">
-      <thead>
-        <tr>
-          <td>問題名</td>
-          <td>提出されたコード数</td>
-          <td>詳細</td>
-          <td>削除</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @questions.each do |question| %>
-          <tr>
-            <td><%= question.title %></td>
-            <td><%= link_to question.results.all.count, list_path(question) %></td>
-            <td><%= link_to "詳細",
-              question_path(question),
-              class: "btn btn-info"
-              %></td>
-            <td><%= link_to "削除",
-              question_path(question),
-              method: :delete,
-              class: "btn btn-danger",
-              data: {confirm: "本当に削除していいですか？"} %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'question' %>
   </div>
+
   <div class="tab-pane" id="categories">
-    <%= link_to "カテゴリー追加", new_category_path, class: "btn btn-primary" %>
-    <div style="margin-top: 1em;"></div>
-    <table id="category-table" class="table table-bordered" width="100%">
-      <thead>
-        <tr>
-          <td>カテゴリー名</td>
-          <td>問題数</td>
-          <td>詳細</td>
-          <td>削除</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @categories.each do |category| %>
-          <tr>
-            <td><%= category.title %></td>
-            <td><%= category.category_items.all.count %></td>
-            <td><%= link_to "詳細",
-              category_path(category),
-              class: "btn btn-info"
-              %></td>
-            <td><%= link_to "削除",
-              category_path(category),
-              method: :delete,
-              class: "btn btn-danger",
-              data: {confirm: "本当に削除していいですか？"} %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'category' %>
   </div>
 
   <div class="tab-pane" id="situation">
-    <div style="margin-top: 1em;"></div>
-    <table id="situation-table" class="table table-bordered" width="100%">
-      <thead>
-        <tr>
-          <td>問題名</td>
-          <td>解答者</td>
-          <td>解答言語</td>
-          <td>正誤</td>
-          <td>解答時刻</td>
-          <td>コード</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @results.each do |result| %>
-          <tr>
-            <td>
-              <%= link_to result.question.title,
-                question_path(result.question)
-              %>
-          </td>
-          <td>
-            <%= link_to result.user.screen_name,
-              admin_path(result.user_id)
-            %>
-        </td>
-        <td><%= result.language %></td>
-        <td>
-          <% if result.answer %>
-            <p style="color: green">正解</p>
-          <% else %>
-            <p style="color: red">不正解</p>
-          <% end %>
-        </td>
-        <td><%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></td>
-        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#result<%= result.id %>">コード詳細</button></td>
-
-        <div class="modal fade" id="result<%= result.id %>">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">提出コード</h4>
-              </div>
-              <div class="modal-body">
-                <div>
-                  <h5>問題名: <%= result.question.title %></h5>
-                  <h5>解答者: <%= result.user.screen_name %></h5>
-                  <h5>実行言語: <%= result.language %></h5>
-                  <h5>提出時間: <%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></h5>
-                  <h5>
-                    解答結果: 
-                    <% if result.answer %>
-                      <span style="color: green">正解</span>
-                    <% else %>
-                      <span style="color: red">不正解</span>
-                    <% end %>
-                  </h5>
-                </div>
-                <p>
-                  <%= sanitize markdown(result.code).html_safe %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'situation' %>
   </div>
 
   <div class="tab-pane" id="analysis">
-    <div class="row" style="margin-top: 1em;">
-      <div class="col-lg-6">
-        <%= pie_chart @analysis %>
-      </div>
-
-      <div class="col-lg-6">
-        <table class="table">
-          <thead>
-            <tr>
-              <td>プログラミング言語</td>
-              <td>提出数</td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @analysis.each do |ana| %>
-              <tr>
-                <td><%= ana[0] %></td>
-                <td><%= ana[1] %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <%= render 'analysis' %>
   </div>
 </div>

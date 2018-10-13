@@ -1,0 +1,30 @@
+<div style="margin-top: 1em;"></div>
+<table id="user-table" class="table table-bordered" width="100%">
+  <thead>
+    <tr>
+      <td>アカウントID</td>
+      <td>ユーザネーム</td>
+      <td>コード実行数</td>
+      <td>問題解答数</td>
+      <td>権限</td>
+      <td>認証方法</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <% all_code = user.results.count + user.codes.count %>
+        <td><%= link_to user.screen_name, admin_path(user) %></td>
+        <td><%= user.user_name %></td>
+        <td><%= all_code %></td>
+        <td><%= user.results.count %></td>
+        <% if user.is_admin %>
+          <td>管理者</td>
+        <% else %>
+          <td>ユーザ</td>
+        <% end %>
+        <td><%= user.provider %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
