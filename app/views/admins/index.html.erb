@@ -5,6 +5,7 @@
     $("#user-table").DataTable();
     $("#question-table").DataTable();
     $("#category-table").DataTable();
+    $("#code-table").DataTable();
     $("#situation-table").DataTable();
   });
 </script>
@@ -14,6 +15,7 @@
   <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
   <li><a href="#questions" data-toggle="tab">問題一覧</a></li>
   <li><a href="#categories" data-toggle="tab">カテゴリー一覧</a></li>
+  <li><a href="#codes" data-toggle="tab">実行コード一覧</a></li>
   <li><a href="#situation" data-toggle="tab">解答状況</a></li>
   <li><a href="#analysis" data-toggle="tab">統計</a></li>
 </ul>
@@ -30,6 +32,10 @@
 
   <div class="tab-pane" id="categories">
     <%= render 'category' %>
+  </div>
+
+  <div class="tab-pane" id="codes">
+    <%= render 'code' %>
   </div>
 
   <div class="tab-pane" id="situation">
