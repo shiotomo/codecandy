@@ -7,12 +7,12 @@
       class: "btn btn-info",
       style: "text-align: center"
     %>
-    <%= link_to "GitHubアカウントを利用して今すぐ始める",
-      "/auth/github",
-      class: "btn btn-default",
-      style: "text-align: center"
-    %>
-  </div>
+  <%= link_to "GitHubアカウントを利用して今すぐ始める",
+    "/auth/github",
+    class: "btn btn-default",
+    style: "text-align: center"
+  %>
+</div>
 </div>
 <div class="row">
   <div class="col-lg-4">
@@ -42,12 +42,18 @@
 </div>
 
 <div class="row" style="background-color: rgba(255, 255, 255, 0.7)">
-  <div class="col-lg-4">
+  <div class="col-lg-7">
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        利用状況
+      </div>
+      <div class="panel panel-body">
+        <%= pie_chart @analysis %>
+      </div>
+    </div>
   </div>
-  <div class="col-lg-4" style="background-color: white">
+  <div class="col-lg-5" style="background-color: white">
     <h2 style="text-align: center">お知らせ</h2>
     <a class="twitter-timeline" data-height="700" data-theme="light" href="https://twitter.com/codecandyadmin?ref_src=twsrc%5Etfw">Tweets by codecandyadmin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </div>
-  <div class="col-lg-4">
   </div>
 </div>
