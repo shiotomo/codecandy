@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       post '/judgement/exec', to: 'judgement#exec'
       get '/information/result', to: 'information#result'
       get '/information/code', to: 'information#code'
+      get '/information/all_code', to: 'information#all_code'
     end
   end
 
