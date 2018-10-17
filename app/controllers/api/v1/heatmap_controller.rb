@@ -12,6 +12,7 @@ class Api::V1::HeatmapController < Api::ApiController
     render json: graph.to_json
   end
 
+  # heatmapのデータを返却するためのメソッド(adminページ用)
   def show
     user = User.friendly.find(params[:id])
     codes = Code.where(user_id: user.id)
