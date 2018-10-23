@@ -14,7 +14,11 @@
     <% @users.each do |user| %>
       <tr>
         <% all_code = user.results.count + user.codes.count %>
-        <td><%= link_to user.screen_name, admin_path(user) %></td>
+        <% if user.provider != "google_oauth2" %>
+          <td><%= link_to user.screen_name, admin_path(user) %></td>
+        <% else %>
+          <td><%= link_to user.user_name, admin_path(user) %></td>
+        <% end %>
         <td><%= user.user_name %></td>
         <td><%= all_code %></td>
         <td><%= user.results.count %></td>

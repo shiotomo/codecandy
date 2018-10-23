@@ -12,34 +12,44 @@
     <% @codes.each do |code| %>
       <tr>
         <td>
-          <%= link_to code.user.screen_name,
-            admin_path(code.user_id)
-          %>
-      </td>
-      <td><%= code.language %></td>
-      <td><%= code.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></td>
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#code<%= code.id %>">コード詳細</button></td>
+          <% if code.user.provider != 'google_oauth2' %>
+            <%= link_to code.user.screen_name,
+              admin_path(code.user_id)
+            %>
+          <% else %>
+            <%= link_to code.user.user_name,
+              admin_path(code.user_id)
+            %>
+          <% end %>
+        </td>
+        <td><%= code.language %></td>
+        <td><%= code.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#code<%= code.id %>">コード詳細</button></td>
 
-      <div class="modal fade" id="code<%= code.id %>">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">提出コード</h4>
-            </div>
-            <div class="modal-body">
-              <div>
-                <h5>実行者: <%= code.user.screen_name %></h5>
-                <h5>実行言語: <%= code.language %></h5>
-                <h5>提出時間: <%= code.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></h5>
+        <div class="modal fade" id="code<%= code.id %>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提出コード</h4>
               </div>
-              <p>
-                <%= sanitize markdown(code.code).html_safe %>
-              </p>
+              <div class="modal-body">
+                <div>
+                  <% if code.user.provider != 'google_oauth2' %>
+                    <h5>実行者: <%= code.user.screen_name %></h5>
+                  <% else %>
+                    <h5>実行者: <%= code.user.user_name %></h5>
+                  <% end %>
+                  <h5>実行言語: <%= code.language %></h5>
+                  <h5>提出時間: <%= code.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %></h5>
+                </div>
+                <p>
+                  <%= sanitize markdown(code.code).html_safe %>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </tr>
     <% end %>
   </tbody>
