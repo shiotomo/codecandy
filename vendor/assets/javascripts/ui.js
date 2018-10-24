@@ -31,7 +31,8 @@ function setEditorLanguage(language) {
     PHP: 'php',
     Perl: 'perl',
     Bash: 'sh',
-    Lua: 'lua'
+    Lua: 'lua',
+    Haskell: 'Haskell',
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -76,6 +77,7 @@ $('#language').on("change", (e) => {
     case 'CPP':
     case 'PHP':
     case 'Perl':
+    case 'Haskell':
       aceEditor.getSession().setTabSize(4);
       break;
     case 'Golang':
@@ -126,7 +128,8 @@ $('#save_button').on('click', (e) => {
     PHP: 'php',
     Perl: 'pl',
     Bash: 'sh',
-    Lua: 'lua'
+    Lua: 'lua',
+    Haskell: 'haskell',
   };
 
   const date = new Date();
