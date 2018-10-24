@@ -29,6 +29,7 @@ https://codecandy.tomosse.work
 - Perl
 - Bash
 - Lua
+- Haskell
 
 ## 使い方(How to use)
 __docker__
