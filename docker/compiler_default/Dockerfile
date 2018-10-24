@@ -13,6 +13,7 @@ RUN apt-get update \
       lua5.3 \
       time \
       binutils \
+      haskell-platform \
       language-pack-ja-base language-pack-ja
 
 ENV LANG=ja_JP.UTF-8

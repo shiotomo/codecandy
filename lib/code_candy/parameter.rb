@@ -16,7 +16,8 @@ module CodeCandy
           "PHP": "PHP",
           "Perl": "Perl",
           "Bash": "Bash",
-          "Lua": "Lua"
+          "Lua": "Lua",
+          "Haskell": "Haskell"
         }
         return submit_language[:"#{language}"]
       end
@@ -36,7 +37,8 @@ module CodeCandy
           "PHP":     PHP.new,
           "Perl":    Perl.new,
           "Bash":    Bash.new,
-          "Lua":     Lua.new
+          "Lua":     Lua.new,
+          "Haskell": Haskell.new
         }
         return exec_data
       end

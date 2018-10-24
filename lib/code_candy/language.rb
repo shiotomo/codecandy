@@ -125,4 +125,12 @@ module CodeCandy
       return @cmd_data
     end
   end
+
+  class Haskell < Language
+    def cmd
+      @cmd_data[:source_file] += ".hs"
+      @cmd_data[:exec_cmd] = "runghc #{@cmd_data[:source_file]}"
+      return @cmd_data
+    end
+  end
 end
