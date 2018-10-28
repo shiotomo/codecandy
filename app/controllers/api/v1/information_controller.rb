@@ -1,7 +1,16 @@
 require './lib/code_candy/analysis'
 
 class Api::V1::InformationController < Api::ApiController
-  # 解答したされているResultテーブルのコードの割合を返却する
+  # CodeCandyの状態を返却するメソッド
+  def state
+    state = {
+      "status": "Active"
+    }
+
+    render json: state
+  end
+
+  # 投稿されているResultテーブルのコードの割合を返却する
   def result
     results = Result.all
     language_proportion = CodeCandy::Analysis.analysis_result(results)

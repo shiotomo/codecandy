@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get '/heatmap/show/:id', to: 'heatmap#show'
       post '/compile/exec', to: 'compile#exec'
       post '/judgement/exec', to: 'judgement#exec'
+      get '/information/state', to: 'information#state'
       get '/information/result', to: 'information#result'
       get '/information/code', to: 'information#code'
       get '/information/all_code', to: 'information#all_code'
