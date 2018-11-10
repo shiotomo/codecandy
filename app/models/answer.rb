@@ -2,7 +2,7 @@
 #
 # Table name: answers
 #
-#  id          :integer          not null, primary key
+#  id          :bigint(8)        not null, primary key
 #  input       :text
 #  output      :text
 #  question_id :integer

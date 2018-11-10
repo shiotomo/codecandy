@@ -1,3 +1,7 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#users" data-toggle="tab">ユーザ一覧</a></li>
+  <li><a href="#questions" data-toggle="tab">問題一覧</a></li>
+</ul>
 <div class="panel panel-default">
   <div class="panel panel-heading">
     <h3 style="text-align: center"><%= @question.title %></h3>
@@ -24,8 +28,8 @@
         <%= link_to User.find(result.user_id).screen_name,
           admin_path(result.user_id)
         %>
-      </p>
-      <hr />
-    <% end %>
+    </p>
+    <hr />
+     <% end %>
   </div>
 </div>

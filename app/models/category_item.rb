@@ -2,11 +2,11 @@
 #
 # Table name: category_items
 #
-#  id          :integer          not null, primary key
-#  category_id :integer          not null
-#  question_id :integer          not null
+#  id          :bigint(8)        not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  category_id :bigint(8)
+#  question_id :bigint(8)
 #
 
 class CategoryItem < ApplicationRecord
