@@ -1,1 +1,67 @@
-<h1>開発中...</h1>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#codes" data-toggle="tab">実行コード一覧</a></li>
+  <li><a href="#results" data-toggle="tab">解答一覧</a></li>
+</ul>
+<br />
+<div class="tab-content">
+  <div class="tab-pane active" id="codes">
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        <h3 style="text-align: center">実行コード一覧</h3>
+      </div>
+      <div class="panel panel-body">
+        <% @codes.each do |code| %>
+          <p>
+            <%= sanitize markdown(code.code).html_safe %>
+          </p>
+          <p>
+            <label>言語</label>
+            <%= code.language %>
+          </p>
+          <p>
+            <label>実行日時</label>
+            <%= code.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %>
+          </p>
+          <hr />
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="results">
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        <h3 style="text-align: center">解答一覧</h3>
+      </div>
+      <div class="panel panel-body">
+        <% @results.each do |result| %>
+          <p>
+            <%= sanitize markdown(result.code).html_safe %>
+          </p>
+          <p>
+            <label>問題</label>
+            <%= link_to result.question.title, lesson_path(result.question_id) %>
+          </p>
+          <p>
+            <label>正誤</label>
+          <% if result.answer %>
+            <span style="color: green">正解</span>
+          <% else %>
+            <span style="color: red">不正解</span>
+          <% end %>
+
+          </p>
+          <p>
+            <label>言語</label>
+            <%= result.language %>
+          </p>
+          <p>
+            <label>実行日時</label>
+            <%= result.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %>
+          </p>
+          <hr />
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
