@@ -37,6 +37,13 @@ __docker__
 ```
 docker-compose build
 ```
+以下のdockerイメージが作成できていればOKです。
+```
+codecandy_compiler_default
+codecandy_compiler_jvm_php
+codecandy_compiler_swift
+```
+
 __postgresql__  
 roleの作成(Create role)  
 `sudo -u postgres psql`後に
