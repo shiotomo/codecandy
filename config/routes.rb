@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :admins, only: [:index, :show]
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :code_golf_rankings, only: [:index, :show]
 
   # adminページ用
   get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'

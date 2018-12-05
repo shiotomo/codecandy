@@ -1,0 +1,2 @@
+module CodeGolfRankingsHelper
+end
