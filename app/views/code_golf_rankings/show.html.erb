@@ -1,5 +1,5 @@
 <h1 style="text-align: center">Code Golf Ranking</h1>
-<h3 style="text-align: center">問題名: <%= @question.title %></h3>
+<h3 style="text-align: center">問題名: <%= link_to @question.title, lesson_path(@question) %></h3>
 
 <% @ranking_hash.each do |key, value| %>
   <div class="panel panel-info">
