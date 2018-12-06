@@ -2,29 +2,25 @@
 
 <div class="row">
   <div class="col-lg-4">
-    <p>
-      <div class="panel panel-info">
-        <div class="panel panel-heading">
-          <label>問題</label>
-        </div>
-        <div class="panel panel-body">
-          <%= simple_format @question.body %>
-        </div>
+    <div class="panel panel-info">
+      <div class="panel panel-heading">
+        <label>問題</label>
       </div>
-    </p>
-    <p>
-      <div class="panel panel-default">
-        <div class="panel panel-heading">
-          標準入出力
-        </div>
-        <div class="panel panel-body">
-          <label>標準入力</label>
-          <%= simple_format @input %>
-          <label>標準出力</label>
-          <%= simple_format @output %>
-        </div>
+      <div class="panel panel-body">
+        <%= simple_format @question.body %>
       </div>
-    </p>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        標準入出力
+      </div>
+      <div class="panel panel-body">
+        <label>標準入力</label>
+        <%= simple_format @input %>
+        <label>標準出力</label>
+        <%= simple_format @output %>
+      </div>
+    </div>
   </div>
 
   <div class="col-lg-8">
@@ -92,25 +88,25 @@
           <div class="tab-pane active" id="Stdout">
             <h3>標準出力</h3>
             <pre>
-    <div id="stdout"></div>
+              <div id="stdout"></div>
             </pre>
             <h4>実行時間</h4>
             <pre>
-    <div id="time"></div>
+              <div id="time"></div>
+            </pre>
+            <h3 style="color: gray"><b>解答結果</b></h3>
+            <pre>
+              <div id="answer"></div>
             </pre>
           </div>
-          <h3 style="color: gray"><b>解答結果</b></h3>
-          <pre>
-    <div id="answer"></div>
-          </pre>
           <div class="tab-pane" id="Stderr">
             <h4>終了コード</h4>
             <pre>
-    <div id="exit_code"></div>
+              <div id="exit_code"></div>
             </pre>
             <h4>エラーメッセージ</h4>
             <pre>
-    <div id="stderr"></div>
+              <div id="stderr"></div>
             </pre>
           </div>
         </div>

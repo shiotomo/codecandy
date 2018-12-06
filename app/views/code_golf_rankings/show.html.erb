@@ -1,0 +1,19 @@
+<h1 style="text-align: center">Code Golf Ranking</h1>
+<h3 style="text-align: center">問題名: <%= link_to @question.title, lesson_path(@question) %></h3>
+
+<% @ranking_hash.each do |key, value| %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      言語: <%= key %>
+    </div>
+    <div class="panel-body">
+      <label>文字数</label>
+      <%= value.code.length %>
+      <% if current_user.id == value.user_id %>
+        <p style="color: green">このランキングのトップはあなたです。</p>
+      <% else %>
+        <p>このランキングのトップはあなたではありません。</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
