@@ -11,6 +11,9 @@
       <%= value.code.length %>
       <% if current_user.id == value.user_id %>
         <p style="color: green">このランキングのトップはあなたです。</p>
+          <p>
+            <%= sanitize markdown(value.code).html_safe %>
+          </p>
       <% else %>
         <p>このランキングのトップはあなたではありません。</p>
       <% end %>
