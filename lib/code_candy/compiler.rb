@@ -26,7 +26,7 @@ module CodeCandy
     # return_params
     def exec(language, source_code, input)
       # ==== 事前処理 ====
-      exec_time = Time.now.to_f
+      exec_time = Time.now.to_i
 
       data = {
         "source_code": source_code.force_encoding("UTF-8"),

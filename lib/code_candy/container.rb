@@ -13,51 +13,19 @@ module CodeCandy
       def create(exec_time, work_dir, language)
         case language
         when 'Swift'
-          return swift(exec_time, work_dir)
+          return image(exec_time, work_dir, 'codecandy_compiler_swift')
         when 'Java', 'Scala', 'PHP'
-          return jvm_php(exec_time, work_dir)
+          return image(exec_time, work_dir, 'codecandy_compiler_jvm_php')
         else
-          return default(exec_time, work_dir)
+          return image(exec_time, work_dir, 'codecandy_compiler_default')
         end
       end
 
       private
-      def default(exec_time, work_dir)
+      def image(exec_time, work_dir, image_name)
         container = Docker::Container.create(
           name: "test_#{exec_time}",
-          Image: 'codecandy_compiler_default',
-          WorkingDir: '/workspace',
-          Memory: 512 * 1024**2,
-          MemorySwap: 512 * 1024**2,
-          PidsLimit: 30,
-          HostConfig: {
-            Binds: ["/tmp/#{work_dir}:/workspace"]
-          },
-          Tty: true
-        )
-        return container
-      end
-
-      def swift(exec_time, work_dir)
-        container = Docker::Container.create(
-          name: "test_#{exec_time}",
-          Image: 'codecandy_compiler_swift',
-          WorkingDir: '/workspace',
-          Memory: 512 * 1024**2,
-          MemorySwap: 512 * 1024**2,
-          PidsLimit: 30,
-          HostConfig: {
-            Binds: ["/tmp/#{work_dir}:/workspace"]
-          },
-          Tty: true
-        )
-        return container
-      end
-
-      def jvm_php(exec_time, work_dir)
-        container = Docker::Container.create(
-          name: "test_#{exec_time}",
-          Image: 'codecandy_compiler_jvm_php',
+          Image: image_name,
           WorkingDir: '/workspace',
           Memory: 512 * 1024**2,
           MemorySwap: 512 * 1024**2,
