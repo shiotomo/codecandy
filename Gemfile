@@ -31,6 +31,7 @@ gem 'pry-rails'
 gem 'rails-ujs'
 gem 'redcarpet'
 gem 'twitter'
+gem 'rack-mini-profiler', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
