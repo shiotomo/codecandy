@@ -42,6 +42,7 @@ jobs:
 
       # Database setup
       # - run: psql -u "create role code_candy with login createdb;"
+      - run: mv config/database.circleci.yml config/database.yml
       - run:
           command: |
             bundle exec rake db:create
