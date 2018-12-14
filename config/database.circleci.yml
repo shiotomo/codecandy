@@ -4,4 +4,4 @@ test:
   encoding: unicode
   pool: 5
   username: postgres
-  host: 127.0.0.1
+  host: localhost
