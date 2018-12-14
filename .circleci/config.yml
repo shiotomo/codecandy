@@ -63,8 +63,8 @@ jobs:
       - run: mv config/database.circleci.yml config/database.yml
       - run:
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
+            bundle exec rails db:create
+            bundle exec rails db:schema:load
           environment:
             DATABASE_URL: "postgres://postgres@localhost:5432/code_candy_test"
 
