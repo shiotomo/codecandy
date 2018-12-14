@@ -8,10 +8,10 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.3-node-browsers
-      - image: circleci/postgres:9.6-alpine
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: code_candy_test
+      # - image: circleci/postgres:9.6-alpine
+      #   environment:
+      #     POSTGRES_USER: postgres
+      #     POSTGRES_DB: code_candy_test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -57,7 +57,7 @@ jobs:
       - run:
           name: docker-compose build
           command: |
-            docker-compose build
+            sudo docker-compose build
 
       - save_cache:
           paths:
