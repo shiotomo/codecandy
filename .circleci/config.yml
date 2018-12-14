@@ -41,6 +41,9 @@ jobs:
             cat /etc/apt/sources.list.d/pgdg.list
             sudo apt-get update
             sudo apt-get install -y docker docker-compose
+            sudo groupadd docker
+            sudo usermod -aG docker root
+            sudo service docker restart
 
       # Download and cache dependencies
       - restore_cache:
@@ -50,14 +53,14 @@ jobs:
           - v1-dependencies-
 
       - run:
+          name: docker-compose build
+          command: |
+            docker-compose build
+
+      - run:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - run:
-          name: docker-compose build
-          command: |
-            sudo docker-compose build
 
       - save_cache:
           paths:
