@@ -9,13 +9,16 @@ jobs:
       # specify the version you desire here
        - image: circleci/ruby:2.5.3-node-browsers
        - image: circleci/postgres:9.6-alpine
+         environment:
+        - POSTGRES_USER: code_candy
+        - POSTGRES_DB: code_candy_test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/codecandy
 
     steps:
       - checkout
@@ -39,8 +42,12 @@ jobs:
 
       # Database setup
       - run: psql -u "create role code_candy with login createdb;"
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run:
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+          environment:
+            DATABASE_URL: "postgres://code_candy@localhost:5432/code_candy_test"
 
       # run tests!
       - run:
