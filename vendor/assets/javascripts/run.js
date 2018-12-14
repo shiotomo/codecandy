@@ -1,9 +1,9 @@
 function runCode() {
   $('#run_button').text("実行中").prop('disabled', true);
 
-  var language = $('#language').val();
-  var source_code = aceEditor.getValue();
-  var input = $('#input').val();
+  const language = $('#language').val();
+  const source_code = aceEditor.getValue();
+  const input = $('#input').val();
 
   $.ajax({
     url: '/api/v1/compile/exec',
@@ -29,9 +29,9 @@ function runCode() {
 function judgeCode() {
   $('#judge_button').text("判定中").prop('disabled', true);
 
-  var language = $('#language').val();
-  var source_code = aceEditor.getValue();
-  var answer_id = $('#answer_id').val();
+  const language = $('#language').val();
+  const source_code = aceEditor.getValue();
+  const answer_id = $('#answer_id').val();
 
   $.ajax({
     url: '/api/v1/judgement/exec',
