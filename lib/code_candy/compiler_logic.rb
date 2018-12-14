@@ -54,10 +54,10 @@ module CodeCandy
 
           # 実行にかかった時間をproc_timeに格納
           proc_time = ""
-          File.open("/tmp/#{@work_dir}/time.txt", "r") do |f|
-            proc_time = f.gets.chomp
-          end
-          proc_time += "[s]"
+          # File.open("/tmp/#{@work_dir}/time.txt", "r") do |f|
+          #   proc_time = f.gets.chomp
+          # end
+          # proc_time += "[s]"
 
           # 作業ディレクトリを削除
           FileUtils.rm_r("/tmp/#{@work_dir}")
