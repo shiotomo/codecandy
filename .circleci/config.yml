@@ -7,17 +7,39 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/ruby:2.5.3-node-browsers
+      - image: circleci/postgres:9.6-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: code_candy_test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/codecandy
 
     steps:
       - checkout
+
+      - setup_remote_docker:
+          reusable: true
+
+      - run:
+          name: docker-compose build
+          command: |
+            docker-compose build
+
+      - run:
+          name: Install postgresql 10
+          command: |
+            wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+            sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+            cat /etc/apt/sources.list.d/pgdg.list
+            sudo apt-get update
+            sudo apt-get install -y lsb-release
+            sudo apt-get install -y postgresql postgresql-contrib
 
       # Download and cache dependencies
       - restore_cache:
@@ -37,8 +59,14 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      # - run: psql -u "create role code_candy with login createdb;"
+      - run: mv config/database.circleci.yml config/database.yml
+      - run:
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:schema:load
+          environment:
+            DATABASE_URL: "postgres://postgres@localhost:5432/code_candy_test"
 
       # run tests!
       - run:
@@ -47,11 +75,12 @@ jobs:
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
+            # bundle exec rspec ./spec
+            # bundle exec rspec --format progress \
+            #                 --format RspecJunitFormatter \
+            #                 --out /tmp/test-results/rspec.xml \
+            #                 --format progress \
+            #                 $TEST_FILES
 
       # collect reports
       - store_test_results:
