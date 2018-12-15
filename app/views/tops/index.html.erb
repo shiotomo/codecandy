@@ -51,6 +51,8 @@
       <div class="panel panel-body">
         <% all_code = current_user.codes.count + current_user.results.count %>
         <div id="cal-heatmap"></div>
+        <select class="browser-default" name="year-select" id="year-select">
+        </select>
         <hr />
         <label>総コード実行数: <%= all_code %></label>
         <br />
