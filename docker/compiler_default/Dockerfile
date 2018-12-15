@@ -11,9 +11,10 @@ RUN apt-get update \
       golang \
       nodejs \
       lua5.3 \
+      haskell-platform \
+      lazarus \
       time \
       binutils \
-      haskell-platform \
       language-pack-ja-base language-pack-ja
 
 ENV LANG=ja_JP.UTF-8

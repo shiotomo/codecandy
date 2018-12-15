@@ -133,4 +133,12 @@ module CodeCandy
       return @cmd_data
     end
   end
+
+  class Pascal < Language
+    def cmd
+      @cmd_data[:source_file] += ".pas"
+      @cmd_data[:exec_cmd] = "fpc #{@cmd_data[:source_file]} > /dev/null 2>&1 && ./#{@cmd_data[:exec_file]}"
+      return @cmd_data
+    end
+  end
 end
