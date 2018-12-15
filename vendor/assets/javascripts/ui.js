@@ -32,7 +32,8 @@ function setEditorLanguage(language) {
     Perl: 'perl',
     Bash: 'sh',
     Lua: 'lua',
-    Haskell: 'Haskell',
+    Haskell: 'haskell',
+    Pascal: 'pascal'
   };
   const mode = languageToMode[language];
   aceEditor.getSession().setMode("ace/mode/" + mode);
@@ -67,6 +68,7 @@ $('#language').on("change", (e) => {
     case 'Scala':
     case 'Bash':
     case 'Lua':
+    case 'Pascal':
       aceEditor.getSession().setTabSize(2);
       break;
     case 'Python3':
@@ -129,7 +131,8 @@ $('#save_button').on('click', (e) => {
     Perl: 'pl',
     Bash: 'sh',
     Lua: 'lua',
-    Haskell: 'haskell',
+    Haskell: 'hs',
+    Pascal: 'pas'
   };
 
   const date = new Date();
