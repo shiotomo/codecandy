@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     namespace :v1 do
+      get '/user/period', to: 'user#period'
       get '/heatmap/index', to: 'heatmap#index'
+      get '/heatmap/data/:year', to: 'heatmap#data'
       get '/heatmap/show/:id', to: 'heatmap#show'
       post '/compile/exec', to: 'compile#exec'
       post '/judgement/exec', to: 'judgement#exec'
