@@ -1,3 +1,21 @@
+<ul class="nav nav-tabs">
+  <li>
+    <%= link_to 'TOP', tops_path %>
+  </li>
+  <li>
+    <%= link_to 'Editor', editors_path %>
+  </li>
+  <li>
+    <%= link_to 'Category', sections_path %>
+  </li>
+  <li class="active">
+    <%= link_to 'Questions list', lessons_path %>
+  </li>
+  <li>
+    <%= link_to 'Code golf ranking', code_golf_rankings_path %>
+  </li>
+</ul>
+<br />
 <h1><%= @question.title %></h1>
 
 <div class="row">
