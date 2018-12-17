@@ -32,6 +32,11 @@ jobs:
             docker-compose build
 
       - run:
+          name: docker images
+          command: |
+            docker images
+
+      - run:
           name: Install postgresql 10
           command: |
             wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
