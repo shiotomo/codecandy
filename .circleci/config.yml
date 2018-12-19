@@ -27,12 +27,6 @@ jobs:
           reusable: true
 
       - run:
-          name: ls & pwd
-          command: |
-            ls
-            pwd
-
-      - run:
           name: docker-compose build
           command: |
             docker-compose build
@@ -86,7 +80,8 @@ jobs:
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
-            bundle exec rspec ./spec
+            bundle exec rspec --tag ~@compiler -fd
+            # bundle exec rspec ./spec
             # bundle exec rspec --format progress \
             #                 --format RspecJunitFormatter \
             #                 --out /tmp/test-results/rspec.xml \
