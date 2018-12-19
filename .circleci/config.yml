@@ -27,6 +27,12 @@ jobs:
           reusable: true
 
       - run:
+          name: ls & pwd
+          command: |
+            ls
+            pwd
+
+      - run:
           name: docker-compose build
           command: |
             docker-compose build
