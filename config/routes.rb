@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :admins, only: [:index, :show]
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :technicals, only: :index
   resources :code_golf_rankings, only: [:index, :show]
 
   # adminページ用

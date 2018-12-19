@@ -12,14 +12,14 @@
     <%= link_to 'Questions list', lessons_path %>
   </li>
   <li>
-    <%= link_to 'Code golf ranking', code_golf_rankings_path %>
+    <%= link_to 'Technical', technicals_path %>
   </li>
 </ul>
 <div>
   <h1 style="text-align: center">カテゴリー</h1>
   <ul>
     <% @categories.each do |category| %>
-      <li><h3><%= link_to category.title, section_path(category) %></h3></li>
+      <h3><li><%= link_to category.title, section_path(category) %></li></h3>
     <% end %>
   </ul>
   <div style="text-align: center">

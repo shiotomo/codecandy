@@ -12,12 +12,12 @@
     <%= link_to 'Questions list', lessons_path %>
   </li>
   <li class="active">
-    <%= link_to 'Code golf ranking', code_golf_rankings_path %>
+    <%= link_to 'Technical', technicals_path %>
   </li>
 </ul>
 <h1 style="text-align: center">Code Golf Ranking</h1>
 <ul>
   <% @questions.each do |question| %>
-    <li><h3><%= link_to question.title, code_golf_ranking_path(question.id) %></h3></li>
+    <h3><li><%= link_to question.title, code_golf_ranking_path(question.id) %></li></h3>
   <% end %>
 </ul>
