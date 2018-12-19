@@ -26,15 +26,15 @@ jobs:
       - setup_remote_docker:
           reusable: true
 
-      - run:
-          name: docker-compose build
-          command: |
-            docker-compose build
+      # - run:
+      #     name: docker-compose build
+      #     command: |
+      #       docker-compose build
 
-      - run:
-          name: docker images
-          command: |
-            docker images
+      # - run:
+      #     name: docker images
+      #     command: |
+      #       docker images
 
       - run:
           name: Install postgresql 10
