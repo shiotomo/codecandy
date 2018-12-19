@@ -46,7 +46,8 @@ module CodeCandy
         Timeout.timeout(@cmd[:time_out]) do
           # === 実行ここから ===
           @container.start
-          container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{@cmd[:time_out]} #{@cmd[:exec_cmd]} < #{@input_file}"
+          # container_cmd = "cd /workspace && /usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{@cmd[:time_out]} #{@cmd[:exec_cmd]} < #{@input_file}"
+          container_cmd = "/usr/bin/time -q -f \"%e\" -o /workspace/time.txt timeout #{@cmd[:time_out]} #{@cmd[:exec_cmd]} < #{@input_file}"
           res = @container.exec(['bash', '-c', container_cmd])
           @container.stop
           @container.delete(force: true)
