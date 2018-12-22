@@ -21,11 +21,11 @@
         <td>
           <% if result.user.provider != 'google_oauth2' %>
             <%= link_to result.user.screen_name,
-              admin_path(result.user_id)
+              user_path(result.user_id)
             %>
           <% else %>
             <%= link_to result.user.user_name,
-              admin_path(result.user_id)
+              user_path(result.user_id)
             %>
           <% end %>
         </td>

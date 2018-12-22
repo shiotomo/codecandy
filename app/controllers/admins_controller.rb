@@ -3,7 +3,7 @@ require './lib/code_candy/analysis'
 class AdminsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!
-  before_action :all_questions, only: [:index, :show]
+  before_action :all_questions, only: [:index, :user]
   before_action :set_questions, only: [:answer, :list]
 
   def index
@@ -17,10 +17,14 @@ class AdminsController < ApplicationController
     @analysis = analysis.sort_by{|k, v| v}.reverse
   end
 
-  def show
+  def user
     @user = User.friendly.find(params[:id])
-    @results = Result.where(user_id: @user.id)
-    @analysis = CodeCandy::Analysis.statistics_result(@results)
+    @results = @user.results.all.order(created_at: 'asc')
+    @codes = @user.codes.all.order(created_at: 'asc')
+    analysis_results = CodeCandy::Analysis.statistics_result(@results)
+    analysis_codes = CodeCandy::Analysis.statistics_result(@codes)
+    analysis = analysis_results.merge(analysis_codes){|k, v1, v2| v1 + v2}
+    @analysis = analysis.sort_by{|k, v| v}.reverse
   end
 
   def answer

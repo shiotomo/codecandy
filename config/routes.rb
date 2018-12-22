@@ -8,15 +8,17 @@ Rails.application.routes.draw do
   resources :results, only: :show
   resources :lessons, only: [:index, :show]
   resources :sections, only: [:index, :show]
-  resources :admins, only: [:index, :show]
-  resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
-  resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :technicals, only: :index
   resources :code_golf_rankings, only: [:index, :show]
 
   # adminページ用
-  get 'answer/:id/:user_id', to: 'admins#answer', as: 'answer'
-  get 'list/:id/', to: 'admins#list', as: 'list'
+  resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :admins, only: :index
+
+  get 'admins/answer/:id/:user_id', to: 'admins#answer', as: 'answer'
+  get 'admins/list/:id/', to: 'admins#list', as: 'list'
+  get 'admins/user/:id', to: 'admins#user', as: 'user'
 
   # ログイン認証
   get '/auth/:provider/callback', to: 'sessions#create'
