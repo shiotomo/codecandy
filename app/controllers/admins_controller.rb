@@ -19,8 +19,12 @@ class AdminsController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
-    @results = Result.where(user_id: @user.id)
-    @analysis = CodeCandy::Analysis.statistics_result(@results)
+    @results = @user.results.all.order(created_at: 'asc')
+    @codes = @user.codes.all.order(created_at: 'asc')
+    analysis_results = CodeCandy::Analysis.statistics_result(@results)
+    analysis_codes = CodeCandy::Analysis.statistics_result(@codes)
+    analysis = analysis_results.merge(analysis_codes){|k, v1, v2| v1 + v2}
+    @analysis = analysis.sort_by{|k, v| v}.reverse
   end
 
   def answer
