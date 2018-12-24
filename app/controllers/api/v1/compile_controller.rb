@@ -2,6 +2,8 @@ require './lib/code_candy/compiler'
 require './lib/code_candy/parameter'
 
 class Api::V1::CompileController < Api::ApiController
+  before_action :authenticate_user!
+
   def exec
     # 送られてきたパラメータを変数に格納
     language = params[:language]
