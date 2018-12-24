@@ -64,12 +64,12 @@ module CodeCandy
           FileUtils.rm_r("/tmp/#{@work_dir}")
 
           # 実行結果を格納
-          return_params = {stdout: res[0].join(''), stderr: res[1].join(''), time: proc_time, exit_code: res[2]}
+          return_params = {stdout: res[0].join(''), stderr: res[1].join(''), time: proc_time, exit_code: res[2], input_error: false}
         end
       rescue Timeout::Error
         @container.stop
         @container.delete(force: true)
-        return_params = {stdout: "Time out!",stderr: "Time out!", time: "", exit_code: 408}
+        return_params = {stdout: "Time out!",stderr: "Time out!", time: "", exit_code: 408, input_error: false}
       end
 
       return return_params

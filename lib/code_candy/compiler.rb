@@ -28,6 +28,10 @@ module CodeCandy
       # ==== 事前処理 ====
       exec_time = Time.now.to_i
 
+      # languageが不正入力の場合の処理
+      error_params = {stdout: "Error",stderr: "入力が不正です。", time: "", exit_code: 1, input_error: true}
+      return error_params if language.empty?
+
       data = {
         "source_code": source_code.force_encoding("UTF-8"),
         "input_file":  'input',
