@@ -9,8 +9,8 @@ class Api::V1::JudgementController < Api::ApiController
     language = params[:language]
     source_code = params[:source_code]
     id = params[:answer_id]
-
     judgement = CodeCandy::Judgement.new(language, source_code, id, current_user)
+
     result = judgement.exec
 
     render json: result

@@ -28,6 +28,10 @@ module CodeCandy
       @answers.each do |answer|
         # コンテナに言語、ソースコード、標準入力を与えて提出されたプログラムを実行する
         result = @compiler.exec(@language, @source_code, answer.input)
+
+        # 不正な入力があった場合その時点でエラーメッセージを返却する
+        return result if result[:input_error]
+
         result[:stdout] = result[:stdout].force_encoding("UTF-8")
         # 標準出力の整形
         # 提出コードの標準出力: stdout
@@ -55,7 +59,7 @@ module CodeCandy
         result[:answer] = "不正解"
       end
 
-      # resultメソッドを呼び出す
+      # resultレコードメソッドを呼び出す
       result_submit(@answer_flag, @id, @source_code, @submit_language, @user)
 
       # UTF-8にencodeする

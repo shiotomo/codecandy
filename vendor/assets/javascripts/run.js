@@ -42,12 +42,21 @@ function judgeCode() {
       answer_id
     }
   }).done(result => {
-    $('#stdout').text("");
-    $('#stderr').text("");
-    $('#time').text("");
-    $('#exit_code').text("");
-    $('#answer').text(result.answer);
-    $('#judge_button').text("解答").prop('disabled', false);
+    if (result.input_error) {
+      $('#stdout').text(result.stdout);
+      $('#stderr').text(result.stderr);
+      $('#time').text(result.time);
+      $('#exit_code').text(result.exit_code);
+      $('#answer').text(result.answer);
+      $('#judge_button').text("解答").prop('disabled', false);
+    } else {
+      $('#stdout').text("");
+      $('#stderr').text("");
+      $('#time').text("");
+      $('#exit_code').text("");
+      $('#answer').text(result.answer);
+      $('#judge_button').text("解答").prop('disabled', false);
+    }
   }).fail(err => {
     alert('エラーが発生しました');
     $('#judge_button').text("解答").prop('disabled', false);
