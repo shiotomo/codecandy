@@ -30,6 +30,7 @@ https://codecandy.tomosse.work
 - Bash
 - Lua
 - Haskell
+- Pascal
 
 ## 使い方(How to use)
 __docker__
