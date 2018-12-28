@@ -9,8 +9,8 @@ class AdminsController < ApplicationController
   def index
     @users = User.all.order(created_at: 'asc')
     @categories = Category.all.order(created_at: 'asc')
-    @results = Result.all.order(created_at: 'desc')
-    @codes = Code.all.order(created_at: 'desc')
+    @results = Result.all.order(created_at: 'desc').includes(:user, :question)
+    @codes = Code.all.order(created_at: 'desc').includes(:user)
     analysis_results = CodeCandy::Analysis.statistics_result(@results)
     analysis_codes = CodeCandy::Analysis.statistics_result(@codes)
     analysis = analysis_results.merge(analysis_codes){|k, v1, v2| v1 + v2}
