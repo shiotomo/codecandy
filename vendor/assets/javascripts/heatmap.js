@@ -11,20 +11,31 @@ const response = fetch('/api/v1/user/period', {
   return response.json();
 }).then(jsonData => {
   console.log(jsonData);
+  nowYear = jsonData['now'];
   submitYear = jsonData['submit'];
 
   const addOption = document.createElement('option');
-  addOption.setAttribute('value', submitYear);
+  addOption.setAttribute('value', nowYear);
   addOption.setAttribute('selected', 'selected');
-  addOption.innerHTML = submitYear;
+  addOption.innerHTML = nowYear;
   yearSelect.appendChild(addOption);
 
-  for (let i = 1; i < jsonData['range']; i++) {
+  for (let i = jsonData['range']; i > 0; i--) {
     const addOption = document.createElement('option');
-    addOption.setAttribute('value', submitYear + i);
-    addOption.innerHTML = submitYear + i;
+    addOption.setAttribute('value', nowYear - i);
+    addOption.innerHTML = nowYear - i;
     yearSelect.appendChild(addOption);
   }
+
+  cal.init({
+    itemSelector: '#cal-heatmap',
+    domain: 'month',
+    data: `/api/v1/heatmap/data/${now.getFullYear()}`,
+    subdomain: 'day',
+    start: new Date(submitYear, 1, 0),
+    displayLegend: false
+  });
+
   return jsonData
 }).catch(err => {
   console.error(err);
@@ -32,9 +43,8 @@ const response = fetch('/api/v1/user/period', {
 
 
 /**
- * calheatmapの設定
+ * calheatmapの更新
  **/
-
 $('#year-select').change(() => {
   fetch(`/api/v1/heatmap/data/${yearSelect.value}`, {
     method: 'GET',
@@ -45,17 +55,8 @@ $('#year-select').change(() => {
     return response.json();
   }).then(jsonData => {
     console.log(jsonData);
-    cal.update(jsonData, false, cal.RESET_ALL_ON_UPDATE)
+    cal.update(jsonData, true, cal.RESET_ALL_ON_UPDATE)
   }).catch(err => {
     console.error(err);
   });
-});
-
-cal.init({
-  itemSelector: '#cal-heatmap',
-  domain: 'month',
-  data: `/api/v1/heatmap/data/${now.getFullYear()}`,
-  subdomain: 'day',
-  start: new Date(now.getFullYear(), 1, 0),
-  displayLegend: false
 });
