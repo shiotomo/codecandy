@@ -33,6 +33,7 @@ gem 'rails-ujs'
 gem 'redcarpet'
 gem 'twitter'
 gem 'webpacker'
+gem 'foreman'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
