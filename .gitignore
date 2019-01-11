@@ -128,3 +128,8 @@ bower.json
 
 
 # End of https://www.gitignore.io/api/Rails
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

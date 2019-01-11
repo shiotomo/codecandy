@@ -1,5 +1,12 @@
 {
   "name": "code_candy",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "ts-loader": "3.5.0",
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
