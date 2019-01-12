@@ -1,30 +1,14 @@
-export class Compiler {
-  private data: {
-    language: string;
-    source_code: string;
-    input: string;
-  };
-  private stdout = document.getElementById('stdout');
-  private stderr = document.getElementById('stderr');
-  private time = document.getElementById('time');
-  private exitCode = document.getElementById('exit_code');
-  private answer = document.getElementById('answer');
-  private runButton = document.getElementById('run_button') as any;
-  private judgeButton = document.getElementById('judge_button') as any;
+import { Compiler } from './compiler';
 
-  public constructor (language: string, sourceCode: string, input: string) {
-    this.runButton.value = '実行中';
-    this.runButton.disabled = true;
-    this.data = {
-      language,
-      source_code: sourceCode,
-      input
-    }
+export class JudgeCompiler extends Compiler {
+  constructor (language: string, sourceCode: string, input: string, answerId: string) {
+    super(language, sourceCode, input, answerId);
   }
 
-  public runCode(): void {
+  runCode() {
     this.runButton.innerHTML = '実行中';
     this.runButton.disabled = true;
+    this.judgeButton.disabled = true;
 
     fetch('/api/v1/compile/exec', {
       method: 'POST',
@@ -41,6 +25,7 @@ export class Compiler {
       this.stderr.innerHTML = result.stderr
       this.time.innerHTML = result.time
       this.exitCode.innerHTML = result.exit_code
+      this.answer.innerHTML = '';
       return result;
     }).catch(err => {
       console.log(err);
@@ -48,17 +33,18 @@ export class Compiler {
     })
     .then(() => {
       this.runButton.disabled = false;
+    this.judgeButton.disabled = false;
       this.runButton.innerHTML = '実行';
     });
   }
 
-  public judgeCode(): void {
+  judgeCode() {
     this.judgeButton.innerHTML = '判定中';
     this.runButton.innerHTML = '実行中';
     this.judgeButton.setAttribute('disabled', 'disabled');
     this.runButton.setAttribute('disabled', 'disabled');
 
-    fetch('/api/v1/compile/exec', {
+    fetch('/api/v1/judgement/exec', {
       method: 'POST',
       credentials: "include",
       body: JSON.stringify(this.data),
@@ -69,13 +55,16 @@ export class Compiler {
     }).then(response => {
       return response.json();
     }).then(result => {
+      console.log("nyan");
       if (result.input_error) {
+        console.log("hoge");
         this.stdout.innerHTML = result.stdout;
         this.stderr.innerHTML = result.stderr;
         this.time.innerHTML = result.time;
         this.exitCode.innerHTML = result.exit_code;
         this.answer.innerHTML = result.answer;
       } else {
+        console.log("piyo");
         this.stdout.innerHTML = '';
         this.stderr.innerHTML = '';
         this.time.innerHTML = '';
@@ -83,6 +72,7 @@ export class Compiler {
         this.answer.innerHTML = result.answer;
       }
     }).catch(err => {
+      console.log(err);
       alert('エラーが発生しました');
     })
     .then(() => {
