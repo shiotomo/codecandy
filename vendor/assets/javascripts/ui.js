@@ -101,7 +101,9 @@ $('#language').on("change", (e) => {
 // ファイルから呼び出す
 $('#load_file').on('change', (e) => {
   const { target } = e;
+  console.log(target);
   const { files } = target;
+  console.log(files);
 
   const reader = new FileReader();
   reader.readAsText(files[0]);
