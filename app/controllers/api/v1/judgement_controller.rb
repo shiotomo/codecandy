@@ -6,9 +6,6 @@ class Api::V1::JudgementController < Api::ApiController
 
   def exec
     # 送られてきたパラメータを変数に格納
-    puts "=================="
-    puts "=================="
-    puts "=================="
     language = params[:language]
     source_code = params[:source_code]
     id = params[:answer_id]

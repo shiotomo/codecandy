@@ -9,7 +9,7 @@ export class AceEditor {
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       enableSnippets: true,
-      fontSize: '12px'
+      fontSize: '12pt'
     });
     this.aceEditor.setTheme('ace/theme/monokai');
     this.aceEditor.getSession().setMode('ace/mode/c_cpp');

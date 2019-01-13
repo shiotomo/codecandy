@@ -38,6 +38,18 @@
   resolved "https://registry.yarnpkg.com/@types/ace/-/ace-0.0.42.tgz#941973bc5c1d5c9213f0561b8b2d82a18e1400ea"
   integrity sha512-ZakacqExJnGSoz0fSFtSL1A1Df+MIqTIPBBMl1ppEU8wS5AWGx0EPQPOyiAazkyMrskI0iG16tT+K1ZmIJGGnA==
 
+"@types/cal-heatmap@^3.5.34":
+  version "3.5.34"
+  resolved "https://registry.yarnpkg.com/@types/cal-heatmap/-/cal-heatmap-3.5.34.tgz#0150a2d85e696392c5859010fd38232dad8a229d"
+  integrity sha512-qUCSQDLtlUfdvWegrXiQ6sh98TAkv4vTyT38JvSzgjRQnjx3/Np+LF4o95Ad8dl0Jk/L3Pa2QKVRFs0KCUPifw==
+  dependencies:
+    "@types/d3" "^3"
+
+"@types/d3@^3":
+  version "3.5.41"
+  resolved "https://registry.yarnpkg.com/@types/d3/-/d3-3.5.41.tgz#57f08fc79b75f0fecb0b3547abc22e46e9d660e4"
+  integrity sha512-dInnr7nSPsofnLggOf70xvsInUjf3tRrE8XmxsioXALWQHkwEWi7RhTBCa9mYmiUDHMtuanSDN/JOW187ChIhw==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
