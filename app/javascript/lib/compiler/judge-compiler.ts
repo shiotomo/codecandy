@@ -28,7 +28,7 @@ export class JudgeCompiler extends Compiler {
       this.answer.innerHTML = '';
       return result;
     }).catch(err => {
-      console.log(err);
+      // console.log(err);
       alert('エラーが発生しました');
     })
     .then(() => {
@@ -55,16 +55,13 @@ export class JudgeCompiler extends Compiler {
     }).then(response => {
       return response.json();
     }).then(result => {
-      console.log("nyan");
       if (result.input_error) {
-        console.log("hoge");
         this.stdout.innerHTML = result.stdout;
         this.stderr.innerHTML = result.stderr;
         this.time.innerHTML = result.time;
         this.exitCode.innerHTML = result.exit_code;
         this.answer.innerHTML = result.answer;
       } else {
-        console.log("piyo");
         this.stdout.innerHTML = '';
         this.stderr.innerHTML = '';
         this.time.innerHTML = '';
@@ -72,7 +69,7 @@ export class JudgeCompiler extends Compiler {
         this.answer.innerHTML = result.answer;
       }
     }).catch(err => {
-      console.log(err);
+      // console.log(err);
       alert('エラーが発生しました');
     })
     .then(() => {
