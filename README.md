@@ -54,6 +54,7 @@ create role code_candy with createdb login;
 __cmd__  
 git cloneした後、このリポジトリにいる状態(After that, in this repository state)
 ```
+yarn install
 bundle install --path vendor/bundle
 bundle exec rails db:setup
 ```
