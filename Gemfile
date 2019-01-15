@@ -23,15 +23,17 @@ gem 'dotenv-rails'
 gem 'friendly_id'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'omniauth-oauth2'
 gem 'omniauth-github'
-gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-oauth2'
+gem 'omniauth-twitter'
 gem 'pry-rails'
+gem 'rack-mini-profiler', require: false
 gem 'rails-ujs'
 gem 'redcarpet'
 gem 'twitter'
-gem 'rack-mini-profiler', require: false
+gem 'webpacker'
+gem 'foreman'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

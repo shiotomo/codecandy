@@ -88,20 +88,22 @@ $('#language').on("change", (e) => {
   }
 });
 
-$('#run_button').on("click", () => {
-  runCode();
-});
-
-$('#judge_button').on("click", () => {
-  if (window.confirm("現在のプログラムで解答してもよいですか？")) {
-    judgeCode();
-  }
-});
+// $('#run_button').on("click", () => {
+//   runCode();
+// });
+// 
+// $('#judge_button').on("click", () => {
+//   if (window.confirm("現在のプログラムで解答してもよいですか？")) {
+//     judgeCode();
+//   }
+// });
 
 // ファイルから呼び出す
 $('#load_file').on('change', (e) => {
   const { target } = e;
+  console.log(target);
   const { files } = target;
+  console.log(files);
 
   const reader = new FileReader();
   reader.readAsText(files[0]);
