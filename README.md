@@ -67,7 +67,7 @@ TwitterとGitHubとGoogleのAPIキーを.envに設定(Set Twitter, GitHub and Go
 ## 実行(Execution)
 development
 ```
-bundle exec rails s -b=0.0.0.0
+bundle exec foreman start
 ```
 
 ## LICENSE
