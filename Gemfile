@@ -32,7 +32,7 @@ gem 'rack-mini-profiler', require: false
 gem 'rails-ujs'
 gem 'redcarpet'
 gem 'twitter'
-gem 'webpacker'
+gem 'webpacker', '>= 4.0.x'
 gem 'foreman'
 
 group :development, :test do
