@@ -13,10 +13,10 @@ class Api::V1::CompileController < Api::ApiController
     submit_language = CodeCandy::Parameter.get_submit_language(language)
 
     # 提出されたコードを保存
-    result = compiler.exec(language, source_code, input)
+    result = compiler.exec(language, source_code, input, current_user.id)
 
     # 入力が不正な場合はレコードしない
-    Code.create(code: source_code, language: submit_language, user_id: current_user.id) unless  result[:input_error]
+    Code.create(code: source_code, language: submit_language, user_id: current_user.id) unless result[:input_error]
 
     result[:stdout] = result[:stdout].force_encoding("UTF-8")
     result[:stderr] = result[:stderr].force_encoding("UTF-8")

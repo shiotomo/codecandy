@@ -27,7 +27,7 @@ module CodeCandy
 
       @answers.each do |answer|
         # コンテナに言語、ソースコード、標準入力を与えて提出されたプログラムを実行する
-        result = @compiler.exec(@language, @source_code, answer.input)
+        result = @compiler.exec(@language, @source_code, answer.input, @user.id)
 
         # 不正な入力があった場合その時点でエラーメッセージを返却する
         return result if result[:input_error]
