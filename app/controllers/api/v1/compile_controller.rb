@@ -9,6 +9,7 @@ class Api::V1::CompileController < Api::ApiController
     language = params[:language]
     source_code = params[:source_code]
     input = params[:input]
+
     compiler = CodeCandy::Compiler.new
     submit_language = CodeCandy::Parameter.get_submit_language(language)
 
