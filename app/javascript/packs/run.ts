@@ -8,7 +8,7 @@ runButton.onclick = () => {
   const languageElement: HTMLInputElement = document.getElementById('language') as any;
   const language: string = languageElement.value;
   const sourceCode: string = aceEditor.getValue();
-  const input: string = document.getElementById('input').textContent;
+  const input: string = (document.getElementById('input') as any).value;
   const runCompiler: RunCompiler = new RunCompiler(language, sourceCode, input, '');
   runCompiler.runCode();
 };

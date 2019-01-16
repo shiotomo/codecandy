@@ -11,7 +11,7 @@ runButton.onclick = () => {
   const languageElement: HTMLInputElement = document.getElementById('language') as any;
   const language: string = languageElement.value;
   const sourceCode: string = aceEditor.getValue();
-  const input: string = document.getElementById('input').textContent;
+  const input: string = (document.getElementById('input') as any).value;
   const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, input, '');
   judgeCompiler.runCode();
 };
@@ -24,7 +24,7 @@ judgeButton.onclick = () => {
   const languageElement: HTMLInputElement = document.getElementById('language') as any;
   const language: string = languageElement.value;
   const sourceCode: string = aceEditor.getValue();
-  const input: string = document.getElementById('input').textContent;
+  const input: string = (document.getElementById('input') as any).value;
   const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, '', answerElement.value);
   judgeCompiler.judgeCode();
 };
