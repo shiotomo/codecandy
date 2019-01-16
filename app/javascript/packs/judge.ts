@@ -1,10 +1,7 @@
 import { JudgeCompiler } from '../lib/compiler/judge-compiler';
-import { Ace } from 'ace-builds';
+import { AceEditor } from '../lib/editor/ace-editor.ts'
 
-// console.log(typeof ace.edit('source_code'));
-// console.log(ace);
-
-const aceEditor: object = ace.edit('source_code');
+const aceEditor: AceEditor = new AceEditor();
 const answerElement: HTMLInputElement = document.getElementById('answer_id') as any;
 const runButton: HTMLInputElement = document.getElementById('run_button') as any;
 const judgeButton: HTMLInputElement = document.getElementById('judge_button') as any;
@@ -13,7 +10,7 @@ const judgeButton: HTMLInputElement = document.getElementById('judge_button') as
 runButton.onclick = () => {
   const languageElement: HTMLInputElement = document.getElementById('language') as any;
   const language: string = languageElement.value;
-  const sourceCode: string = ace.edit('source_code').getValue(); // aceEditor.getValue();
+  const sourceCode: string = aceEditor.getValue();
   const input: string = document.getElementById('input').textContent;
   const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, input, '');
   judgeCompiler.runCode();
@@ -26,7 +23,7 @@ judgeButton.onclick = () => {
   }
   const languageElement: HTMLInputElement = document.getElementById('language') as any;
   const language: string = languageElement.value;
-  const sourceCode: string = ace.edit('source_code').getValue(); // aceEditor.getValue();
+  const sourceCode: string = aceEditor.getValue();
   const input: string = document.getElementById('input').textContent;
   const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, '', answerElement.value);
   judgeCompiler.judgeCode();
