@@ -10,21 +10,21 @@ require 'timeout'
 module CodeCandy
   class Container
     class << self
-      def create(exec_time, work_dir, language)
+      def create(exec_time, work_dir, language, user_id)
         case language
         when 'Swift'
-          return image(exec_time, work_dir, 'codecandy_compiler_swift')
+          return image(exec_time, work_dir, user_id, 'codecandy_compiler_swift')
         when 'Java', 'Scala', 'PHP'
-          return image(exec_time, work_dir, 'codecandy_compiler_jvm_php')
+          return image(exec_time, work_dir, user_id, 'codecandy_compiler_jvm_php')
         else
-          return image(exec_time, work_dir, 'codecandy_compiler_default')
+          return image(exec_time, work_dir, user_id, 'codecandy_compiler_default')
         end
       end
 
       private
-      def image(exec_time, work_dir, image_name)
+      def image(exec_time, work_dir, user_id, image_name)
         container = Docker::Container.create(
-          name: "test_#{exec_time}",
+          name: "test_#{exec_time}_#{user_id}",
           Image: image_name,
           WorkingDir: '/workspace',
           Memory: 512 * 1024**2,

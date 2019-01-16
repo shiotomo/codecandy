@@ -24,7 +24,7 @@ module CodeCandy
     # input: 標準入力に使う値が格納されている
     # 返り値
     # return_params
-    def exec(language, source_code, input)
+    def exec(language, source_code, input, user_id)
       # ==== 事前処理 ====
       exec_time = Time.now.to_i
 
@@ -41,7 +41,7 @@ module CodeCandy
       }
       # ==================
 
-      container = Container.create(exec_time, data[:work_dir], language)
+      container = Container.create(exec_time, data[:work_dir], language, user_id)
 
       compiler_logic = CodeCandy::CompilerLogic.new(container, data)
       return compiler_logic.exec
