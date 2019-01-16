@@ -23,7 +23,7 @@ judgeButton.onclick = () => {
   }
   const languageElement: HTMLInputElement = document.getElementById('language') as any;
   const language: string = languageElement.value;
-  const sourceCode: string = ace.edit('source_code').getValue(); // aceEditor.getValue();
+  const sourceCode: string = aceEditor.getValue();
   const input: string = document.getElementById('input').textContent;
   const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, '', answerElement.value);
   judgeCompiler.judgeCode();
