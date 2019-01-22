@@ -30,20 +30,22 @@ module CodeCandy
 
       # languageが不正入力の場合の処理
       error_params = {stdout: "Error",stderr: "入力が不正です。", time: "", exit_code: 1, input_error: true}
-      return error_params if language.empty?
+      return error_params unless @exec_data.has_key?(:"#{language}")
 
       data = {
         "source_code": source_code.force_encoding("UTF-8"),
         "input_file":  'input',
         "input_content": input,
-        "work_dir":   "workspace_#{exec_time}",
+        "work_dir":   "workspace_#{exec_time}_#{user_id}",
         "cmd":         @exec_data[:"#{language}"].cmd
       }
       # ==================
 
+      # ==== コード実行部分 ====
       container = Container.create(exec_time, data[:work_dir], language, user_id)
-
       compiler_logic = CodeCandy::CompilerLogic.new(container, data)
+      # ========================
+
       return compiler_logic.exec
     end
   end
