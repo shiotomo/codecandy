@@ -1,0 +1,31 @@
+<h2>お知らせ投稿</h2>
+
+<div class="row" style="margin-top: 1em;">
+  <div class="col-lg-6">
+    <% # 投稿フォーム %>
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        投稿フォーム
+      </div>
+      <div class="panel panel-body">
+        <div class="form">
+          <select id="tweet-type">
+            <option value="アップデート">アップデート</option>
+            <option value="修正">修正</option>
+            <option value="お知らせ">お知らせ</option>
+          </select>
+          <br />
+          <textarea id="tweet-body" class="form-control"></textarea>
+          <br />
+          <button id="tweet-submit" class="btn btn-primary">投稿</button>
+        </div>
+        <p id="tweet-result" style="margin-top: 1em;"></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <% # Twitterページ %>
+    <a class="twitter-timeline" data-height="700" data-theme="light" href="https://twitter.com/codecandyadmin?ref_src=twsrc%5Etfw">Tweets by codecandyadmin</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</div>
+<%= javascript_pack_tag 'tweet' %>
