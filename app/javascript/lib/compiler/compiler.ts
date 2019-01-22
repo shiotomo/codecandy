@@ -19,6 +19,6 @@ export class Compiler {
       source_code: sourceCode,
       input,
       answer_id: answerId
-    }
+    };
   }
 }
