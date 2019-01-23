@@ -3,7 +3,7 @@ export class Compiler {
     language: string;
     source_code: string;
     input: string;
-    answer_id: string;
+    question_id: string;
   };
   readonly stdout = document.getElementById('stdout');
   readonly stderr = document.getElementById('stderr');
@@ -13,12 +13,12 @@ export class Compiler {
   readonly runButton = document.getElementById('run_button') as any;
   readonly judgeButton = document.getElementById('judge_button') as any;
 
-  constructor (language: string, sourceCode: string, input: string, answerId: string) {
+  constructor (language: string, sourceCode: string, input: string, questionId: string) {
     this.data = {
       language,
       source_code: sourceCode,
       input,
-      answer_id: answerId
+      question_id: questionId
     };
   }
 }

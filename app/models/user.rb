@@ -16,6 +16,7 @@
 class User < ApplicationRecord
   has_many :results, inverse_of: :user
   has_many :codes, inverse_of: :user
+  has_many :tweets, inverse_of: :user
 
   include FriendlyId
   friendly_id :screen_name

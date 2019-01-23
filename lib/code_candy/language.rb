@@ -1,144 +1,155 @@
 module CodeCandy
   class Language
-    def initialize
-      @cmd_data = {
-        "exec_file": "main",
-        "source_file": "main",
-        "exec_cmd": "",
-        "time_out": 5
-      }
-    end
-  end
-
-  class Ruby < Language
-    def cmd
-      @cmd_data[:source_file] += ".rb"
-      @cmd_data[:exec_cmd] = "ruby #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Python3 < Language
-    def cmd
-      @cmd_data[:source_file] += ".py"
-      @cmd_data[:exec_cmd] = "python #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Gcc < Language
-    def cmd
-      @cmd_data[:source_file] += ".c"
-      @cmd_data[:exec_cmd] = "gcc -o #{@cmd_data[:exec_file]} #{@cmd_data[:source_file]} && ./#{@cmd_data[:exec_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Clang < Language
-    def cmd
-      @cmd_data[:source_file] += ".c"
-      @cmd_data[:exec_cmd] = "cc -Wall -o #{@cmd_data[:exec_file]} #{@cmd_data[:source_file]} && ./#{@cmd_data[:exec_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Golang < Language
-    def cmd
-      @cmd_data[:source_file] += ".go"
-      @cmd_data[:exec_cmd] = "go run #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Nodejs < Language
-    def cmd
-      @cmd_data[:source_file] += ".js"
-      @cmd_data[:exec_cmd] = "nodejs #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Java < Language
-    def cmd
-      @cmd_data[:time_out] = 10
-      @cmd_data[:exec_file] = "Main"
-      @cmd_data[:source_file] = "Main.java"
-      @cmd_data[:exec_cmd] = "javac #{@cmd_data[:source_file]} && java #{@cmd_data[:exec_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Scala < Language
-    def cmd
-      @cmd_data[:time_out] = 20
-      @cmd_data[:exec_file] = "Main"
-      @cmd_data[:source_file] = "Main.scala"
-      @cmd_data[:exec_cmd] = "scalac #{@cmd_data[:source_file]} && scala #{@cmd_data[:exec_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Swift < Language
-    def cmd
-      @cmd_data[:source_file] += ".swift"
-      @cmd_data[:exec_cmd] = "swift #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class CPP < Language
-    def cmd
-      @cmd_data[:source_file] += ".cpp"
-      @cmd_data[:exec_cmd] = "g++ -o #{@cmd_data["exec_file"]} #{@cmd_data[:source_file]} && ./#{@cmd_data[:exec_file]}"
-      return @cmd_data
-    end
-  end
-
-  class PHP < Language
-    def cmd
-      @cmd_data[:source_file] += ".php"
-      @cmd_data[:exec_cmd] = "php #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Perl < Language
-    def cmd
-      @cmd_data[:source_file] += ".pl"
-      @cmd_data[:exec_cmd] = "perl #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Bash < Language
-    def cmd
-      @cmd_data[:source_file] += ".sh"
-      @cmd_data[:exec_cmd] = "bash #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Lua < Language
-    def cmd
-      @cmd_data[:source_file] += ".lua"
-      @cmd_data[:exec_cmd] = "lua5.3 #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Haskell < Language
-    def cmd
-      @cmd_data[:source_file] += ".hs"
-      @cmd_data[:exec_cmd] = "runghc #{@cmd_data[:source_file]}"
-      return @cmd_data
-    end
-  end
-
-  class Pascal < Language
-    def cmd
-      @cmd_data[:source_file] += ".pas"
-      @cmd_data[:exec_cmd] = "fpc #{@cmd_data[:source_file]} > /dev/null 2>&1 && ./#{@cmd_data[:exec_file]}"
-      return @cmd_data
+    class << self
+      def get_language_data
+        language_data = {
+          gcc: {
+            language: 'C(gcc)',
+            mode: 'c_cpp',
+            tab: 4,
+            extension: 'c',
+            source_file: 'main.c',
+            exec_cmd: 'gcc -o main main.c && ./main',
+            time_out: 5
+          },
+          clang: {
+            language: 'C(clang)',
+            mode: 'c_cpp',
+            tab: 4,
+            extension: 'c',
+            source_file: 'main.c',
+            exec_cmd: 'cc -Wall -o main main.c && ./main',
+            time_out: 5
+          },
+          ruby: {
+            language: 'Ruby',
+            mode: 'ruby',
+            tab: 2,
+            extension: 'rb',
+            source_file: 'main.rb',
+            exec_cmd: 'ruby main.rb',
+            time_out: 5
+          },
+          python3: {
+            language: 'Python3',
+            mode: 'python',
+            tab: 4,
+            extension: 'py',
+            source_file: 'main.py',
+            exec_cmd: 'python main.py',
+            time_out: 5
+          },
+          golang: {
+            language: 'Golang',
+            mode: 'golang',
+            tab: 4,
+            extension: 'go',
+            source_file: 'main.go',
+            exec_cmd: 'go run main.go',
+            time_out: 5
+          },
+          nodejs: {
+            language: 'Node.js',
+            mode: 'javascript',
+            tab: 2,
+            extension: 'js',
+            source_file: 'main.js',
+            exec_cmd: 'nodejs main.js',
+            time_out: 5
+          },
+          java: {
+            language: 'Java',
+            mode: 'java',
+            tab: 4,
+            extension: 'java',
+            source_file: 'Main.java',
+            exec_cmd: 'javac Main.java && java Main',
+            time_out: 10
+          },
+          scala: {
+            language: 'Scala',
+            mode: 'scala',
+            tab: 2,
+            extension: 'scala',
+            source_file: 'Main.scala',
+            exec_cmd: 'scalac Main.scala && scala Main',
+            time_out: 20
+          },
+          swift: {
+            language: 'Swift',
+            mode: 'swift',
+            tab: 4,
+            extension: 'swift',
+            source_file: 'main.swift',
+            exec_cmd: 'swift main.swift',
+            time_out: 5
+          },
+          cpp: {
+            language: 'C++',
+            mode: 'c_cpp',
+            tab: 4,
+            extension: 'cpp',
+            source_file: 'main.cpp',
+            exec_cmd: 'g++ -o main main.cpp && ./main',
+            time_out: 5
+          },
+          php: {
+            language: 'PHP',
+            mode: 'php',
+            tab: 4,
+            extension: 'php',
+            source_file: 'main.php',
+            exec_cmd: 'php main.php',
+            time_out: 5
+          },
+          perl: {
+            language: 'Perl',
+            mode: 'perl',
+            tab: 4,
+            extension: 'pl',
+            source_file: 'main.pl',
+            exec_cmd: 'perl main.pl',
+            time_out: 5
+          },
+          bash: {
+            language: 'Bash',
+            mode: 'sh',
+            tab: 2,
+            extension: 'sh',
+            source_file: 'main.sh',
+            exec_cmd: 'bash main.sh',
+            time_out: 5
+          },
+          lua: {
+            language: 'Lua',
+            mode: 'lua',
+            tab: 2,
+            extension: 'lua',
+            source_file: 'main.lua',
+            exec_cmd: 'lua5.3 main.lua',
+            time_out: 5
+          },
+          haskell: {
+            language: 'Haskell',
+            mode: 'haskell',
+            tab: 4,
+            extension: 'hs',
+            source_file: 'main.hs',
+            exec_cmd: ' runghc main.hs',
+            time_out: 5
+          },
+          pascal: {
+            language: 'Pascal',
+            mode: 'pascal',
+            tab: 2,
+            extension: 'pas',
+            source_file: 'main.pas',
+            exec_cmd: ' fpc main.pas > /dev/null 2>&1 && ./main',
+            time_out: 5
+          }
+        }
+        return language_data
+      end
     end
   end
 end

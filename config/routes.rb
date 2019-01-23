@@ -11,11 +11,10 @@ Rails.application.routes.draw do
   resources :technicals, only: :index
   resources :code_golf_rankings, only: [:index, :show]
 
-  # adminページ用
+  # 管理者ページ用
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :categories, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :admins, only: :index
-
   get 'admins/answer/:id/:user_id', to: 'admins#answer', as: 'answer'
   get 'admins/list/:id/', to: 'admins#list', as: 'list'
   get 'admins/user/:id', to: 'admins#user', as: 'user'
@@ -24,11 +23,12 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: "sessions#destroy", as: :signout
 
-  # API
+  # 管理者用API
   namespace :api do
     post '/admin/tweet', to: 'admin#tweet'
   end
 
+  # ユーザ用API
   namespace :api do
     namespace :v1 do
       get '/user/period', to: 'user#period'
@@ -41,9 +41,10 @@ Rails.application.routes.draw do
       get '/information/result', to: 'information#result'
       get '/information/code', to: 'information#code'
       get '/information/all_code', to: 'information#all_code'
+      post '/language/extension', to: 'language#extension'
+      post '/language/tab', to: 'language#tab'
     end
   end
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
