@@ -18,7 +18,6 @@ runButton.onclick = () => {
 
 // 解答ボタンがクリックされた時
 judgeButton.onclick = () => {
-  console.log(questionElement.value);
   if (!window.confirm('現在のプログラムで解答してもよいですか？')) {
     return;
   }
