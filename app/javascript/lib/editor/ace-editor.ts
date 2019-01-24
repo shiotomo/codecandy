@@ -57,7 +57,7 @@ export class AceEditor {
 
 public class Main {
     public static void main(String[] args) {
-
+        
     }
 }`
 
@@ -70,7 +70,7 @@ public class Main {
 
 object Main {
   def main(args: Array[String]) {
-
+    
   }
 }`
 

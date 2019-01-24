@@ -10,6 +10,7 @@ module CodeCandy
             extension: 'c',
             source_file: 'main.c',
             exec_cmd: 'gcc -o main main.c && ./main',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           clang: {
@@ -19,6 +20,7 @@ module CodeCandy
             extension: 'c',
             source_file: 'main.c',
             exec_cmd: 'cc -Wall -o main main.c && ./main',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           ruby: {
@@ -28,6 +30,7 @@ module CodeCandy
             extension: 'rb',
             source_file: 'main.rb',
             exec_cmd: 'ruby main.rb',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           python3: {
@@ -37,6 +40,7 @@ module CodeCandy
             extension: 'py',
             source_file: 'main.py',
             exec_cmd: 'python main.py',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           golang: {
@@ -46,6 +50,7 @@ module CodeCandy
             extension: 'go',
             source_file: 'main.go',
             exec_cmd: 'go run main.go',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           nodejs: {
@@ -55,6 +60,7 @@ module CodeCandy
             extension: 'js',
             source_file: 'main.js',
             exec_cmd: 'nodejs main.js',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           java: {
@@ -64,6 +70,7 @@ module CodeCandy
             extension: 'java',
             source_file: 'Main.java',
             exec_cmd: 'javac Main.java && java Main',
+            image_name: 'codecandy_compiler_jvm_php',
             time_out: 10
           },
           scala: {
@@ -73,6 +80,7 @@ module CodeCandy
             extension: 'scala',
             source_file: 'Main.scala',
             exec_cmd: 'scalac Main.scala && scala Main',
+            image_name: 'codecandy_compiler_jvm_php',
             time_out: 20
           },
           swift: {
@@ -82,6 +90,7 @@ module CodeCandy
             extension: 'swift',
             source_file: 'main.swift',
             exec_cmd: 'swift main.swift',
+            image_name: 'codecandy_compiler_swift',
             time_out: 5
           },
           cpp: {
@@ -91,6 +100,7 @@ module CodeCandy
             extension: 'cpp',
             source_file: 'main.cpp',
             exec_cmd: 'g++ -o main main.cpp && ./main',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           php: {
@@ -100,6 +110,7 @@ module CodeCandy
             extension: 'php',
             source_file: 'main.php',
             exec_cmd: 'php main.php',
+            image_name: 'codecandy_compiler_jvm_php',
             time_out: 5
           },
           perl: {
@@ -109,6 +120,7 @@ module CodeCandy
             extension: 'pl',
             source_file: 'main.pl',
             exec_cmd: 'perl main.pl',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           bash: {
@@ -118,6 +130,7 @@ module CodeCandy
             extension: 'sh',
             source_file: 'main.sh',
             exec_cmd: 'bash main.sh',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           lua: {
@@ -127,6 +140,7 @@ module CodeCandy
             extension: 'lua',
             source_file: 'main.lua',
             exec_cmd: 'lua5.3 main.lua',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           haskell: {
@@ -136,6 +150,7 @@ module CodeCandy
             extension: 'hs',
             source_file: 'main.hs',
             exec_cmd: ' runghc main.hs',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           },
           pascal: {
@@ -145,6 +160,7 @@ module CodeCandy
             extension: 'pas',
             source_file: 'main.pas',
             exec_cmd: ' fpc main.pas > /dev/null 2>&1 && ./main',
+            image_name: 'codecandy_compiler_default',
             time_out: 5
           }
         }

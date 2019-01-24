@@ -42,7 +42,7 @@ module CodeCandy
       # ==================
 
       # ==== コード実行部分 ====
-      container = Container.create(exec_time, data[:work_dir], language, user_id)
+      container = Container.create(exec_time, data[:work_dir], @language_data[:"#{language}"][:image_name], user_id)
       compiler = CodeCandy::Compiler.new(container, data)
       # ========================
 
