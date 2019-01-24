@@ -13,12 +13,13 @@
 #  is_admin    :boolean          default(FALSE), not null
 #
 
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-  it "ユーザを登録できる" do
-    user = FactoryBot.create(:user)
-    expect(user).to be_valid
+FactoryBot.define do
+  factory :user do
+    provider 'twitter'
+    uid '12345654321'
+    user_name 'hoge'
+    screen_name 'hoge'
+    image_url 'https://hoge.com/image'
+    is_admin false
   end
 end

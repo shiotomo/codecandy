@@ -1,8 +1,8 @@
 import { Compiler } from './compiler';
 
 export class JudgeCompiler extends Compiler {
-  constructor (language: string, sourceCode: string, input: string, answerId: string) {
-    super(language, sourceCode, input, answerId);
+  constructor (language: string, sourceCode: string, input: string, questionId: string) {
+    super(language, sourceCode, input, questionId);
   }
 
   runCode() {

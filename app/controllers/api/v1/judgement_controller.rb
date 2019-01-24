@@ -8,9 +8,10 @@ class Api::V1::JudgementController < Api::ApiController
     # 送られてきたパラメータを変数に格納
     language = params[:language]
     source_code = params[:source_code]
-    id = params[:answer_id]
-    judgement = CodeCandy::Judgement.new(language, source_code, id, current_user)
+    question_id = params[:question_id]
+    user_id = current_user.id
 
+    judgement = CodeCandy::Judgement.new(language, source_code, question_id, user_id)
     result = judgement.exec
 
     render json: result

@@ -1,47 +1,54 @@
-require './lib/code_candy/compiler'
-require './lib/code_candy/parameter'
+require './lib/code_candy/code_runner'
+require './lib/code_candy/language'
 
 module CodeCandy
   class Judgement
-    def initialize(language, source_code, id, user)
+    def initialize(language, source_code, question_id, user_id)
       # 送られてきたパラメータを変数に格納
       @language = language
+      @question_id = question_id
       @source_code = source_code
-      @id = id
-      @user = user
+      @user_id = user_id
 
       # コンテナモジュールのインスタンスを生成
-      @compiler = CodeCandy::Compiler.new
+      @code_runner = CodeCandy::CodeRunner.new
 
       # 問題の標準入出力を呼び出し
-      @answers = Question.find(id).answers
+      @answers = Question.find(@question_id).answers
 
       # 実行結果を保持しておくフラグ
       @answer_flag = true
 
-      @submit_language = CodeCandy::Parameter.get_submit_language(language)
+      begin
+        @submit_language = CodeCandy::Language.get_language_data[:"#{@language}"][:language]
+      rescue
+        @submit_language = ''
+      end
     end
 
     def exec
-      result = {}
-
       @answers.each do |answer|
-        # コンテナに言語、ソースコード、標準入力を与えて提出されたプログラムを実行する
-        result = @compiler.exec(@language, @source_code, answer.input, @user.id)
+        # インスタンスに言語、ソースコード、標準入力、ユーザIDを与えて提出されたプログラムを実行する
+        @result = @code_runner.exec(@language, @source_code, answer.input, @user_id)
 
         # 不正な入力があった場合その時点でエラーメッセージを返却する
-        return result if result[:input_error]
+        # answerを''にしておくことでブラウザ上でundefinedを表示しないようにする
+        if @result[:input_error]
+          @result[:answer] = ''
+          return @result
+        end
 
-        result[:stdout] = result[:stdout].force_encoding("UTF-8")
+        @result[:stdout] = @result[:stdout].force_encoding("UTF-8")
         # 標準出力の整形
         # 提出コードの標準出力: stdout
         # 提出コードの標準出力は行末の空白、改行を削除する
         # 解答用の標準出力:output
         # 解答用の標準出力は行末の空白、改行を削除する
+        # TODO Ruby2.6からString#Splitの仕様が変わったのでその技術を使うか検討する
         output = answer.output
         output = output.gsub(/\r/, "")
         output = output.gsub(/\s+$/, "").rstrip
-        stdout = result[:stdout].rstrip
+        stdout = @result[:stdout].rstrip
 
         # 正解だったらanswer_flagをtrueに、違う場合はfalseにしてループを抜ける
         if stdout == output
@@ -54,35 +61,25 @@ module CodeCandy
 
       # result[:answer]に結果を格納する
       if @answer_flag
-        result[:answer] = "正解"
+        @result[:answer] = '正解'
       else
-        result[:answer] = "不正解"
+        @result[:answer] = '不正解'
       end
 
-      # resultレコードメソッドを呼び出す
-      result_submit(@answer_flag, @id, @source_code, @submit_language, @user)
+      # 解答データを保存
+      Result.create(
+        question_id: @question_id,
+        user_id: @user_id,
+        language: @submit_language,
+        code: @source_code,
+        answer: @answer_flag
+      )
 
       # UTF-8にencodeする
-      result[:stdout] = result[:stdout].force_encoding("UTF-8")
-      result[:stderr] = result[:stderr].force_encoding("UTF-8")
+      @result[:stdout] = @result[:stdout].force_encoding("UTF-8")
+      @result[:stderr] = @result[:stderr].force_encoding("UTF-8")
 
-      return result
-    end
-
-    private
-    # 結果を保存するメソッド
-    def result_submit(answer_flag, id, source_code, language, user)
-      result = Result.new
-      result.user_id = user.id
-      result.question_id = id
-      result.language = language
-      result.code = source_code
-      if answer_flag
-        result.answer = true
-      else
-        result.answer = false
-      end
-      result.save
+      return @result
     end
   end
 end

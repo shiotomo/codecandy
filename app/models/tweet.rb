@@ -10,6 +10,8 @@
 #
 
 class Tweet < ApplicationRecord
+  belongs_to :user, inverse_of: :tweets
+
   validates :body, presence: true
   validates :user_id, presence: true
   validates :body, length: { maximum: 120 }

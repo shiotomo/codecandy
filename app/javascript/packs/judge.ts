@@ -2,7 +2,7 @@ import { JudgeCompiler } from '../lib/compiler/judge-compiler';
 import { AceEditor } from '../lib/editor/ace-editor.ts'
 
 const aceEditor: AceEditor = new AceEditor();
-const answerElement: HTMLInputElement = document.getElementById('answer_id') as any;
+const questionElement: HTMLInputElement = document.getElementById('question_id') as any;
 const runButton: HTMLInputElement = document.getElementById('run_button') as any;
 const judgeButton: HTMLInputElement = document.getElementById('judge_button') as any;
 
@@ -18,6 +18,7 @@ runButton.onclick = () => {
 
 // 解答ボタンがクリックされた時
 judgeButton.onclick = () => {
+  console.log(questionElement.value);
   if (!window.confirm('現在のプログラムで解答してもよいですか？')) {
     return;
   }
@@ -25,6 +26,6 @@ judgeButton.onclick = () => {
   const language: string = languageElement.value;
   const sourceCode: string = aceEditor.getValue();
   const input: string = (document.getElementById('input') as any).value;
-  const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, '', answerElement.value);
+  const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, '', questionElement.value);
   judgeCompiler.judgeCode();
 };

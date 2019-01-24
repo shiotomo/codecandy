@@ -13,18 +13,20 @@ require 'rails_helper'
 
 RSpec.describe Tweet, type: :model, model: true  do
   # pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @user = FactoryBot.create(:user)
+  end
 
   it "bodyとuser_idに値が入っている時" do
-    tweet = Tweet.create(
+    tweet = @user.tweets.create(
       body: "hoge",
-      user_id: 1
     )
     expect(tweet).to be_valid
   end
 
   it "bodyに値が入っていない時はエラー" do
-    tweet = Tweet.create(
-      user_id: 1
+    tweet = @user.tweets.create(
+      body: nil
     )
     expect(tweet).not_to be_valid
   end
@@ -41,9 +43,8 @@ RSpec.describe Tweet, type: :model, model: true  do
     150.times do
       text += "hoge"
     end
-    tweet = Tweet.create(
+    tweet = @user.tweets.create(
       body: text,
-      user_id: 1
     )
     expect(tweet).not_to be_valid
   end
