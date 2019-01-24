@@ -1,17 +1,21 @@
 require './lib/code_candy/language'
 
-class Api::AdminController < Api::ApiController
+class Api::V1::LanguageController < Api::ApiController
   before_action :authenticate_user!
 
   # ファイルの拡張子を返却するAPI
-  def extension
+  def information
     language = params[:language]
-    return CodeCandy::Language.get_language_data[:"#{language}"][:extension]
-  end
-
-  # タブサイズを返却するAPI
-  def tab
-    language = params[:language]
-    return CodeCandy::Language.get_language_data[:"#{language}"][:tab]
+    data = params[:data]
+    begin
+      @language_data = {
+        data: CodeCandy::Language.get_language_data[:"#{language}"][:"#{data}"]
+      }
+    rescue
+      @language_data = {
+        data: nil
+      }
+    end
+    render json: @language_data
   end
 end

@@ -4,6 +4,7 @@ export class AceEditor {
   readonly aceEditor = ace.edit('source_code');
 
   constructor() {
+    // 初期値を設定する
     this.aceEditor.$blockScrolling = Infinity;
     this.aceEditor.setOptions({
       enableBasicAutocompletion: true,
@@ -16,39 +17,42 @@ export class AceEditor {
     this.aceEditor.getSession().setTabSize(4);
   }
 
+  /**
+   * エディタに書き込まれている値を返却する
+   */
   getValue(): string {
     return this.aceEditor.getValue();
   }
 
+  /**
+   * エディタに値を書き込む
+   */
   setValue(text: string) {
     this.aceEditor.setValue(text);
   }
 
+  /**
+   * エディタのモードを切り替える
+   */
   setEditorLanguage(language: string) {
-    const languageToMode = {
-      Ruby: 'ruby',
-      Python3: 'python',
-      Gcc: 'c_cpp',
-      Clang: 'c_cpp',
-      Nodejs: 'javascript',
-      Golang: 'golang',
-      Java: 'java',
-      Scala: 'scala',
-      Swift: 'swift',
-      CPP: 'c_cpp',
-      PHP: 'php',
-      Perl: 'perl',
-      Bash: 'sh',
-      Lua: 'lua',
-      Haskell: 'haskell',
-      Pascal: 'pascal'
-    };
-    const mode = languageToMode[language];
-    this.aceEditor.getSession().setMode("ace/mode/" + mode);
+    fetch(`/api/v1/language/information/${language}/mode`, {
+      method: 'GET',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.getElementsByName('csrf-token').item(0)['content']
+      }
+    }).then(response => {
+      return response.json();
+    }).then(result => {
+      const mode = result['data'];
+      this.aceEditor.getSession().setMode("ace/mode/" + mode);
 
-    // エディタ上にデフォルト値を設定するのでインデントをずらさない
-    if (mode=='java' && this.aceEditor.getValue() == '') {
-      this.aceEditor.setValue(
+      // エディタ上にデフォルト値を設定する
+      // インデントまで全て値にみなされるのでインデントをずらさない
+      if (mode=='java' && this.aceEditor.getValue() == '') {
+        this.aceEditor.setValue(
+
 `import java.util.*;
 
 public class Main {
@@ -56,10 +60,12 @@ public class Main {
 
     }
 }`
-      );
-    }
-    if (mode=='scala' && this.aceEditor.getValue() == '') {
-      this.aceEditor.setValue(
+
+        );
+      }
+      if (mode=='scala' && this.aceEditor.getValue() == '') {
+        this.aceEditor.setValue(
+
 `import java.util._
 
 object Main {
@@ -67,35 +73,33 @@ object Main {
 
   }
 }`
-      );
-    }
+
+        );
+      }
+      return result;
+    }).catch(err => {
+      alert('エラーが発生しました');
+    });
   }
 
+  /**
+   * エディタのタブサイズを設定する
+   */
   setEditorTab(language: string) {
-    switch (language) {
-      case 'Nodejs':
-      case 'Ruby':
-      case 'Scala':
-      case 'Bash':
-      case 'Lua':
-      case 'Pascal':
-        this.aceEditor.getSession().setTabSize(2);
-        break;
-      case 'Python3':
-      case 'Gcc':
-      case 'Clang':
-      case 'Java':
-      case 'Swift':
-      case 'CPP':
-      case 'PHP':
-      case 'Perl':
-      case 'Haskell':
-        this.aceEditor.getSession().setTabSize(4);
-        break;
-      case 'Golang':
-        // TODO インデントをTabにする
-        this.aceEditor.getSession().setTabSize(4);
-        break;
-    }
+    fetch(`/api/v1/language/information/${language}/tab`, {
+      method: 'GET',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.getElementsByName('csrf-token').item(0)['content']
+      }
+    }).then(response => {
+      return response.json();
+    }).then(result => {
+      this.aceEditor.getSession().setTabSize(result['data']);
+      return result;
+    }).catch(err => {
+      alert('エラーが発生しました');
+    });
   }
 }

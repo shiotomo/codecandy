@@ -41,8 +41,7 @@ Rails.application.routes.draw do
       get '/information/result', to: 'information#result'
       get '/information/code', to: 'information#code'
       get '/information/all_code', to: 'information#all_code'
-      post '/language/extension', to: 'language#extension'
-      post '/language/tab', to: 'language#tab'
+      get '/language/information/:language/:data', to: 'language#information'
     end
   end
 

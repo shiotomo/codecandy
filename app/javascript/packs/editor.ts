@@ -9,37 +9,32 @@ const languageElement: HTMLInputElement = document.getElementById('language') as
 
 // セーブボタンが押された時
 saveButton.onclick = (e: Event) => {
-  const languageElement: HTMLInputElement = document.getElementById('language') as any;
-  const extension = {
-    Ruby: 'rb',
-    Python3: 'py',
-    Gcc: 'c',
-    Clang: 'c',
-    Nodejs: 'js',
-    Golang: 'go',
-    Java: 'java',
-    Scala: 'scala',
-    Swift: 'swift',
-    CPP: 'cpp',
-    PHP: 'php',
-    Perl: 'pl',
-    Bash: 'sh',
-    Lua: 'lua',
-    Haskell: 'hs',
-    Pascal: 'pas'
-  };
-
-  const date = new Date();
-  const blob = new Blob([aceEditor.getValue()], { type:'text/plain' });
-  const a = Object.assign(document.createElement('a'), {
-    href:URL.createObjectURL(blob),
-    target:'_blank',
-    download: date.toLocaleDateString().replace(/\//g, '_')
-                                        + `.${extension[languageElement.value]}`
+  fetch(`/api/v1/language/information/${languageElement.value}/extension`, {
+    method: 'GET',
+    credentials: "include",
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': document.getElementsByName('csrf-token').item(0)['content']
+    }
+  }).then(response => {
+    return response.json();
+  }).then(result => {
+    console.log(result['data']);
+    const extension = result['data']
+    const date = new Date();
+    const blob = new Blob([aceEditor.getValue()], { type:'text/plain' });
+    const a = Object.assign(document.createElement('a'), {
+      href:URL.createObjectURL(blob),
+      target:'_blank',
+      download: date.toLocaleDateString().replace(/\//g, '_') + `.${extension}`
+    });
+    document.body.appendChild(a);
+    a.click();
+    a.parentNode.removeChild(a);
+    return result;
+  }).catch(err => {
+    alert('エラーが発生しました');
   });
-  document.body.appendChild(a);
-  a.click();
-  a.parentNode.removeChild(a);
 }
 
 // ロードボタンが押された時
@@ -60,5 +55,6 @@ loadFile.onchange = (e: Event) => {
 
 // 利用言語が変わった時
 languageElement.onchange = () => {
+  aceEditor.setEditorTab(languageElement.value);
   aceEditor.setEditorLanguage(languageElement.value);
 }
