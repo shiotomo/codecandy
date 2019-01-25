@@ -149,7 +149,7 @@ module CodeCandy
             tab: 4,
             extension: 'hs',
             source_file: 'main.hs',
-            exec_cmd: ' runghc main.hs',
+            exec_cmd: 'runghc main.hs',
             image_name: 'codecandy_compiler_default',
             time_out: 5
           },
@@ -159,7 +159,7 @@ module CodeCandy
             tab: 2,
             extension: 'pas',
             source_file: 'main.pas',
-            exec_cmd: ' fpc main.pas > /dev/null 2>&1 && ./main',
+            exec_cmd: 'fpc main.pas > /dev/null 2>&1 && ./main',
             image_name: 'codecandy_compiler_default',
             time_out: 5
           }

@@ -13,8 +13,12 @@
 <div class="tab-content">
   <div class="tab-pane active" id="result">
     <p>
-      <label>総コード提出数</label>
-      <%= Result.where(user_id: @user.id).count %>
+      <label>総問題解答数</label>
+      <% result_count = @user.results.count %>
+      <%= result_count %>
+      <label>総コード実行数</label>
+      <% all_code = @user.codes.count + result_count %>
+      <%= all_code %>
     </p>
 
     <table class="table">
