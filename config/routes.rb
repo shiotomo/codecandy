@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # 管理者用API
   namespace :api do
     post '/admin/tweet', to: 'admin#tweet'
+    get '/language/information/:language/:data', to: 'language#information'
   end
 
   # ユーザ用API
@@ -41,7 +42,6 @@ Rails.application.routes.draw do
       get '/information/result', to: 'information#result'
       get '/information/code', to: 'information#code'
       get '/information/all_code', to: 'information#all_code'
-      get '/language/information/:language/:data', to: 'language#information'
     end
   end
 

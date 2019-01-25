@@ -35,7 +35,7 @@ export class AceEditor {
    * エディタのモードを切り替える
    */
   setEditorLanguage(language: string) {
-    fetch(`/api/v1/language/information/${language}/mode`, {
+    fetch(`/api/language/information/${language}/mode`, {
       method: 'GET',
       credentials: "include",
       headers: {
@@ -86,7 +86,7 @@ object Main {
    * エディタのタブサイズを設定する
    */
   setEditorTab(language: string) {
-    fetch(`/api/v1/language/information/${language}/tab`, {
+    fetch(`/api/language/information/${language}/tab`, {
       method: 'GET',
       credentials: "include",
       headers: {

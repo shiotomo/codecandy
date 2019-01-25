@@ -162,6 +162,16 @@ module CodeCandy
             exec_cmd: 'fpc main.pas > /dev/null 2>&1 && ./main',
             image_name: 'codecandy_compiler_default',
             time_out: 5
+          },
+          typescript: {
+            language: 'TypeScript',
+            mode: 'typescript',
+            tab: 2,
+            extension: 'ts',
+            source_file: 'main.ts',
+            exec_cmd: 'tsc main.ts && nodejs main.js',
+            image_name: 'codecandy_compiler_default',
+            time_out: 10
           }
         }
         return language_data
