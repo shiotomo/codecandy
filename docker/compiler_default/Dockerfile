@@ -12,9 +12,12 @@ RUN apt-get update \
       nodejs \
       lua5.3 \
       haskell-platform \
+      npm \
       lazarus \
       time \
       binutils \
       language-pack-ja-base language-pack-ja
+
+RUN npm install -g typescript
 
 ENV LANG=ja_JP.UTF-8
