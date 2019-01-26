@@ -31,6 +31,7 @@ https://codecandy.tomosse.work
 - Lua
 - Haskell
 - Pascal
+- TypeScript
 
 ## 使い方(How to use)
 __docker__
