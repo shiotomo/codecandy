@@ -9,7 +9,7 @@ const languageElement: HTMLInputElement = document.getElementById('language') as
 
 // セーブボタンが押された時
 saveButton.onclick = (e: Event) => {
-  fetch(`/api/v1/language/information/${languageElement.value}/extension`, {
+  fetch(`/api/language/information/${languageElement.value}/extension`, {
     method: 'GET',
     credentials: "include",
     headers: {
