@@ -12,6 +12,7 @@ RUN apt-get update \
       nodejs \
       lua5.3 \
       haskell-platform \
+      npm \
       lazarus \
       time \
       binutils \
