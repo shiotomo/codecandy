@@ -17,4 +17,6 @@ RUN apt-get update \
       binutils \
       language-pack-ja-base language-pack-ja
 
+RUN npm install -g typescript
+
 ENV LANG=ja_JP.UTF-8
