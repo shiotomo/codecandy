@@ -1,7 +1,7 @@
 module CodeCandy
   class Analysis
     class << self
-      # 投稿結果の統計を返却する(数)
+      # 投稿結果の統計を返却する
       # contents allやwhereで取得したもの(モデルにlanguageが入っていれば使える)
       def statistics_result(contents)
         analysis = Hash.new(0)
