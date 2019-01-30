@@ -1,5 +1,3 @@
-require './lib/code_candy/parameter'
-
 class CodeGolfRankingsController < ApplicationController
   before_action :authenticate_user!
 
