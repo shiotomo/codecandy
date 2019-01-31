@@ -1,3 +1,7 @@
 import { CalHeatmap } from '../lib/heatmap/cal-heatmap'
 
-const calHeatmap: CalHeatmap = new CalHeatmap();
+function calHeatmap() {
+  const calHeatmap: CalHeatmap = new CalHeatmap();
+}
+
+window.addEventListener('load', () => calHeatmap());
