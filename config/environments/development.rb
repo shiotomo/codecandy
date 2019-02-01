@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-config.webpacker.check_yarn_integrity = true
+  config.webpacker.check_yarn_integrity = true
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -62,4 +62,17 @@ config.webpacker.check_yarn_integrity = true
     Bullet.console = true # ブラウザのコンソールログに記録
     Bullet.rails_logger = true # Railsログに出力
   end
+
+  # redisの設定
+  # config.session_store :redis_store, {
+  #    key: 'foobar',
+  #    :servers => {
+  #        :host => 'localhost',
+  #        :port => 6379,
+  #        # :password => 'foobarbaz',
+  #        :db => 0,
+  #        :namespace => 'sessions'
+  #    },
+  #   :expire_after => 60.minutes
+  # }
 end
