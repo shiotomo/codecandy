@@ -30,8 +30,9 @@ services:
     env_file: "./.env"
     ports:
       - "3000:3000"
-    # volumes:
-    #   - development-data:/app
+    volumes:
+      - ./development-tmp:/app/tmp
+      - ./development-log:/app/log
     depends_on:
       - psql
       - redis
@@ -74,3 +75,4 @@ volumes:
   postgres-data:
     driver: local
   redis-data:
+    driver: local

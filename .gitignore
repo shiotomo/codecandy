@@ -134,3 +134,5 @@ bower.json
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+development-tmp
+development-log
