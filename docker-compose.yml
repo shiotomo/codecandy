@@ -1,6 +1,59 @@
-version: '2'
+version: '3'
 
 services:
+  # == サービス本体用 ==
+  # データベース(PostgreSQL)
+  psql:
+    image: postgres:9.6.3-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    # ports:
+    #   - "5432:5432"
+
+  # redisサーバ
+  redis:
+    image: redis:3.2.9-alpine
+    volumes:
+      - redis-data:/data
+    # ports:
+    #   - "6379:6379"
+
+  # 開発環境用
+  development:
+    tty: true
+    build:
+      context: .
+      dockerfile: ./docker/rails/development/Dockerfile
+    env_file: "./.env"
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - development-data:/app
+    depends_on:
+      - psql
+      - redis
+
+  # 本番環境用
+  # production:
+  #   environment:
+  #     DATABASE_URL: postgres://postgres@psql:5432
+  #     REDIS_URL: redis://redis:6379 #   build:
+  #     context: .
+  #     dockerfile: ./docker/web/development/Dockerfile
+  #   # volumes:
+  #   #   - app-data:/app
+  #   depends_on:
+  #     - psql
+  #     - redis
+  #   env_file: "./.env"
+  #   ports:
+  #     - "3000:3000"
+  #   tty: true
+
+  # == コンパイラモジュール用 ==
   compiler_default:
     container_name: compiler_default
     build:
@@ -16,3 +69,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/compiler_jvm_php/Dockerfile
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
