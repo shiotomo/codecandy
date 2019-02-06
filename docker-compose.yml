@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   # == サービス本体用 ==
@@ -10,16 +10,27 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - ./data/postgres-data:/var/lib/postgresql/data
-    # ports:
-    #   - "5432:5432"
 
   # redisサーバ
   redis:
     image: redis:3.2.9-alpine
     volumes:
       - ./data/redis-data:/data
-    # ports:
-    #   - "6379:6379"
+
+  # Nginx(本番環境用)
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./data/production-tmp:/app/tmp
+      - ./data/production-public:/app/public
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "80:80"
+    # links:
+    #   - production
+    depends_on:
+      - production
 
   # 開発環境用
   development:
@@ -31,16 +42,13 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      # - ./data/development-tmp:/app/tmp
+      - ./data/development-tmp:/app/tmp
       - ./data/development-log:/app/log
       - /tmp:/tmp
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - psql
       - redis
-      # - compiler_default
-      # - compiler_swift
-      # - compiler_jvm_php
 
   # 本番環境用
   production:
@@ -49,19 +57,17 @@ services:
       context: .
       dockerfile: ./docker/rails/production/Dockerfile
     env_file: "./.env"
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     volumes:
-      # - ./data/production-tmp:/app/tmp
+      - ./data/production-tmp:/app/tmp
+      - ./data/production-public:/app/public
       - ./data/production-log:/app/log
       - /tmp:/tmp
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - psql
       - redis
-      # - compiler_default
-      # - compiler_swift
-      # - compiler_jvm_php
 
   # == コンパイラモジュール用 ==
   compiler_default:
