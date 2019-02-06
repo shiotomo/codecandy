@@ -13,13 +13,14 @@ RUN apk add -U --no-cache \
   alpine-sdk \
   nodejs \
   npm \
+  docker \
   tzdata
 
 RUN npm update -g npm
 RUN npm install -g n
+RUN n latest
 RUN npm install -g yarn
 RUN yarn install
-RUN n latest
 
 # ADD Gemfile /app/Gemfile
 # ADD Gemfile.lock /app/Gemfile.lock

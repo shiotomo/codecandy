@@ -136,3 +136,4 @@ yarn-debug.log*
 .yarn-integrity
 development-tmp
 development-log
+data
