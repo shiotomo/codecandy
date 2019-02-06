@@ -50,7 +50,7 @@ __postgresql__
 roleの作成(Create role)  
 `sudo -u postgres psql`後に
 ```
-create role code_candy with createdb login;
+create role code_candy with createdb login password <PASSWORD>;
 ```
 __cmd__  
 git cloneした後、このリポジトリにいる状態(After that, in this repository state)
