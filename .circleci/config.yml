@@ -27,6 +27,11 @@ jobs:
           reusable: true
 
       - run:
+          name: create .env
+          command: |
+            cp .env.sample .env
+
+      - run:
           name: docker-compose build
           command: |
             docker-compose build
