@@ -27,6 +27,11 @@ jobs:
           reusable: true
 
       # - run:
+      #     name: create .env
+      #     command: |
+      #       cp .env.sample .env
+
+      # - run:
       #     name: docker-compose build
       #     command: |
       #       docker-compose build
@@ -85,7 +90,8 @@ jobs:
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
-            bundle exec rspec --tag ~@compiler -fd
+            bundle exec rspec --tag ~@code_runner -fd
+            # bundle exec rspec -fd
             # bundle exec rspec ./spec
             # bundle exec rspec --format progress \
             #                 --format RspecJunitFormatter \
