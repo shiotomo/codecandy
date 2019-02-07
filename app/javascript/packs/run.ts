@@ -12,7 +12,7 @@ function run() {
     const input: string = (document.getElementById('input') as any).value;
     const runCompiler: RunCompiler = new RunCompiler(language, sourceCode, input, '');
     runCompiler.runCode();
-  };
+  }
 }
 
 window.addEventListener('load', () => run());
