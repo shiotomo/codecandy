@@ -15,7 +15,7 @@ function judge() {
     const input: string = (document.getElementById('input') as any).value;
     const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, input, '');
     judgeCompiler.runCode();
-  };
+  }
 
   // 解答ボタンがクリックされた時
   judgeButton.onclick = () => {
@@ -28,7 +28,7 @@ function judge() {
     const input: string = (document.getElementById('input') as any).value;
     const judgeCompiler: JudgeCompiler = new JudgeCompiler(language, sourceCode, '', questionElement.value);
     judgeCompiler.judgeCode();
-  };
+  }
 }
 
 window.addEventListener('load', () => judge());

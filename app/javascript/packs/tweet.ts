@@ -8,7 +8,7 @@ function tweet() {
     const tweetBody: HTMLInputElement = document.getElementById('tweet-body') as any;
     const adminTwitter: AdminTwitter = new AdminTwitter(tweetType.value, tweetBody.value);
     adminTwitter.tweetRequest();
-  };
+  }
 }
 
 window.addEventListener('load', () => tweet());
