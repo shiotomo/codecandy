@@ -50,7 +50,7 @@ docker-compose up redis psql development
 
 roleの作成(Create role)  
 ```
-docker-compose run psql psql -h psql -U postgres -c "create role code_candy with createdb login password <PASSWORD>;"
+docker-compose run psql psql -h psql -U postgres -c "create role code_candy with createdb login password '<PASSWORD>';"
 ```
 パスワードは`docker-compose.yml`の`POSTGRES_PASSWORD`に指定したもの。(デフォルトは`password`)
 

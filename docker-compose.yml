@@ -92,8 +92,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-volumes:
-  postgres-data:
-    driver: local
-  redis-data:
-    driver: local
+# volumes:
+#   postgres-data:
+#     driver: local
+#   redis-data:
+#     driver: local
