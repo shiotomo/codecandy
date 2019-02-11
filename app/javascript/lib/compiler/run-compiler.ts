@@ -27,8 +27,7 @@ export class RunCompiler extends Compiler {
       return result;
     }).catch(err => {
       alert('エラーが発生しました');
-    })
-    .then(() => {
+    }).then(() => {
       this.runButton.disabled = false;
       this.runButton.innerHTML = '実行';
     });

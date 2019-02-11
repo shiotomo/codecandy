@@ -16,6 +16,7 @@ RUN apt-get update \
       lazarus \
       time \
       binutils \
+      swi-prolog \
       language-pack-ja-base language-pack-ja
 
 RUN npm install -g typescript

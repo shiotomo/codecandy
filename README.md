@@ -33,6 +33,17 @@ https://codecandy.tomosse.work
 - Pascal
 - TypeScript
 
+## 使用技術(Requirements)
+
+- ruby 2.6
+- rails 5.1.6
+- yarn 1.13.0
+- docker 18.09.1
+- docker-compose 1.23.2
+- typescript 3.2.2
+- postgresql
+- redis
+
 ## 使い方(How to use)
 __.env__
 ```
@@ -45,20 +56,29 @@ TwitterとGitHubとGoogleのAPIキーを.envに設定
 __docker__
 ```
 docker-compose build
-docker-compose up redis psql development
 ```
 
+__PostgreSQL__
 roleの作成(Create role)  
 ```
-docker-compose run psql psql -h psql -U postgres -c "create role code_candy with createdb login password '<PASSWORD>';"
+create role code_candy with createdb login password '<PASSWORD>';
 ```
-パスワードは`docker-compose.yml`の`POSTGRES_PASSWORD`に指定したもの。(デフォルトは`password`)
+パスワードは`docker-compose.yml`の`POSTGRES_PASSWORD`に指定したもの。
 
-rails db:setup
+__Rails__
 ```
-docker-compose run development bundle exec rails db:setup
+bundle install -j4 --path vendor/bundle
+bundle exec rails db:setup
 ```
 
+__yarn__
+```
+yarn install
+```
 
+__Exec__
+```
+bundle exec foreman start
+```
 ## LICENSE
 MIT
