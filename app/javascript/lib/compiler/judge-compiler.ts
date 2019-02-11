@@ -30,8 +30,7 @@ export class JudgeCompiler extends Compiler {
     }).catch(err => {
       // console.log(err);
       alert('エラーが発生しました');
-    })
-    .then(() => {
+    }).then(() => {
       this.runButton.disabled = false;
     this.judgeButton.disabled = false;
       this.runButton.innerHTML = '実行';
@@ -71,8 +70,7 @@ export class JudgeCompiler extends Compiler {
     }).catch(err => {
       // console.log(err);
       alert('エラーが発生しました');
-    })
-    .then(() => {
+    }).then(() => {
       this.judgeButton.disabled = false;
       this.judgeButton.innerHTML = '解答';
       this.runButton.disabled = false;
