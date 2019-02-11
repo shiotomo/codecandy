@@ -172,16 +172,6 @@ module CodeCandy
             exec_cmd: 'tsc main.ts && nodejs main.js',
             image_name: 'codecandy_compiler_default',
             time_out: 10
-          },
-          prolog: {
-            language: 'Prolog',
-            mode: 'prolog',
-            tab: 2,
-            extension: 'pl',
-            source_file: 'main.pl',
-            exec_cmd: 'swipl main.pl',
-            image_name: 'codecandy_compiler_default',
-            time_out: 10
           }
         }
         return language_data
