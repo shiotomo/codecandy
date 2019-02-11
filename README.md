@@ -47,7 +47,7 @@ https://codecandy.tomosse.work
 ## 使い方(How to use)
 __.env__
 ```
-cp .env_sample .env
+cp .env.sample .env
 ```
 データベースのホスト、ロールのパスワード、redisサーバのホスト、
 TwitterとGitHubとGoogleのAPIキーを.envに設定
