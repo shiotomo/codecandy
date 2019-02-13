@@ -6,6 +6,15 @@ module Twitter
   class AdminTwitter < TwitterClient
     class << self
       def tweet(text)
+        # 本番環境以外の時はツイートしない
+        if Rails.env != 'production'
+          @result = {
+            status: "This environment is not production.",
+            is_success: false
+          }
+          return @result
+        end
+
         begin
           client.update(text)
           @result = {status: "Success!!", is_success: true}

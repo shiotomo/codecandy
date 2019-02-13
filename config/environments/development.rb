@@ -63,6 +63,8 @@ Rails.application.configure do
     Bullet.rails_logger = true # Railsログに出力
   end
 
+   config.serve_static_assets = false
+
   # redisの設定
   # config.session_store :redis_store, {
   #    key: 'foobar',
