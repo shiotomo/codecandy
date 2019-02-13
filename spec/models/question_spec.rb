@@ -12,5 +12,13 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @question = FactoryBot.create(:question)
+  end
+
+  context "問題を登録する時" do
+    it "問題文だけ正常に登録できる" do
+      @question.save
+    end
+  end
 end

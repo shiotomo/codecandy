@@ -4,7 +4,7 @@
   target: "_blank"
 %>
 <hr />
-<%= form_for @question do |f| %>
+<%= form_with model: @question, local: true do |f|%>
   <div class="field">
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title, class: "form-control" %>
