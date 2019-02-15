@@ -61,6 +61,8 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'simplecov'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

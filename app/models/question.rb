@@ -10,8 +10,7 @@
 #
 
 class Question < ApplicationRecord
-  validates :title, presence: true
-  validates :title, uniqueness: true
+  validates :title, {presence: true, uniqueness: true}
 
   has_many :results, dependent: :destroy, inverse_of: :question
   has_many :answers, dependent: :destroy, inverse_of: :question
