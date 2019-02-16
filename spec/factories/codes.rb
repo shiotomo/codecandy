@@ -13,7 +13,7 @@
 FactoryBot.define do
   factory :code do
     user_id 1
-    code "MyText"
-    language "MyString"
+    code "puts 1"
+    language "Ruby"
   end
 end
