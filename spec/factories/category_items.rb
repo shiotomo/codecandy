@@ -11,7 +11,7 @@
 
 FactoryBot.define do
   factory :category_item do
-    category_id 1
-    question_id 1
+    category_id { 1 }
+    question_id { 1 }
   end
 end

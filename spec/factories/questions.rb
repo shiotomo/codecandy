@@ -11,7 +11,7 @@
 
 FactoryBot.define do
   factory :question do
-    title "MyString"
-    body "hogepiyofuhga"
+    title { "MyString" }
+    body { "hogepiyofuhga" }
   end
 end
