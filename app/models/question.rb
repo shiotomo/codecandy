@@ -21,4 +21,19 @@ class Question < ApplicationRecord
 
   include FriendlyId
   friendly_id :title
+
+  # 問題の提出数を返却する
+  # hash[ユーザID] = 問題解答数
+  def self.counter
+    counter = {}
+    answers = Answer.all
+    questions = Question.all
+    questions.each do |question|
+      counter[:"#{question.id}"] = 0
+    end
+    answers.each do |answer|
+      counter[:"#{answer.question_id}"] += 1
+    end
+    return counter
+  end
 end

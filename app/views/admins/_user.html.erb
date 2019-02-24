@@ -19,8 +19,8 @@
           <td><%= link_to user.user_name, user_path(user) %></td>
         <% end %>
         <td><%= user.user_name %></td>
-        <td><%= user.codes.count %></td>
-        <td><%= user.results.count %></td>
+        <td><%= @code_counters[:"#{user.id}"] %></td>
+        <td><%= @result_counters[:"#{user.id}"] %></td>
         <% if user.is_admin %>
           <td>管理者</td>
         <% else %>

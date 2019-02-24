@@ -15,6 +15,9 @@ class AdminsController < ApplicationController
     analysis_codes = CodeCandy::Analysis.statistics_result(@codes)
     analysis = analysis_results.merge(analysis_codes){|k, v1, v2| v1 + v2}
     @analysis = analysis.sort_by{|k, v| v}.reverse
+    @code_counters = Code.counter
+    @result_counters = Result.counter
+    @question_counters = Question.counter
   end
 
   def user
