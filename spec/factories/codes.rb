@@ -12,8 +12,8 @@
 
 FactoryBot.define do
   factory :code do
-    user_id 1
-    code "puts 1"
-    language "Ruby"
+    user_id { 1 }
+    code { "puts 1" }
+    language { "Ruby" }
   end
 end

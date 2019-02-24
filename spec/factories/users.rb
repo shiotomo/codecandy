@@ -15,11 +15,11 @@
 
 FactoryBot.define do
   factory :user do
-    provider 'twitter'
-    uid '12345654321'
-    user_name 'hoge'
-    screen_name 'hoge'
-    image_url 'https://hoge.com/image'
-    is_admin false
+    provider { 'twitter' }
+    uid { '12345654321' }
+    user_name { 'hoge' }
+    screen_name { 'hoge' }
+    image_url { 'https://hoge.com/image' }
+    is_admin { false }
   end
 end
