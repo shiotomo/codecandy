@@ -3,7 +3,7 @@ export class AdminTwitter {
   readonly data: {
     tweet_type: string;
     body: string;
-  }
+  };
 
   constructor(tweetType: string, body: string) {
     this.data = {
