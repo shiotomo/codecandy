@@ -37,7 +37,8 @@ class User < ApplicationRecord
       uid: auth["uid"],
       user_name: auth["info"]["name"],
       screen_name: auth["info"]["nickname"],
-      image_url: auth["info"]["image"]
+      image_url: auth["info"]["image"],
+      updated_at: Time.current
     )
   end
 end
