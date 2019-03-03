@@ -6,6 +6,7 @@ class ResultsController < ApplicationController
     @results = @question.results.where(user_id: current_user.id).order(created_at: 'desc')
   end
 
+  private
   def set_question
     @question = Question.friendly.find(params[:id])
   end
