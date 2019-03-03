@@ -2,11 +2,11 @@ require './lib/code_candy/analysis'
 
 class Api::V1::InformationController < Api::ApiController
   # CodeCandyの状態を返却するメソッド
+  # TODO コンテナで実行中のコード数などを取得して表示できるようにする
   def state
     state = {
       "status": "Active"
     }
-
     render json: state
   end
 
