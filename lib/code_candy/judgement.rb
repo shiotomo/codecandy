@@ -67,6 +67,7 @@ module CodeCandy
       end
 
       # 解答データを保存
+      # TODO ここの処理自体をモデルに移行することを検討する
       Result.create(
         question_id: @question_id,
         user_id: @user_id,
