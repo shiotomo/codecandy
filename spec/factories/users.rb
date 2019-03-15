@@ -22,4 +22,13 @@ FactoryBot.define do
     image_url { 'https://hoge.com/image' }
     is_admin { false }
   end
+
+  factory :admin, class: User do
+    provider { 'twitter' }
+    uid { '12345654323' }
+    user_name { 'piyo' }
+    screen_name { 'piyo' }
+    image_url { 'https://piyo.com/image' }
+    is_admin { true }
+  end
 end
