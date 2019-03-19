@@ -1,11 +1,7 @@
 # Dockerを用いて提出されたプログラムを実行するモジュール
 
-require 'json'
-require 'fileutils'
-require 'open3'
 require 'docker'
 require 'docker-api'
-require 'timeout'
 
 module CodeCandy
   class Container
