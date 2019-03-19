@@ -1,12 +1,5 @@
 # Dockerを用いて提出されたプログラムを実行するモジュール
 
-require 'json'
-require 'fileutils'
-require 'open3'
-require 'docker'
-require 'docker-api'
-require 'timeout'
-
 require './lib/code_candy/container'
 require './lib/code_candy/compiler'
 require './lib/code_candy/language'

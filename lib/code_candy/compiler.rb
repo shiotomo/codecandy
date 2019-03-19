@@ -1,3 +1,7 @@
+require 'timeout'
+require 'fileutils'
+require 'open3'
+
 module CodeCandy
   class Compiler
     # 実行準備を行う
