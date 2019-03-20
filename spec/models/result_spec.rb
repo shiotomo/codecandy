@@ -15,5 +15,18 @@
 require 'rails_helper'
 
 RSpec.describe Result, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @question = create(:question, id: 1)
+    @user = create(:user, id: 1)
+  end
+
+  it 'データをレコードできる' do
+    answer = @user.results.new(
+      answer: true,
+      question_id: @question.id,
+      code: 'puts 1',
+      language: 'Ruby'
+    )
+    expect(answer).to(be_valid)
+  end
 end

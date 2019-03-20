@@ -13,5 +13,15 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @question = create(:question, id: 1)
+  end
+
+  it 'データを登録できる' do
+    answer = @question.answers.new(
+      input: "",
+      output: "hoge"
+    )
+    expect(answer).to(be_valid)
+  end
 end

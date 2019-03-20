@@ -20,21 +20,21 @@ RSpec.describe Tweet, type: :model, model: true  do
     tweet = @user.tweets.create(
       body: "hoge",
     )
-    expect(tweet).to be_valid
+    expect(tweet).to(be_valid)
   end
 
   it "bodyに値が入っていない時はエラー" do
     tweet = @user.tweets.create(
       body: nil
     )
-    expect(tweet).not_to be_valid
+    expect(tweet).not_to(be_valid)
   end
 
   it "user_idに値が入っていない時はエラー" do
     tweet = Tweet.create(
       body: "hoge"
     )
-    expect(tweet).not_to be_valid
+    expect(tweet).not_to(be_valid)
   end
 
   it "bodyの文字列が120文字以上の時はエラー" do
@@ -45,6 +45,6 @@ RSpec.describe Tweet, type: :model, model: true  do
     tweet = @user.tweets.create(
       body: text,
     )
-    expect(tweet).not_to be_valid
+    expect(tweet).not_to(be_valid)
   end
 end
