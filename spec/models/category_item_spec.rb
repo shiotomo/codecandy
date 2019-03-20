@@ -12,5 +12,17 @@
 require 'rails_helper'
 
 RSpec.describe CategoryItem, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @question = create(:question, id: 1)
+    @category = create(:category, id: 1)
+  end
+
+  it 'データを登録できる' do
+    category_item = CategoryItem.new(
+      question_id: @question.id,
+      category_id: @category.id
+    )
+    expect(category_item).to(be_valid)
+  end
+
 end

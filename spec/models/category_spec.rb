@@ -12,5 +12,16 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  it 'データを登録できる' do
+    category = create(:category, id: 1)
+    expect(category).to(be_valid)
+  end
+
+  it 'タイトルがない場合データを登録できない' do
+      category = Question.new(
+        title: '',
+        body: ''
+      )
+      expect(category).not_to(be_valid)
+  end
 end

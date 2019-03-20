@@ -13,5 +13,12 @@
 require 'rails_helper'
 
 RSpec.describe Code, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  it 'データをレコードできる' do
+    user = create(:user, id: 1)
+    code = user.codes.new(
+      code: 'puts 1',
+      language: 'Ruby'
+    )
+    expect(code).to(be_valid)
+  end
 end
