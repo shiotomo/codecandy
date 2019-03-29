@@ -52,6 +52,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'bullet'
   gem 'foreman'
+  gem 'rails-erd'
 end
 
 group :test do
