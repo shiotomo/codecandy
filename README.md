@@ -59,6 +59,7 @@ docker-compose build
 ```
 
 __PostgreSQL__
+  
 roleの作成(Create role)  
 ```
 create role code_candy with createdb login password '<PASSWORD>';
