@@ -1,4 +1,4 @@
-FROM openjdk:10
+FROM openjdk:11
 
 ENV TZ: Asia/Tokyo
 
