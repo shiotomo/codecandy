@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       get '/information/all_code', to: 'information#all_code'
     end
     namespace :v2 do
-      get '/cloud/get_token', to: 'cloud#get_token'
+      get '/cloud/status', to: 'cloud#status'
     end
   end
 
