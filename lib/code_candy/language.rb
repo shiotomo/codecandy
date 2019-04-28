@@ -80,7 +80,7 @@ module CodeCandy
             extension: 'scala',
             source_file: 'Main.scala',
             exec_cmd: 'scalac Main.scala && scala Main',
-            image_name: 'codecandy_compiler_jvm_php',
+            image_name: 'codecandy_compiler_default',
             time_out: 20
           },
           swift: {
