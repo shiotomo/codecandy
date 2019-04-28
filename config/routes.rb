@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :sections, only: [:index, :show]
   resources :technicals, only: :index
   resources :code_golf_rankings, only: [:index, :show]
+  resources :clouds, only: [:index]
 
   # 管理者ページ用
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: "sessions#destroy", as: :signout
 
-  # 管理者用API
   namespace :api do
     post '/admin/tweet', to: 'admin#tweet'
     get '/language/information/:language/:data', to: 'language#information'

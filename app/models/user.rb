@@ -21,6 +21,8 @@ class User < ApplicationRecord
   include FriendlyId
   friendly_id :screen_name
 
+  has_secure_token :api_token
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
