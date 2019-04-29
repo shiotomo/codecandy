@@ -17,6 +17,8 @@ RUN apt-get update \
       time \
       binutils \
       swi-prolog \
+      openjdk-8-jre \
+      scala \
       language-pack-ja-base language-pack-ja
 
 RUN npm install -g typescript
