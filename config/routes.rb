@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :technicals, only: :index
   resources :code_golf_rankings, only: [:index, :show]
   resources :clouds, only: [:index]
+  post 'clouds/token', to: 'clouds#generate_token'
 
   # 管理者ページ用
   resources :questions, only: [:show, :new, :edit, :create, :update, :destroy]

@@ -1,8 +1,6 @@
 require './lib/code_candy/analysis'
 
 class WelcomesController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     redirect_to tops_path if user_signed_in?
     results = Result.all.order(created_at: 'desc')
