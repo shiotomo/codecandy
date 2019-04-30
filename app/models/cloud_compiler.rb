@@ -1,23 +1,23 @@
 # == Schema Information
 #
-# Table name: codes
+# Table name: cloud_compilers
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :integer          not null
+#  user_id    :bigint(8)        not null
 #  code       :text
 #  language   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Code < ApplicationRecord
-  belongs_to :user, inverse_of: :codes
+class CloudCompiler < ApplicationRecord
+  belongs_to :user, inverse_of: :cloud_compilers
 
   # 全ユーザのコードの提出数を返却する
   # hash[ユーザID] = コードの数
   def self.counter
     counter = {}
-    codes = Code.all
+    codes = CloudCompiler.all
     users = User.all
     users.each do |user|
       counter[:"#{user.id}"] = 0

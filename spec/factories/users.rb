@@ -11,6 +11,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  is_admin    :boolean          default(FALSE), not null
+#  api_token   :string
 #
 
 FactoryBot.define do

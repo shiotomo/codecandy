@@ -1,0 +1,50 @@
+<ul class="nav nav-tabs">
+  <li>
+    <%= link_to 'TOP', tops_path %>
+  </li>
+  <li>
+    <%= link_to 'Editor', editors_path %>
+  </li>
+  <li>
+    <%= link_to 'Category', sections_path %>
+  </li>
+  <li>
+    <%= link_to 'Questions list', lessons_path %>
+  </li>
+  <li class="active">
+    <%= link_to 'Technical', technicals_path %>
+  </li>
+</ul>
+<h1 style="text-align: center;">Cloud API</h1>
+<p style="text-align: center;">CodeCandyのAPIを使ってプログラミングをさらに楽しものに</p>
+<lable>API Token</label>
+<code>
+  <%= current_user.api_token %>
+</code>
+<p style="color: green;"><%= h(flash[:create_token]) %></p>
+<%= form_with url: clouds_token_path, local: true do |f|%>
+  <%= f.submit "新しいAPI Tokenを生成", class: "btn btn-primary" %>
+<% end %>
+<hr />
+<h2>CodeCandy Cloud APIとは</h2>
+<p>
+  CodeCandy Cloud API(C3 API)とは、CodeCandyの機能をより最大限に利用してもらえるよう開発されたWeb APIです。<br />
+  C3 APIを利用することで、開発者の開発の幅が大きく向上することを目的としています。
+</p>
+<h2>CodeCandy Cloud API End point</h2>
+<p>
+  利用できるAPIのEnd pointは以下の通りです。
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>End point</th>
+      <th>概要</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/api/v1/</code></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: codes
+# Table name: cloud_compilers
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :integer          not null
+#  user_id    :bigint(8)        not null
 #  code       :text
 #  language   :string
 #  created_at :datetime         not null
@@ -12,13 +12,13 @@
 
 require 'rails_helper'
 
-RSpec.describe Code, type: :model do
+RSpec.describe CloudCompiler, type: :model do
   it 'データをレコードできる' do
     user = create(:user, id: 1)
-    code = user.codes.new(
+    cloud_compiler = user.cloud_compilers.new(
       code: 'puts 1',
       language: 'Ruby'
     )
-    expect(code).to(be_valid)
+    expect(cloud_compiler).to(be_valid)
   end
 end
