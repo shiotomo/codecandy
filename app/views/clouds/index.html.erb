@@ -16,11 +16,13 @@
   </li>
 </ul>
 <h1 style="text-align: center;">Cloud API</h1>
-<p style="text-align: center;">CodeCandyのAPIを使ってプログラミングをさらに楽しものに</p>
-<lable>API Token</label>
-<code>
-  <%= current_user.api_token %>
-</code>
+<p style="text-align: center;">CodeCandyのAPIを使ってプログラミングをさらに楽しむ</p>
+<div style="font-size: 200%">
+  <lable>API Token</label>
+  <code>
+    <%= current_user.api_token %>
+  </code>
+</div>
 <p style="color: green;"><%= h(flash[:create_token]) %></p>
 <%= form_with url: clouds_token_path, local: true do |f|%>
   <%= f.submit "新しいAPI Tokenを生成", class: "btn btn-primary" %>
@@ -29,22 +31,53 @@
 <h2>CodeCandy Cloud APIとは</h2>
 <p>
   CodeCandy Cloud API(C3 API)とは、CodeCandyの機能をより最大限に利用してもらえるよう開発されたWeb APIです。<br />
-  C3 APIを利用することで、開発者の開発の幅が大きく向上することを目的としています。
+  クラウドサービスを使ったサービス開発の入門や、システム開発にお使いください。
 </p>
-<h2>CodeCandy Cloud API End point</h2>
+<h2>APIの使い方</h2>
 <p>
-  利用できるAPIのEnd pointは以下の通りです。
+  C3 APIはWeb APIとして提供されているので、APIに対してHTTPリクエストを送信することで利用していただけます。<br />
+  C3 APIのAPIは上記のユーザのAPI Tokenを使ってユーザ認証を行っています。<br />
+  Request headerに<code>Authorization: Token ${ユーザのAPI Token}</code>を追加してください。
+</p>
+<h2>C3 API End point</h2>
+<p>
+  現在、利用できるAPIです。随時追加予定です。
 </p>
 <table class="table">
   <thead>
     <tr>
       <th>End point</th>
+      <th>Method</th>
       <th>概要</th>
+      <th>Request Body</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>/api/v1/</code></td>
+      <td><code>/api/v2/cloud/language_list</code></td>
+      <td>GET</td>
+      <td>
+        C3 APIで利用できるプログラミング言語一覧を取得することができます。<br />
+        keyが実行できるプログラミング言語、valueがCodeCandyに保存される値、のjsonを取得します。
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td><code>/api/v2/cloud/compiler</code></td>
+      <td>POST</td>
+      <td>
+        指定した言語のプログラムを実行することができます。
+      </td>
+      <td>
+        <code>
+          {
+            "language": "ruby",
+            "source_code": "puts 123",
+            "input": ""
+          }
+        </code>
+      </td>
     </tr>
   </tbody>
 </table>
