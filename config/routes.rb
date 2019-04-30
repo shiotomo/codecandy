@@ -45,7 +45,8 @@ Rails.application.routes.draw do
       get '/information/all_code', to: 'information#all_code'
     end
     namespace :v2 do
-      get '/cloud/status', to: 'cloud#status'
+      get '/information/state', to: 'information#state'
+      post 'cloud/compiler', to: 'cloud#compiler'
     end
   end
 

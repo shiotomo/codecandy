@@ -11,11 +11,13 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  is_admin    :boolean          default(FALSE), not null
+#  api_token   :string
 #
 
 class User < ApplicationRecord
   has_many :results, inverse_of: :user
   has_many :codes, inverse_of: :user
+  has_many :cloud_compilers, inverse_of: :user
   has_many :tweets, inverse_of: :user
 
   include FriendlyId
