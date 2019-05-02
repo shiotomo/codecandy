@@ -18,6 +18,7 @@ RSpec.describe CloudCompiler, type: :model do
     cloud_compiler = user.cloud_compilers.new(
       code: 'puts 1',
       language: 'Ruby'
+      input: ''
     )
     expect(cloud_compiler).to(be_valid)
   end
