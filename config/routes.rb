@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :technicals, only: :index
   resources :code_golf_rankings, only: [:index, :show]
   resources :clouds, only: [:index]
+  get 'clouds/compiler/:user_id', to: 'clouds#compiler', as: 'clouds_compiler'
   post 'clouds/token', to: 'clouds#generate_token'
 
   # 管理者ページ用

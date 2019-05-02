@@ -8,4 +8,13 @@ class CloudsController < ApplicationController
     flash[:create_token] = "Successful create token!!"
     redirect_to clouds_path
   end
+
+  def compiler
+    @cloud_compilers = CloudCompiler.where(user_id: params[:user_id])
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 end

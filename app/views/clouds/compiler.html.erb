@@ -1,0 +1,29 @@
+<h1 style="text-align: center;">Cloud Compiler API</h1>
+<%= link_to '< Back', clouds_path, class: 'btn btn-info' %>
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h3 style="text-align: center">API 利用ログ</h3>
+  </div>
+  <div class="panel panel-body">
+    <h3>利用数: <%= @cloud_compilers.count %></h3>
+    <hr />
+    <% @cloud_compilers.each do |cloud_compiler| %>
+      <p>
+        <%= sanitize markdown(cloud_compiler.code).html_safe %>
+      </p>
+      <p>
+        <label>言語</label>
+        <%= cloud_compiler.language %>
+      </p>
+      <p>
+        <label>入力</label>
+        <%= cloud_compiler.input %>
+      </p>
+      <p>
+        <label>実行日時</label>
+        <%= cloud_compiler.created_at.in_time_zone('Tokyo').strftime("%Y年 %m月 %d日 %H:%M:%S") %>
+      </p>
+      <hr />
+    <% end %>
+  </div>
+</div>
