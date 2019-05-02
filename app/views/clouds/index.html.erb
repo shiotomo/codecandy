@@ -46,24 +46,39 @@
 <table class="table">
   <thead>
     <tr>
+      <th>API Name</th>
       <th>End point</th>
       <th>Method</th>
       <th>概要</th>
       <th>Request Body(Example)</th>
+      <th>Response</th>
+      <th>利用詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>/api/v2/cloud/language_list</code></td>
+      <td>LangMap</td>
+      <td><code>/api/v2/cloud/language_map</code></td>
       <td>GET</td>
       <td>
         C3 APIで利用できるプログラミング言語一覧を取得することができます。<br />
-        keyが実行できるプログラミング言語、valueがCodeCandyに保存される値、のjsonを取得します。
+        keyが実行できるプログラミング言語、valueがCodeCandyに保存される値、のjsonを返却します。
       </td>
       <td>
       </td>
+      <td>
+        <code>
+          {
+            ${String}: ${String},
+            ...
+            ${String}: ${String}
+          }
+        </code>
+      </td>
+      <th></th>
     </tr>
     <tr>
+      <td>Cloud Compiler API(CCA)</td>
       <td><code>/api/v2/cloud/compiler</code></td>
       <td>POST</td>
       <td>
@@ -77,6 +92,20 @@
             "input": ""
           }
         </code>
+      </td>
+      <td>
+        <code>
+          {
+            "stdout": ${String},
+            "stderr": ${String},
+            "time": ${String},
+            "exit_code": ${Integer},
+            "input_error": ${Boolean}
+          }
+        </code>
+      </td>
+      <td>
+        <%= link_to '利用詳細', clouds_compiler_path(current_user.id), class: 'btn btn-primary' %>
       </td>
     </tr>
   </tbody>
