@@ -40,7 +40,7 @@ describe "code_runner" do
     it "C++", code_runner: true do
       @source_code = """
       #include<stdio.h>
-        int main(void) {
+      int main(void) {
           printf(\"hello\");
           return 0;
       }
@@ -173,7 +173,7 @@ describe "code_runner" do
 
     it "TypeScript", code_runner: true do
       @source_code = "console.log(\"hello\")"
-      @code_runner = CodeCandy::CodeRunner.new("nodejs", @source_code, "", 1)
+      @code_runner = CodeCandy::CodeRunner.new("typescript", @source_code, "", 1)
       return_prams = @code_runner.exec
       expect(return_prams[:stdout]).to eq "hello\n"
     end
