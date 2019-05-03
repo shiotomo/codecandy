@@ -10,9 +10,6 @@ module CodeCandy
       @source_code = source_code
       @user_id = user_id
 
-      # コンテナモジュールのインスタンスを生成
-      @code_runner = CodeCandy::CodeRunner.new
-
       # 問題の標準入出力を呼び出し
       @answers = Question.find(@question_id).answers
 
@@ -28,8 +25,11 @@ module CodeCandy
 
     def exec
       @answers.each do |answer|
+        # コンテナモジュールのインスタンスを生成
+        @code_runner = CodeCandy::CodeRunner.new(@language, @source_code, answer.input, @user_id)
+
         # インスタンスに言語、ソースコード、標準入力、ユーザIDを与えて提出されたプログラムを実行する
-        @result = @code_runner.exec(@language, @source_code, answer.input, @user_id)
+        @result = @code_runner.exec
 
         # 不正な入力があった場合その時点でエラーメッセージを返却する
         # answerを''にしておくことでブラウザ上でundefinedを表示しないようにする
