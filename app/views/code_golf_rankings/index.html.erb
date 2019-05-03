@@ -16,7 +16,7 @@
   </li>
 </ul>
 <h1 style="text-align: center">Code Golf Ranking</h1>
-<p style="text-align: center">誰よりもコードを短く記述できることを極めたい人に</p>
+<p style="text-align: center">誰よりもコードを短く記述することを極めたい人に</p>
 <ul>
   <% @questions.each do |question| %>
     <h3><li><%= link_to question.title, code_golf_ranking_path(question.id) %></li></h3>

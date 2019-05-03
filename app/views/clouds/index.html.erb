@@ -28,7 +28,7 @@
   <%= f.submit "新しいAPI Tokenを生成", class: "btn btn-primary" %>
 <% end %>
 <hr />
-<h2>CodeCandy Cloud APIとは</h2>
+<h2>CodeCandy Cloud API(C3 API)とは</h2>
 <p>
   CodeCandy Cloud API(C3 API)とは、CodeCandyの機能をより最大限に利用してもらえるよう開発されたWeb APIです。<br />
   クラウドサービスを使ったサービス開発の入門や、システム開発にお使いください。
@@ -53,6 +53,7 @@
       <th>Request Body(Example)</th>
       <th>Response</th>
       <th>利用詳細</th>
+      <th>注意事項</th>
     </tr>
   </thead>
   <tbody>
@@ -107,6 +108,25 @@
       <td>
         <%= link_to '利用詳細', clouds_compiler_path(current_user.id), class: 'btn btn-primary' %>
       </td>
+      <td>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#cloud_compiler_notes">open</button>
+      </td>
     </tr>
+    <div class="modal fade" id="cloud_compiler_notes">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Cloud Compiler APIを利用するにあたっての注意事項</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Cloud Compiler APIは利用履歴をすべて保存しています。ソースコードや標準入力に外部には外部に公開してはいけない情報を書かないでください。<br />
+              また、Cloud Compiler APIを利用して発生した存在に関して、管理者は一切の責任を負いません。予めご了承ください。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </tbody>
 </table>
