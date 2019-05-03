@@ -10,12 +10,12 @@ class Api::V1::CompileController < Api::ApiController
     source_code = params[:source_code]
     input = params[:input]
 
-    code_runner = CodeCandy::CodeRunner.new
+    code_runner = CodeCandy::CodeRunner.new(language, source_code, input, current_user.id)
 
     begin
       submit_language = CodeCandy::Language.get_language_data[:"#{language}"][:language]
       # 提出されたコードを保存
-      @result = code_runner.exec(language, source_code, input, current_user.id)
+      @result = code_runner.exec
       # 入力が不正な場合はレコードしない
       Code.create(code: source_code, language: submit_language, user_id: current_user.id) unless @result[:input_error]
     rescue
