@@ -3,7 +3,7 @@ class TopsController < ApplicationController
 
   def index
     @questions = Question.all
-    @question_answer_counter = Question.counter(current_user.id)
+    @question_answer_counter = Question.result_counter(current_user.id)
 
     @analysis = Hash.new(0)
     results = current_user.results

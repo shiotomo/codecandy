@@ -34,7 +34,7 @@ class Question < ApplicationRecord
   #
   # 引数
   #   user_id: ユーザのID
-  def self.counter(user_id)
+  def self.result_counter(user_id)
     results = Result.where(user_id: user_id)
     return create_counter(results)
   end
