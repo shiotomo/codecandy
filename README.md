@@ -1,4 +1,8 @@
-# CodeCandy
+<div style="text-align: center;">
+  <img src="https://github.com/shiotomo/codecandy/blob/master/public/images/codecandylogo.png?raw=true" alt="CodeCandy" title="CodeCandy">
+</div>
+
+[![CircleCI](https://circleci.com/gh/shiotomo/codecandy/tree/master.svg?style=svg)](https://circleci.com/gh/shiotomo/codecandy/tree/master)
 
 ## このアプリについて(About this application)
 
