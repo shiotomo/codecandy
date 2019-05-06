@@ -114,7 +114,7 @@
               <tr>
                 <td><%= link_to question.title, lesson_path(question) %></td>
                 <td>
-                  <%= link_to question.results.where(user_id: current_user.id).count, result_path(question) %>
+                  <%= link_to @question_answer_counter[:"#{question.id}"], result_path(question) %>
                 </td>
               </tr>
             <% end %>
