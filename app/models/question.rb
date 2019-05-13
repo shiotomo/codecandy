@@ -25,7 +25,7 @@ class Question < ApplicationRecord
   # 問題の提出数を返却する
   # hash[問題ID] = 問題解答数
   def self.counter
-    answers = Answer.all
+    answers = Result.all
     return create_counter(answers)
   end
 
