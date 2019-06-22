@@ -28,6 +28,6 @@ module CodeCandy
     # Don't generate system test files.
     config.generators.system_tests = nil
     # config.web_console.whitelisted_ips = '10.0.2.2'
-    config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
+    config.cache_store = :redis_store, "redis://#{ENV["REDIS_HOST"]}:#{ENV["REDIS_POSRT"]}/0/cache", { expires_in: 90.minutes }
   end
 end
