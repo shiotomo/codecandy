@@ -7,7 +7,7 @@ CodeCandy::Application.config.session_store :redis_store, {
   servers: [
     {
       host: ENV["REDIS_HOST"],
-      port: 6379,
+      port: ENV["REDIS_PORT"],
       db: 0,
       namespace: "session"
     },
