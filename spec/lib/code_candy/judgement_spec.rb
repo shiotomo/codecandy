@@ -1,7 +1,7 @@
 require 'spec_helper'
 require './lib/code_candy/judgement'
 
-RSpex.describe "judgement" do
+RSpec.describe "judgement" do
   before do
     @uesr = create(:user, id: 1)
     @question = create(:question, id: 1)
