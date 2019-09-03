@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require './lib/twitter/admin_twitter'
 
 RSpec.describe "admin_twitter" do

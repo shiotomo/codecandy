@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require './lib/code_candy/code_runner'
 
 # == 実行可能言語 ==
