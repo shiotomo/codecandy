@@ -1,7 +1,7 @@
 require 'spec_helper'
 require './lib/twitter/admin_twitter'
 
-describe "admin_twitter" do
+RSpec.describe "admin_twitter" do
   context "test環境の時" do
     it "statusは'This environment is not production.'を返却する'", admin_twitter: true do
       result = Twitter::AdminTwitter.tweet("hoge")

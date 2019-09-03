@@ -21,7 +21,7 @@ require './lib/code_candy/code_runner'
 # Pascal
 # TypeScript
 
-describe "code_runner" do
+RSpec.describe "code_runner" do
   context "実行したプログラムが正常に動作していること" do
     it "Gcc", code_runner: true do
       @source_code = "main() { printf(\"hello\"); }"
