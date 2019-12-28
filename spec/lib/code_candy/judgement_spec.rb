@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require './lib/code_candy/judgement'
 
 RSpec.describe "judgement" do
