@@ -39,8 +39,8 @@ https://codecandy.tomosse.work
 
 ## 使用技術(Requirements)
 
-- ruby 2.6
-- rails 5.1.6
+- ruby 2.6.0
+- rails 5.1.7
 - yarn 1.13.0
 - docker 18.09.1
 - docker-compose 1.23.2
