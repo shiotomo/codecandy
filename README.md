@@ -81,7 +81,7 @@ __yarn__
 yarn install
 ```
 
-__Exec__
+__Run__
 ```
 bundle exec foreman start
 ```
