@@ -14,9 +14,6 @@
 It can be used as an online compiler.
 Since editor is also equipped, programming can be started with this one application.)
 
-## URL
-https://codecandy.tomosse.work
-
 ## 対応言語(Supported language)
 
 - C (gcc)
